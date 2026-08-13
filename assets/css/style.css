@@ -760,6 +760,11 @@ input[type="range"]::-moz-range-track { height: 4px; border-radius: 4px; backgro
   transition: transform 0.5s ease;
 }
 .gallery-item:hover img { transform: scale(1.06); }
+
+/* Portrait source photos need a manual crop anchor so the subject
+   (not empty pavement/frame) shows in these landscape-cropped cells */
+img[src*="commercial-toyota.jpg"] { object-position: center 18%; }
+img[src*="detail-frame.jpg"] { object-position: center 68%; }
 .gallery-item figcaption {
   position: absolute;
   left: 0; right: 0; bottom: 0;
