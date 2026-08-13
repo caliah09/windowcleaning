@@ -25,9 +25,10 @@
       <a href="#services">Services</a>
       <a href="#work">Our Work</a>
       <a href="#reviews">Reviews</a>
+      <a href="#quote">Instant Quote</a>
       <a href="#area">Service Area</a>
       <a href="tel:+12564761402" class="nav-phone">(256) 476-1402</a>
-      <a href="#contact" class="nav-cta">Get a Quote</a>
+      <a href="#quote" class="nav-cta">Get a Quote</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -50,7 +51,7 @@
       <p class="hero-area">Serving Athens &bull; Huntsville &bull; Decatur &bull; Madison &bull; Florence &bull; Hartselle &bull; Cullman County</p>
       <div class="hero-actions">
         <a href="tel:+12564761402" class="btn btn-gold">Call or Text (256) 476-1402</a>
-        <a href="#contact" class="btn btn-outline">Get a Free Quote</a>
+        <a href="#quote" class="btn btn-outline">Get an Instant Quote</a>
       </div>
     </div>
   </section>
@@ -87,34 +88,47 @@
       <p class="section-eyebrow">Recent Work</p>
       <h2 class="section-title">Clarity You Can See</h2>
       <p class="section-lede">A look at real jobs &mdash; from front-yard brick colonials to the storefront glass local businesses trust us with.</p>
-      <div class="gallery-grid">
-        <figure class="gallery-item span-2">
+      <div class="gallery-grid" id="gallery-grid">
+        <figure class="gallery-item span-2" data-index="1" tabindex="0" role="button" aria-label="View full photo">
           <img src="assets/images/detail-frame.jpg" alt="Close attention to detail cleaning a window frame and track by hand">
           <figcaption>Every inch, by hand &mdash; frames and tracks included</figcaption>
         </figure>
-        <figure class="gallery-item">
+        <figure class="gallery-item" data-index="3" tabindex="0" role="button" aria-label="View full photo">
           <img src="assets/images/residential-brick.jpg" alt="Two-story brick home with clean, streak-free windows">
           <figcaption>Residential &middot; Athens, AL</figcaption>
         </figure>
-        <figure class="gallery-item">
+        <figure class="gallery-item" data-index="4" tabindex="0" role="button" aria-label="View full photo">
           <img src="assets/images/residential-stone-wide.jpg" alt="Large stone and brick home exterior with sparkling windows">
           <figcaption>Residential &middot; North Alabama</figcaption>
         </figure>
-        <figure class="gallery-item">
+        <figure class="gallery-item" data-index="6" tabindex="0" role="button" aria-label="View full photo">
           <img src="assets/images/commercial-handels.jpg" alt="Handel's Homemade Ice Cream storefront with clean windows">
           <figcaption>Commercial &middot; Handel's Ice Cream</figcaption>
         </figure>
-        <figure class="gallery-item">
+        <figure class="gallery-item" data-index="8" tabindex="0" role="button" aria-label="View full photo">
           <img src="assets/images/commercial-bluedolphin.jpg" alt="Blue Dolphin Pools and Spas storefront with clean glass">
           <figcaption>Commercial &middot; Blue Dolphin Pools &amp; Spas</figcaption>
         </figure>
-        <figure class="gallery-item span-2">
+        <figure class="gallery-item span-2" data-index="9" tabindex="0" role="button" aria-label="View full photo">
           <img src="assets/images/commercial-toyota.jpg" alt="Large commercial facility exterior with floor-to-ceiling clean windows">
           <figcaption>Commercial facility &middot; floor-to-ceiling glass</figcaption>
         </figure>
       </div>
+      <button class="btn btn-outline-dark gallery-view-all" id="gallery-view-all">View All Photos (11)</button>
     </div>
   </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close gallery">&times;</button>
+    <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous photo">&#8249;</button>
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" src="" alt="">
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+    <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next photo">&#8250;</button>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
 
   <!-- SERVICES -->
   <section class="services" id="services">
@@ -136,6 +150,91 @@
         <span class="discount-pill">60+ Discount</span>
         <span class="discount-pill">Veterans Discount</span>
       </div>
+    </div>
+  </section>
+
+  <!-- INSTANT QUOTE -->
+  <section class="quote" id="quote">
+    <div class="container quote-grid">
+      <div class="quote-intro">
+        <p class="section-eyebrow">Free Estimate</p>
+        <h2 class="section-title">Get an Instant Quote</h2>
+        <p class="section-lede">Answer a few quick questions and we'll build a ready-to-send request with everything Tucker's needs to get you a price &mdash; no phone tag required.</p>
+      </div>
+      <form class="quote-form" id="quote-form">
+        <div class="form-row">
+          <label>Name
+            <input type="text" id="q-name" name="name" placeholder="Your name" autocomplete="name">
+          </label>
+          <label>Phone
+            <input type="tel" id="q-phone" name="phone" placeholder="(256) 000-0000" autocomplete="tel">
+          </label>
+        </div>
+
+        <fieldset class="form-row">
+          <legend>Property Type</legend>
+          <label class="radio"><input type="radio" name="propertyType" value="Residential" checked> Residential</label>
+          <label class="radio"><input type="radio" name="propertyType" value="Commercial"> Commercial</label>
+        </fieldset>
+
+        <div class="form-row">
+          <label>City / Area
+            <select id="q-city" name="city">
+              <option>Athens, AL</option>
+              <option>Huntsville, AL</option>
+              <option>Decatur, AL</option>
+              <option>Madison, AL</option>
+              <option>Florence, AL</option>
+              <option>Hartselle, AL</option>
+              <option>Hillsboro, AL</option>
+              <option>Cullman County, AL</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Stories
+            <select id="q-stories" name="stories">
+              <option>1 story</option>
+              <option>2 stories</option>
+              <option>3+ stories</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>Approx. Number of Windows
+            <select id="q-windows" name="windows">
+              <option>1&ndash;10</option>
+              <option>11&ndash;20</option>
+              <option>21&ndash;30</option>
+              <option>31&ndash;40</option>
+              <option>41+</option>
+            </select>
+          </label>
+          <label>Interested In
+            <select id="q-discount" name="discount">
+              <option value="">No discount applies</option>
+              <option value="First-Time Homeowner Discount">First-Time Homeowner Discount</option>
+              <option value="60+ Discount">60+ Discount</option>
+              <option value="Veterans Discount">Veterans Discount</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="full">Anything else we should know?
+          <textarea id="q-notes" name="notes" rows="3" placeholder="Screens, hard water spots, preferred day/time, etc. (optional)"></textarea>
+        </label>
+
+        <div class="quote-preview">
+          <p class="quote-preview-label">Your request, ready to send</p>
+          <p id="quote-preview-text" class="quote-preview-text"></p>
+        </div>
+
+        <div class="quote-actions">
+          <a href="#" id="quote-text" class="btn btn-gold" aria-disabled="true">Text This Request</a>
+          <a href="#" id="quote-messenger" class="btn btn-outline-dark" target="_blank" rel="noopener" aria-disabled="true">Send via Messenger</a>
+        </div>
+        <p class="quote-hint">Fill in your name and phone to enable sending. This opens your messaging app with the request pre-filled &mdash; nothing is sent automatically.</p>
+      </form>
     </div>
   </section>
 
@@ -189,6 +288,7 @@
         <a href="tel:+12564761402" class="btn btn-gold btn-block">Call (256) 476-1402</a>
         <a href="sms:+12564761402" class="btn btn-outline-light btn-block">Text Us</a>
         <a href="https://m.me/61576311082795" class="btn btn-outline-light btn-block" target="_blank" rel="noopener">Message on Facebook</a>
+        <a href="#quote" class="contact-quote-link">Or use our Instant Quote tool &rarr;</a>
       </div>
     </div>
   </section>
