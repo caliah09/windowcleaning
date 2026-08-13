@@ -520,6 +520,36 @@ section { padding: 100px 0; }
   border-color: var(--gold);
 }
 .quote-form textarea { resize: vertical; font-family: var(--font-sans); }
+.quote-estimate {
+  background: rgba(185,146,79,0.1);
+  border: 1px solid var(--gold);
+  padding: 24px 26px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.quote-estimate-label {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--navy);
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+.quote-estimate-value {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 10px;
+}
+.quote-estimate-note {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  max-width: 480px;
+  margin: 0 auto;
+}
 .quote-preview {
   background: var(--navy-deep);
   color: var(--white);

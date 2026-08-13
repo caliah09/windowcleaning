@@ -106,24 +106,61 @@ document.addEventListener('DOMContentLoaded', function () {
     var discountEl = document.getElementById('q-discount');
     var notesEl = document.getElementById('q-notes');
     var previewEl = document.getElementById('quote-preview-text');
+    var estimateEl = document.getElementById('quote-estimate-value');
     var textBtn = document.getElementById('quote-text');
     var messengerBtn = document.getElementById('quote-messenger');
     var PHONE = '+12564761402';
     var PAGE_ID = '61576311082795';
+
+    // Ballpark rates only -- Tucker's has not published pricing.
+    // Figures reflect typical published industry ranges for
+    // professional window cleaning (in/out, frames & tracks included).
+    var WINDOW_COUNT = { '1–10': 6, '11–20': 15, '21–30': 25, '31–40': 35, '41+': 45 };
+    var STORY_MULTIPLIER = { '1 story': 1, '2 stories': 1.25, '3+ stories': 1.5 };
+    var RATE_PER_WINDOW = { Residential: 8, Commercial: 5 };
+    var MINIMUM_CHARGE = { Residential: 125, Commercial: 150 };
+    var DISCOUNT_FACTOR = 0.9;
 
     function propertyType() {
       var checked = quoteForm.querySelector('input[name="propertyType"]:checked');
       return checked ? checked.value : 'Residential';
     }
 
-    function buildMessage() {
+    function roundTo5(n) {
+      return Math.round(n / 5) * 5;
+    }
+
+    function calculateEstimate() {
+      var type = propertyType();
+      var count = WINDOW_COUNT[windowsEl.value] || 6;
+      var storyMult = STORY_MULTIPLIER[storiesEl.value] || 1;
+      var rate = RATE_PER_WINDOW[type];
+      var base = count * rate * storyMult;
+
+      var low = base * 0.85;
+      var high = base * 1.15;
+
+      if (discountEl.value) {
+        low *= DISCOUNT_FACTOR;
+        high *= DISCOUNT_FACTOR;
+      }
+
+      var minimum = MINIMUM_CHARGE[type] * (discountEl.value ? DISCOUNT_FACTOR : 1);
+      low = Math.max(low, minimum);
+      high = Math.max(high, low + 30);
+
+      return { low: roundTo5(low), high: roundTo5(high) };
+    }
+
+    function buildMessage(estimate) {
       var name = nameEl.value.trim() || '[your name]';
       var phone = phoneEl.value.trim() || '[your phone]';
       var lines = [
         'Quote request from ' + name + ' (' + phone + ')',
         'Property: ' + propertyType() + ' in ' + cityEl.value,
         'Stories: ' + storiesEl.value,
-        'Approx. windows: ' + windowsEl.value
+        'Approx. windows: ' + windowsEl.value,
+        'Ballpark estimate: $' + estimate.low + '–$' + estimate.high + ' (industry-standard estimate, to be confirmed)'
       ];
       if (discountEl.value) lines.push('Discount: ' + discountEl.value);
       if (notesEl.value.trim()) lines.push('Notes: ' + notesEl.value.trim());
@@ -131,7 +168,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updatePreview() {
-      var message = buildMessage();
+      var estimate = calculateEstimate();
+      estimateEl.textContent = '$' + estimate.low + ' – $' + estimate.high;
+
+      var message = buildMessage(estimate);
       previewEl.textContent = message;
 
       var ready = nameEl.value.trim().length > 0 && phoneEl.value.trim().length > 0;
