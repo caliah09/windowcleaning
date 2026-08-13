@@ -446,19 +446,14 @@ section { padding: 100px 0; }
   line-height: 1.65;
   margin: 0;
 }
-.discounts {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.discount-pill {
-  border: 1px solid var(--gold);
+.discounts-line {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
   color: var(--navy);
-  padding: 9px 18px;
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  border-radius: 999px;
-  background: rgba(185,146,79,0.08);
+  border-left: 3px solid var(--gold);
+  padding-left: 18px;
+  margin: 0;
 }
 
 /* ---------- Instant Quote ---------- */
@@ -557,25 +552,17 @@ section { padding: 100px 0; }
 }
 
 /* ---------- Why choose us ---------- */
-.why { background: var(--cream); }
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 26px;
+.why { background: var(--navy); }
+.why-narrative {
+  max-width: 780px;
 }
-.why-card {
-  padding: 32px 26px;
-  background: var(--white);
-  border-top: 3px solid var(--gold);
-}
-.why-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 12px;
-}
-.why-card p {
-  color: var(--ink-soft);
-  font-size: 0.92rem;
+.why .section-eyebrow { color: var(--gold-light); }
+.why .section-title { color: var(--white); margin-bottom: 30px; }
+.why-lede {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
   line-height: 1.6;
+  color: rgba(255,255,255,0.88);
   margin: 0;
 }
 
@@ -612,11 +599,17 @@ section { padding: 100px 0; }
   background: var(--gold);
 }
 .hours {
-  color: rgba(255,255,255,0.75);
-  font-size: 0.95rem;
   border-top: 1px solid rgba(255,255,255,0.15);
   padding-top: 22px;
 }
+.hours p {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.95rem;
+  margin: 0 0 8px;
+  line-height: 1.55;
+}
+.hours p:last-child { margin-bottom: 0; }
+.hours strong { color: rgba(255,255,255,0.92); }
 .contact-card {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.14);
@@ -693,7 +686,6 @@ section { padding: 100px 0; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-item.span-2 { grid-column: span 2; }
   .services-grid { grid-template-columns: 1fr; }
-  .why-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-grid { grid-template-columns: 1fr; gap: 50px; }
   .area-list { grid-template-columns: repeat(2, 1fr); }
   .quote-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -709,7 +701,7 @@ section { padding: 100px 0; }
 @media (max-width: 560px) {
   .gallery-grid { grid-template-columns: 1fr; }
   .gallery-item.span-2 { grid-column: span 1; }
-  .why-grid { grid-template-columns: 1fr; }
+  .why-lede { font-size: 1.15rem; }
   .hero-content { padding-top: 110px; padding-bottom: 64px; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { text-align: center; }
