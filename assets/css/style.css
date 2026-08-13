@@ -128,6 +128,14 @@ h1, h2, h3 {
   letter-spacing: 0.03em;
 }
 .site-nav a:hover { color: var(--white); }
+.nav-phone {
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.nav-phone:hover { color: var(--gold-light); }
 .nav-cta {
   border: 1px solid var(--gold);
   color: var(--gold-light) !important;
@@ -170,7 +178,7 @@ h1, h2, h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 30% 70%;
+  object-position: 55% 28%;
 }
 .hero-scrim {
   position: absolute;
@@ -424,6 +432,7 @@ section { padding: 100px 0; }
   margin-bottom: 26px;
   line-height: 1.6;
 }
+.contact-card .btn-block + .btn-block { margin-top: 12px; }
 
 /* ---------- Footer ---------- */
 .site-footer {
