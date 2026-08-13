@@ -21,6 +21,47 @@ document.addEventListener('DOMContentLoaded', function () {
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ---------- Theme toggle ---------- */
+  var themeToggle = document.getElementById('theme-toggle');
+  var root = document.documentElement;
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    if (themeToggle) themeToggle.setAttribute('aria-pressed', theme === 'dark');
+  }
+
+  var storedTheme = localStorage.getItem('theme');
+  var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(storedTheme || (systemDark ? 'dark' : 'light'));
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem('theme', next);
+    });
+  }
+
+  /* ---------- Services tabs ---------- */
+  var tabRes = document.getElementById('tab-res');
+  var tabCom = document.getElementById('tab-com');
+  var panelRes = document.getElementById('panel-res');
+  var panelCom = document.getElementById('panel-com');
+
+  function activateTab(which) {
+    var resActive = which === 'res';
+    tabRes.classList.toggle('is-active', resActive);
+    tabCom.classList.toggle('is-active', !resActive);
+    tabRes.setAttribute('aria-selected', resActive);
+    tabCom.setAttribute('aria-selected', !resActive);
+    panelRes.hidden = !resActive;
+    panelCom.hidden = resActive;
+  }
+  if (tabRes && tabCom) {
+    tabRes.addEventListener('click', function () { activateTab('res'); });
+    tabCom.addEventListener('click', function () { activateTab('com'); });
+  }
+
   /* ---------- Photo lightbox (full job gallery) ---------- */
   var photos = [
     { src: 'assets/images/hero-action.jpg', caption: 'Extension-ladder cleaning — second-story window' },
@@ -95,18 +136,22 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'ArrowRight') showPhoto(currentIndex + 1);
   });
 
-  /* ---------- Instant Quote request builder ---------- */
+  /* ---------- Instant Quote calculator ---------- */
   var quoteForm = document.getElementById('quote-form');
   if (quoteForm) {
     var nameEl = document.getElementById('q-name');
     var phoneEl = document.getElementById('q-phone');
     var cityEl = document.getElementById('q-city');
-    var storiesEl = document.getElementById('q-stories');
     var windowsEl = document.getElementById('q-windows');
-    var discountEl = document.getElementById('q-discount');
+    var windowsOut = document.getElementById('windows-out');
+    var storiesEl = document.getElementById('q-stories');
+    var storiesOut = document.getElementById('stories-out');
     var notesEl = document.getElementById('q-notes');
+    var segType = document.getElementById('seg-type');
+    var segDiscount = document.getElementById('seg-discount');
+    var priceLowEl = document.getElementById('price-low');
+    var priceHighEl = document.getElementById('price-high');
     var previewEl = document.getElementById('quote-preview-text');
-    var estimateEl = document.getElementById('quote-estimate-value');
     var textBtn = document.getElementById('quote-text');
     var messengerBtn = document.getElementById('quote-messenger');
     var PHONE = '+12564761402';
@@ -115,37 +160,54 @@ document.addEventListener('DOMContentLoaded', function () {
     // Ballpark rates only -- Tucker's has not published pricing.
     // Figures reflect typical published industry ranges for
     // professional window cleaning (in/out, frames & tracks included).
-    var WINDOW_COUNT = { '1–10': 6, '11–20': 15, '21–30': 25, '31–40': 35, '41+': 45 };
-    var STORY_MULTIPLIER = { '1 story': 1, '2 stories': 1.25, '3+ stories': 1.5 };
+    var STORY_MULTIPLIER = { 1: 1, 2: 1.25, 3: 1.45, 4: 1.6 };
     var RATE_PER_WINDOW = { Residential: 8, Commercial: 5 };
     var MINIMUM_CHARGE = { Residential: 125, Commercial: 150 };
     var DISCOUNT_FACTOR = 0.9;
 
-    function propertyType() {
-      var checked = quoteForm.querySelector('input[name="propertyType"]:checked');
-      return checked ? checked.value : 'Residential';
-    }
+    var propertyType = 'Residential';
+    var discountValue = '';
 
-    function roundTo5(n) {
-      return Math.round(n / 5) * 5;
+    segType.querySelectorAll('.seg').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        segType.querySelectorAll('.seg').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        propertyType = btn.getAttribute('data-type');
+        updatePreview();
+      });
+    });
+    segDiscount.querySelectorAll('.seg').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        segDiscount.querySelectorAll('.seg').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        discountValue = btn.getAttribute('data-discount');
+        updatePreview();
+      });
+    });
+
+    function roundTo5(n) { return Math.round(n / 5) * 5; }
+
+    function storiesLabel(n) {
+      if (n >= 4) return '4+ stories';
+      return n + (n === 1 ? ' story' : ' stories');
     }
 
     function calculateEstimate() {
-      var type = propertyType();
-      var count = WINDOW_COUNT[windowsEl.value] || 6;
-      var storyMult = STORY_MULTIPLIER[storiesEl.value] || 1;
-      var rate = RATE_PER_WINDOW[type];
+      var count = parseInt(windowsEl.value, 10);
+      var stories = parseInt(storiesEl.value, 10);
+      var storyMult = STORY_MULTIPLIER[stories] || 1;
+      var rate = RATE_PER_WINDOW[propertyType];
       var base = count * rate * storyMult;
 
       var low = base * 0.85;
       var high = base * 1.15;
 
-      if (discountEl.value) {
+      if (discountValue) {
         low *= DISCOUNT_FACTOR;
         high *= DISCOUNT_FACTOR;
       }
 
-      var minimum = MINIMUM_CHARGE[type] * (discountEl.value ? DISCOUNT_FACTOR : 1);
+      var minimum = MINIMUM_CHARGE[propertyType] * (discountValue ? DISCOUNT_FACTOR : 1);
       low = Math.max(low, minimum);
       high = Math.max(high, low + 30);
 
@@ -157,19 +219,23 @@ document.addEventListener('DOMContentLoaded', function () {
       var phone = phoneEl.value.trim() || '[your phone]';
       var lines = [
         'Quote request from ' + name + ' (' + phone + ')',
-        'Property: ' + propertyType() + ' in ' + cityEl.value,
-        'Stories: ' + storiesEl.value,
-        'Approx. windows: ' + windowsEl.value,
+        'Property: ' + propertyType + ' in ' + cityEl.value,
+        'Stories: ' + storiesLabel(parseInt(storiesEl.value, 10)),
+        'Approx. panes: ' + windowsEl.value,
         'Ballpark estimate: $' + estimate.low + '–$' + estimate.high + ' (industry-standard estimate, to be confirmed)'
       ];
-      if (discountEl.value) lines.push('Discount: ' + discountEl.value);
+      if (discountValue) lines.push('Discount: ' + discountValue);
       if (notesEl.value.trim()) lines.push('Notes: ' + notesEl.value.trim());
       return lines.join('\n');
     }
 
     function updatePreview() {
+      windowsOut.textContent = windowsEl.value;
+      storiesOut.textContent = storiesLabel(parseInt(storiesEl.value, 10));
+
       var estimate = calculateEstimate();
-      estimateEl.textContent = '$' + estimate.low + ' – $' + estimate.high;
+      priceLowEl.textContent = '$' + estimate.low;
+      priceHighEl.textContent = '$' + estimate.high;
 
       var message = buildMessage(estimate);
       previewEl.textContent = message;
@@ -185,5 +251,221 @@ document.addEventListener('DOMContentLoaded', function () {
     quoteForm.addEventListener('input', updatePreview);
     quoteForm.addEventListener('change', updatePreview);
     updatePreview();
+  }
+
+  /* ---------- Drag-to-compare ---------- */
+  var compare = document.getElementById('compare');
+  if (compare) {
+    var compareBefore = document.getElementById('compare-before');
+    var compareHandle = document.getElementById('compare-handle');
+    var compareDirtyImg = compare.querySelector('.compare-img-dirty');
+    var comparing = false;
+
+    function sizeCompare() {
+      compareDirtyImg.style.width = compare.offsetWidth + 'px';
+    }
+
+    function setComparePosition(percent) {
+      percent = Math.max(2, Math.min(98, percent));
+      compareBefore.style.width = percent + '%';
+      compareHandle.style.left = percent + '%';
+      compareHandle.setAttribute('aria-valuenow', Math.round(percent));
+    }
+
+    function percentFromEvent(clientX) {
+      var rect = compare.getBoundingClientRect();
+      return ((clientX - rect.left) / rect.width) * 100;
+    }
+
+    compareHandle.addEventListener('pointerdown', function (e) {
+      comparing = true;
+      compareHandle.setPointerCapture(e.pointerId);
+    });
+    compareHandle.addEventListener('pointermove', function (e) {
+      if (!comparing) return;
+      setComparePosition(percentFromEvent(e.clientX));
+    });
+    compareHandle.addEventListener('pointerup', function () { comparing = false; });
+    compareHandle.addEventListener('pointercancel', function () { comparing = false; });
+    compareHandle.addEventListener('keydown', function (e) {
+      var current = parseFloat(compareHandle.style.left) || 50;
+      if (e.key === 'ArrowLeft') { setComparePosition(current - 5); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { setComparePosition(current + 5); e.preventDefault(); }
+    });
+
+    compare.addEventListener('click', function (e) {
+      if (e.target === compareHandle || compareHandle.contains(e.target)) return;
+      setComparePosition(percentFromEvent(e.clientX));
+    });
+
+    window.addEventListener('resize', sizeCompare);
+    sizeCompare();
+    setComparePosition(50);
+  }
+
+  /* ---------- Hero grime wipe ---------- */
+  var stage = document.getElementById('hero-stage');
+  var canvas = document.getElementById('grime');
+  if (stage && canvas && canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    var hint = document.getElementById('hero-hint');
+    var meterFill = document.getElementById('clean-fill');
+    var meterLabel = document.getElementById('clean-label');
+    var resetBtn = document.getElementById('reset-grime');
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    var dragging = false;
+    var lastX = null, lastY = null;
+    var lastCheck = 0;
+
+    function resizeCanvas() {
+      var w = stage.clientWidth;
+      var h = stage.clientHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawGrime(w, h);
+      updateMeter(0);
+    }
+
+    function drawGrime(w, h) {
+      ctx.clearRect(0, 0, w, h);
+
+      // Hazy frosted-glass base coat
+      ctx.fillStyle = 'rgba(196,188,170,0.62)';
+      ctx.fillRect(0, 0, w, h);
+
+      // Denser dust/grime blotches
+      for (var i = 0; i < 160; i++) {
+        var x = Math.random() * w;
+        var y = Math.random() * h;
+        var r = 30 + Math.random() * 110;
+        var grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+        var alpha = 0.22 + Math.random() * 0.3;
+        grad.addColorStop(0, 'rgba(96,82,58,' + alpha + ')');
+        grad.addColorStop(1, 'rgba(96,82,58,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Rain streak marks
+      ctx.strokeStyle = 'rgba(255,255,255,0.16)';
+      ctx.lineWidth = 1.4;
+      for (var j = 0; j < 50; j++) {
+        var sx = Math.random() * w;
+        var sy = Math.random() * h;
+        var len = 40 + Math.random() * 120;
+        var angle = (Math.random() * 40 - 20) * (Math.PI / 180) + Math.PI / 2;
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(sx + Math.cos(angle) * len, sy + Math.sin(angle) * len);
+        ctx.stroke();
+      }
+
+      // Fine speckled dust for texture
+      ctx.fillStyle = 'rgba(120,108,84,0.35)';
+      for (var k = 0; k < 900; k++) {
+        var px = Math.random() * w;
+        var py = Math.random() * h;
+        ctx.fillRect(px, py, 1.6, 1.6);
+      }
+    }
+
+    function updateMeter(percent) {
+      percent = Math.max(0, Math.min(100, Math.round(percent)));
+      meterFill.style.width = percent + '%';
+      meterLabel.textContent = percent + '% clean';
+    }
+
+    function computeCleanPercent() {
+      var w = canvas.width, h = canvas.height;
+      if (!w || !h) return 0;
+      var data;
+      try {
+        data = ctx.getImageData(0, 0, w, h).data;
+      } catch (e) {
+        return 0;
+      }
+      var total = 0, cleared = 0;
+      var stride = 4 * 8;
+      for (var i = 3; i < data.length; i += stride) {
+        total++;
+        if (data[i] < 50) cleared++;
+      }
+      return total ? (cleared / total) * 100 : 0;
+    }
+
+    function eraseAt(x, y) {
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      var r = 52;
+      var grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+      grad.addColorStop(0, 'rgba(0,0,0,1)');
+      grad.addColorStop(0.7, 'rgba(0,0,0,0.9)');
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function eraseLine(x0, y0, x1, y1) {
+      var dist = Math.hypot(x1 - x0, y1 - y0);
+      var steps = Math.max(1, Math.ceil(dist / 14));
+      for (var i = 0; i <= steps; i++) {
+        var t = i / steps;
+        eraseAt(x0 + (x1 - x0) * t, y0 + (y1 - y0) * t);
+      }
+    }
+
+    function pointerPos(e) {
+      var rect = canvas.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
+
+    function maybeCheckPercent() {
+      var now = performance.now();
+      if (now - lastCheck < 140) return;
+      lastCheck = now;
+      updateMeter(computeCleanPercent());
+    }
+
+    canvas.addEventListener('pointerdown', function (e) {
+      dragging = true;
+      canvas.setPointerCapture(e.pointerId);
+      var p = pointerPos(e);
+      eraseAt(p.x, p.y);
+      lastX = p.x; lastY = p.y;
+      if (hint) hint.classList.add('is-hidden');
+      maybeCheckPercent();
+    });
+    canvas.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var p = pointerPos(e);
+      eraseLine(lastX, lastY, p.x, p.y);
+      lastX = p.x; lastY = p.y;
+      maybeCheckPercent();
+    });
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      updateMeter(computeCleanPercent());
+    }
+    canvas.addEventListener('pointerup', endDrag);
+    canvas.addEventListener('pointercancel', endDrag);
+    canvas.addEventListener('pointerleave', endDrag);
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function () {
+        drawGrime(stage.clientWidth, stage.clientHeight);
+        updateMeter(0);
+        if (hint) hint.classList.remove('is-hidden');
+      });
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
   }
 });

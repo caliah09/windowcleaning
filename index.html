@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header" id="top">
   <div class="container header-inner">
@@ -23,27 +24,34 @@
     </a>
     <nav class="site-nav" id="site-nav">
       <a href="#services">Services</a>
-      <a href="#work">Our Work</a>
-      <a href="#reviews">Reviews</a>
       <a href="#quote">Instant Quote</a>
-      <a href="#area">Service Area</a>
+      <a href="#work">Our Work</a>
+      <a href="#faq">FAQ</a>
       <a href="tel:+12564761402" class="nav-phone">(256) 476-1402</a>
       <a href="#quote" class="nav-cta">Get a Quote</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="header-actions">
+      <button class="iconbtn" id="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="ico-sun"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="ico-moon"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
-<main>
+<main id="main">
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-media">
-      <img src="assets/images/hero-action.jpg" alt="Tucker's Window Cleaning technician on an extension ladder cleaning a second-story window">
+    <div class="hero-stage" id="hero-stage">
+      <img class="hero-img" src="assets/images/hero-action.jpg" alt="Tucker's Window Cleaning technician on an extension ladder cleaning a second-story window">
+      <canvas class="hero-canvas" id="grime" aria-hidden="true"></canvas>
       <div class="hero-scrim"></div>
     </div>
+
     <div class="container hero-content">
       <p class="eyebrow">Athens, Alabama &middot; North Alabama's Window Cleaners</p>
       <h1>Tucker's Window Cleaning</h1>
@@ -53,14 +61,201 @@
         <a href="tel:+12564761402" class="btn btn-gold">Call or Text (256) 476-1402</a>
         <a href="#quote" class="btn btn-outline">Get Your Estimate</a>
       </div>
+      <ul class="trustrow">
+        <li><strong>100%</strong><span>recommended on Facebook</span></li>
+        <li><strong>8</strong><span>North Alabama communities served</span></li>
+        <li><strong>2023</strong><span>founded right here in Athens</span></li>
+      </ul>
+    </div>
+
+    <div class="hero-hint" id="hero-hint" aria-hidden="true">
+      <svg viewBox="0 0 44 24" fill="none" aria-hidden="true"><rect x="1.2" y="4" width="34" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 11v4.5h28V11" stroke="currentColor" stroke-width="1.6"/><path d="M35.5 7.5H42" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span class="hint-long">Drag across the glass to clean it</span>
+      <span class="hint-short">Drag to clean</span>
+    </div>
+
+    <div class="hero-meter" role="status" aria-live="polite">
+      <div class="hero-meterbar"><i id="clean-fill"></i></div>
+      <span id="clean-label">0% clean</span>
+      <button class="linkbtn" id="reset-grime" type="button">Reset</button>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Residential Estates &amp; Homes</span><span>&#10022;</span>
+      <span>Restaurant Storefronts</span><span>&#10022;</span>
+      <span>Retail Storefronts</span><span>&#10022;</span>
+      <span>Commercial Facilities</span><span>&#10022;</span>
+      <span>Frames &amp; Tracks Included</span><span>&#10022;</span>
+      <span>Early-Morning Scheduling</span><span>&#10022;</span>
+      <span>Streak-Free Finish</span><span>&#10022;</span>
+      <span>First-Time, Veteran &amp; 60+ Discounts</span><span>&#10022;</span>
+      <span>Residential Estates &amp; Homes</span><span>&#10022;</span>
+      <span>Restaurant Storefronts</span><span>&#10022;</span>
+      <span>Retail Storefronts</span><span>&#10022;</span>
+      <span>Commercial Facilities</span><span>&#10022;</span>
+      <span>Frames &amp; Tracks Included</span><span>&#10022;</span>
+      <span>Early-Morning Scheduling</span><span>&#10022;</span>
+      <span>Streak-Free Finish</span><span>&#10022;</span>
+      <span>First-Time, Veteran &amp; 60+ Discounts</span><span>&#10022;</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <header class="sechead">
+        <p class="section-eyebrow">What We Do</p>
+        <h2 class="section-title">Residential &amp; Commercial</h2>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="Service type">
+        <button class="tab is-active" role="tab" id="tab-res" aria-selected="true" aria-controls="panel-res" type="button">Residential</button>
+        <button class="tab" role="tab" id="tab-com" aria-selected="false" aria-controls="panel-com" type="button">Commercial</button>
+        <span class="tabs-pill" aria-hidden="true"></span>
+      </div>
+
+      <div class="panel" id="panel-res" role="tabpanel" aria-labelledby="tab-res">
+        <div class="panel-media">
+          <img src="assets/images/residential-brick.jpg" alt="Two-story brick home with clean, streak-free windows in Athens, AL">
+          <figcaption>Residential &middot; Athens, AL</figcaption>
+        </div>
+        <div class="panel-body">
+          <h3>Homes across North Alabama</h3>
+          <p>Interior and exterior, frames and tracks included &mdash; not just the glass. The kind of clean where you catch yourself checking twice to see if the window's even there.</p>
+          <ul class="ticks">
+            <li>Interior + exterior glass, cleaned by hand</li>
+            <li>Frames, sills, and tracks included</li>
+            <li>Streak-free finish, every visit</li>
+            <li>First-time homeowner, veteran, and 60+ discounts</li>
+          </ul>
+          <a class="btn btn-gold" href="#quote">Get My Estimate</a>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-com" role="tabpanel" aria-labelledby="tab-com" hidden>
+        <div class="panel-media">
+          <img src="assets/images/commercial-toyota.jpg" alt="Large commercial facility exterior with floor-to-ceiling clean windows">
+          <figcaption>Commercial facility &middot; floor-to-ceiling glass</figcaption>
+        </div>
+        <div class="panel-body">
+          <h3>Storefronts &amp; facilities that open on time</h3>
+          <p>Trusted by Handel's Ice Cream, Blue Dolphin Pools &amp; Spas, and Eggs Up Grill &mdash; including early-morning scheduling (before 6am) so your storefront is spotless before your first customer walks in.</p>
+          <ul class="ticks">
+            <li>Early-morning scheduling, before 6am</li>
+            <li>One crew, one point of contact</li>
+            <li>Storefront and facility glass</li>
+            <li>Trusted by local restaurants and retailers</li>
+          </ul>
+          <a class="btn btn-gold" href="#quote">Get My Estimate</a>
+        </div>
+      </div>
+
+      <p class="discounts-line">Ask about our first-visit, veteran, and 60+ discounts when you call.</p>
+    </div>
+  </section>
+
+  <!-- INSTANT QUOTE CALCULATOR -->
+  <section class="section section-tint" id="quote">
+    <div class="container">
+      <header class="sechead">
+        <p class="section-eyebrow">No Sales Call Required</p>
+        <h2 class="section-title">Instant Quote Calculator</h2>
+        <p class="section-lede">Move the sliders &mdash; the estimate updates live, using typical industry rates for professional window cleaning.</p>
+      </header>
+
+      <div class="calc">
+        <form class="calc-form" id="quote-form" novalidate>
+          <div class="field">
+            <label>Name
+              <input type="text" id="q-name" name="name" placeholder="Your name" autocomplete="name">
+            </label>
+          </div>
+          <div class="field">
+            <label>Phone
+              <input type="tel" id="q-phone" name="phone" placeholder="(256) 000-0000" autocomplete="tel">
+            </label>
+          </div>
+
+          <fieldset class="field">
+            <legend>Property Type</legend>
+            <div class="segmented" id="seg-type">
+              <button type="button" class="seg is-active" data-type="Residential">Residential</button>
+              <button type="button" class="seg" data-type="Commercial">Commercial</button>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="q-windows">Number of window panes <output id="windows-out">12</output></label>
+            <input type="range" id="q-windows" min="4" max="60" step="1" value="12">
+            <p class="hint">Count each pane of glass, not each window frame. Guessing is fine.</p>
+          </div>
+
+          <div class="field">
+            <label for="q-stories">Stories <output id="stories-out">1</output></label>
+            <input type="range" id="q-stories" min="1" max="4" step="1" value="1">
+          </div>
+
+          <fieldset class="field">
+            <legend>Discount</legend>
+            <div class="segmented segmented-wrap" id="seg-discount">
+              <button type="button" class="seg is-active" data-discount="">No discount</button>
+              <button type="button" class="seg" data-discount="First-Time Homeowner Discount">First-time homeowner</button>
+              <button type="button" class="seg" data-discount="Veterans Discount">Veteran</button>
+              <button type="button" class="seg" data-discount="60+ Discount">60+</button>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label>City / Area
+              <select id="q-city" name="city">
+                <option>Athens, AL</option>
+                <option>Huntsville, AL</option>
+                <option>Decatur, AL</option>
+                <option>Madison, AL</option>
+                <option>Florence, AL</option>
+                <option>Hartselle, AL</option>
+                <option>Hillsboro, AL</option>
+                <option>Cullman County, AL</option>
+                <option>Other</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field field-full">Anything else we should know?
+            <textarea id="q-notes" name="notes" rows="3" placeholder="Screens, hard water spots, preferred day/time, etc. (optional)"></textarea>
+          </label>
+        </form>
+
+        <aside class="calc-out" aria-live="polite">
+          <div class="ticket">
+            <p class="ticket-label">Estimated Price Range</p>
+            <p class="ticket-price"><span id="price-low">$0</span> &ndash; <span id="price-high">$0</span></p>
+            <p class="ticket-fine">Ballpark figure based on typical industry rates for window cleaning &mdash; not an official Tucker's price. Your exact quote is confirmed by Tucker's before any work begins.</p>
+
+            <div class="quote-preview">
+              <p class="quote-preview-label">Your request, ready to send</p>
+              <p id="quote-preview-text" class="quote-preview-text"></p>
+            </div>
+
+            <a href="#" id="quote-text" class="btn btn-gold btn-full" aria-disabled="true">Text This Request</a>
+            <a href="#" id="quote-messenger" class="btn btn-outline-dark btn-full" target="_blank" rel="noopener" aria-disabled="true">Send via Messenger</a>
+            <p class="quote-hint">Fill in your name and phone to enable sending. This opens your messaging app with the request pre-filled &mdash; nothing is sent automatically.</p>
+          </div>
+        </aside>
+      </div>
     </div>
   </section>
 
   <!-- TRUST BAR -->
-  <section class="trust" id="reviews">
+  <section class="section trust" id="reviews">
     <div class="container">
-      <p class="section-eyebrow">What Customers Say</p>
-      <h2 class="section-title">Recommended on Facebook</h2>
+      <header class="sechead">
+        <p class="section-eyebrow">What Customers Say</p>
+        <h2 class="section-title">Recommended on Facebook</h2>
+      </header>
       <div class="trust-grid">
         <figure class="trust-card">
           <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
@@ -83,11 +278,13 @@
   </section>
 
   <!-- GALLERY -->
-  <section class="gallery" id="work">
+  <section class="section gallery" id="work">
     <div class="container">
-      <p class="section-eyebrow">Recent Work</p>
-      <h2 class="section-title">Clarity You Can See</h2>
-      <p class="section-lede">A look at real jobs &mdash; from front-yard brick colonials to the storefront glass local businesses trust us with.</p>
+      <header class="sechead">
+        <p class="section-eyebrow">Recent Work</p>
+        <h2 class="section-title">Clarity You Can See</h2>
+        <p class="section-lede">A look at real jobs &mdash; from front-yard brick colonials to the storefront glass local businesses trust us with.</p>
+      </header>
       <div class="gallery-grid" id="gallery-grid">
         <figure class="gallery-item span-2" data-index="1" tabindex="0" role="button" aria-label="View full photo">
           <img src="assets/images/detail-frame.jpg" alt="Close attention to detail cleaning a window frame and track by hand">
@@ -130,118 +327,30 @@
     <div class="lightbox-counter" id="lightbox-counter"></div>
   </div>
 
-  <!-- SERVICES -->
-  <section class="services" id="services">
+  <!-- DRAG COMPARE -->
+  <section class="section" id="difference">
     <div class="container">
-      <p class="section-eyebrow">What We Do</p>
-      <h2 class="section-title">Residential &amp; Commercial</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Residential Window Cleaning</h3>
-          <p>Interior and exterior, frames and tracks included &mdash; not just the glass. The kind of clean where you catch yourself checking twice to see if the window's even there.</p>
+      <header class="sechead">
+        <p class="section-eyebrow">See The Difference</p>
+        <h2 class="section-title">Drag The Handle</h2>
+        <p class="section-lede">An illustrative preview &mdash; same real Tucker's photo, styled to show the haze a professional clean removes.</p>
+      </header>
+      <div class="compare" id="compare">
+        <img class="compare-img" src="assets/images/residential-stone-wide.jpg" alt="Clean, streak-free windows on a large stone home">
+        <div class="compare-before" id="compare-before">
+          <img class="compare-img compare-img-dirty" src="assets/images/residential-stone-wide.jpg" alt="The same home styled with a hazy, uncleaned filter for illustration">
+          <span class="compare-tag">Hazy</span>
         </div>
-        <div class="service-card">
-          <h3>Commercial Window Cleaning</h3>
-          <p>Trusted by Handel's Ice Cream, Blue Dolphin Pools &amp; Spas, and Eggs Up Grill &mdash; including early-morning scheduling (before 6am) so your storefront is spotless before your first customer walks in.</p>
+        <span class="compare-tag compare-tag-after">Tucker's Clean</span>
+        <div class="compare-handle" id="compare-handle" role="slider" tabindex="0" aria-label="Drag to compare hazy and clean glass" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9.5 7 5 12l4.5 5M14.5 7l4.5 5-4.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
       </div>
-      <p class="discounts-line">Ask about our first-visit, veteran, and 60+ discounts when you call.</p>
-    </div>
-  </section>
-
-  <!-- INSTANT QUOTE -->
-  <section class="quote" id="quote">
-    <div class="container quote-grid">
-      <div class="quote-intro">
-        <p class="section-eyebrow">Free Estimate</p>
-        <h2 class="section-title">Get an Instant Quote</h2>
-        <p class="section-lede">Answer a few quick questions and we'll build a ready-to-send request with everything Tucker's needs to get you a price &mdash; no phone tag required.</p>
-      </div>
-      <form class="quote-form" id="quote-form">
-        <div class="form-row">
-          <label>Name
-            <input type="text" id="q-name" name="name" placeholder="Your name" autocomplete="name">
-          </label>
-          <label>Phone
-            <input type="tel" id="q-phone" name="phone" placeholder="(256) 000-0000" autocomplete="tel">
-          </label>
-        </div>
-
-        <fieldset class="form-row">
-          <legend>Property Type</legend>
-          <label class="radio"><input type="radio" name="propertyType" value="Residential" checked> Residential</label>
-          <label class="radio"><input type="radio" name="propertyType" value="Commercial"> Commercial</label>
-        </fieldset>
-
-        <div class="form-row">
-          <label>City / Area
-            <select id="q-city" name="city">
-              <option>Athens, AL</option>
-              <option>Huntsville, AL</option>
-              <option>Decatur, AL</option>
-              <option>Madison, AL</option>
-              <option>Florence, AL</option>
-              <option>Hartselle, AL</option>
-              <option>Hillsboro, AL</option>
-              <option>Cullman County, AL</option>
-              <option>Other</option>
-            </select>
-          </label>
-          <label>Stories
-            <select id="q-stories" name="stories">
-              <option>1 story</option>
-              <option>2 stories</option>
-              <option>3+ stories</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>Approx. Number of Windows
-            <select id="q-windows" name="windows">
-              <option>1&ndash;10</option>
-              <option>11&ndash;20</option>
-              <option>21&ndash;30</option>
-              <option>31&ndash;40</option>
-              <option>41+</option>
-            </select>
-          </label>
-          <label>Interested In
-            <select id="q-discount" name="discount">
-              <option value="">No discount applies</option>
-              <option value="First-Time Homeowner Discount">First-Time Homeowner Discount</option>
-              <option value="60+ Discount">60+ Discount</option>
-              <option value="Veterans Discount">Veterans Discount</option>
-            </select>
-          </label>
-        </div>
-
-        <label class="full">Anything else we should know?
-          <textarea id="q-notes" name="notes" rows="3" placeholder="Screens, hard water spots, preferred day/time, etc. (optional)"></textarea>
-        </label>
-
-        <div class="quote-estimate">
-          <p class="quote-estimate-label">Estimated Price Range</p>
-          <p class="quote-estimate-value" id="quote-estimate-value">$0 &ndash; $0</p>
-          <p class="quote-estimate-note">Ballpark figure based on typical industry rates for window cleaning &mdash; not an official Tucker's price. Your exact quote is confirmed by Tucker's before any work begins.</p>
-        </div>
-
-        <div class="quote-preview">
-          <p class="quote-preview-label">Your request, ready to send</p>
-          <p id="quote-preview-text" class="quote-preview-text"></p>
-        </div>
-
-        <div class="quote-actions">
-          <a href="#" id="quote-text" class="btn btn-gold" aria-disabled="true">Text This Request</a>
-          <a href="#" id="quote-messenger" class="btn btn-outline-dark" target="_blank" rel="noopener" aria-disabled="true">Send via Messenger</a>
-        </div>
-        <p class="quote-hint">Fill in your name and phone to enable sending. This opens your messaging app with the request pre-filled &mdash; nothing is sent automatically.</p>
-      </form>
     </div>
   </section>
 
   <!-- WHY CHOOSE US -->
-  <section class="why">
+  <section class="section why">
     <div class="container why-narrative">
       <p class="section-eyebrow">The Difference</p>
       <h2 class="section-title">Why North Alabama Calls Tucker's</h2>
@@ -249,8 +358,44 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container faq">
+      <header class="sechead sechead-left">
+        <p class="section-eyebrow">Before You Ask</p>
+        <h2 class="section-title">Straight Answers</h2>
+      </header>
+      <div class="acc">
+        <details class="acc-item" open>
+          <summary>What's your service area?</summary>
+          <p>Athens, Huntsville, Decatur, Madison, Florence, Hartselle, Hillsboro, and Cullman County. If you're nearby but not listed, reach out &mdash; we're happy to take a look.</p>
+        </details>
+        <details class="acc-item">
+          <summary>What's included in a standard cleaning?</summary>
+          <p>Interior and exterior glass, cleaned by hand, with frames, sills, and tracks included &mdash; not just the panes.</p>
+        </details>
+        <details class="acc-item">
+          <summary>Do you work early mornings for businesses?</summary>
+          <p>Yes. We regularly schedule commercial jobs before 6am so cleaning never disrupts your customers or staff.</p>
+        </details>
+        <details class="acc-item">
+          <summary>Do you offer discounts?</summary>
+          <p>Yes &mdash; ask about our first-time homeowner, veteran, and 60+ discounts when you call or text.</p>
+        </details>
+        <details class="acc-item">
+          <summary>Do you clean commercial properties too?</summary>
+          <p>Absolutely. We're trusted by local businesses including Handel's Ice Cream, Blue Dolphin Pools &amp; Spas, and Eggs Up Grill.</p>
+        </details>
+        <details class="acc-item">
+          <summary>How do I get a price?</summary>
+          <p>Use the Instant Quote calculator above for a ballpark range, then send it to us with one tap &mdash; or just call or text (256) 476-1402 directly.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- SERVICE AREA + CONTACT -->
-  <section class="contact" id="area">
+  <section class="section contact" id="area">
     <div class="container contact-grid">
       <div class="contact-info">
         <p class="section-eyebrow section-eyebrow-light">Service Area</p>
@@ -276,7 +421,7 @@
         <a href="tel:+12564761402" class="btn btn-gold btn-block">Call (256) 476-1402</a>
         <a href="sms:+12564761402" class="btn btn-outline-light btn-block">Text Us</a>
         <a href="https://m.me/61576311082795" class="btn btn-outline-light btn-block" target="_blank" rel="noopener">Message on Facebook</a>
-        <a href="#quote" class="contact-quote-link">Or use our Instant Quote tool &rarr;</a>
+        <a href="#quote" class="contact-quote-link">Or use our Instant Quote calculator &rarr;</a>
       </div>
     </div>
   </section>
@@ -289,6 +434,12 @@
       <img src="assets/images/logo.jpg" alt="Tucker's Window Cleaning logo" class="footer-mark">
       <span>Tucker's Window Cleaning &middot; Est. 2023</span>
     </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#services">Services</a>
+      <a href="#quote">Instant Quote</a>
+      <a href="#work">Our Work</a>
+      <a href="#faq">FAQ</a>
+    </nav>
     <p>&copy; <span id="year"></span> Tucker's Window Cleaning. Serving Athens, AL and North Alabama.</p>
   </div>
 </footer>
