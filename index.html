@@ -45,39 +45,52 @@
 <main id="main">
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-stage" id="hero-stage">
-      <img class="hero-img" src="assets/images/hero-action.jpg" alt="Tucker's Window Cleaning technician on an extension ladder cleaning a second-story window">
-      <canvas class="hero-canvas" id="grime" aria-hidden="true"></canvas>
-      <div class="hero-scrim"></div>
-    </div>
+  <section class="hero-wrap">
+    <div class="container">
+      <div class="hero">
+        <div class="hero-stage" id="hero-stage">
+          <img class="hero-img" src="assets/images/hero-action.jpg" alt="Tucker's Window Cleaning technician on an extension ladder cleaning a second-story window">
+          <canvas class="hero-canvas" id="grime" aria-hidden="true"></canvas>
+          <div class="hero-scrim"></div>
+        </div>
 
-    <div class="container hero-content">
-      <p class="eyebrow">Athens, Alabama &middot; North Alabama's Window Cleaners</p>
-      <h1>Tucker's Window Cleaning</h1>
-      <p class="hero-tagline">So clean, your kids will look for the glass. Windows, frames, and tracks &mdash; done by hand, every time.</p>
-      <p class="hero-area">Serving Athens &bull; Huntsville &bull; Decatur &bull; Madison &bull; Florence &bull; Hartselle &bull; Cullman County</p>
-      <div class="hero-actions">
-        <a href="tel:+12564761402" class="btn btn-gold">Call or Text (256) 476-1402</a>
-        <a href="#quote" class="btn btn-outline">Get Your Estimate</a>
+        <div class="hero-content">
+          <p class="pill-tag">Athens, Alabama <span>&rsaquo;</span> North Alabama's Window Cleaners</p>
+          <h1><em>Tucker's</em> Window Cleaning</h1>
+          <p class="hero-tagline">So clean, your kids will look for the glass &mdash; windows, frames, and tracks, done by hand, every time.</p>
+          <p class="hero-hint-inline" id="hero-hint">&#8596; Drag the photo to see it clean</p>
+          <div class="hero-actions">
+            <a href="#quote" class="btn btn-gold btn-pill">Get a Free Quote <span>&rarr;</span></a>
+            <a href="tel:+12564761402" class="btn btn-outline btn-pill">Call Now <span>&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="hero-card hero-card-trust">
+          <p class="hero-card-stat">100%</p>
+          <p class="hero-card-label">Recommended on Facebook</p>
+          <div class="avatar-stack">
+            <span class="avatar" style="--i:0">SB</span>
+            <span class="avatar" style="--i:1">KM</span>
+            <span class="avatar" style="--i:2">LS</span>
+            <span class="avatar avatar-plus" style="--i:3">+1</span>
+          </div>
+        </div>
+
+        <div class="hero-card hero-card-service">
+          <div class="hero-card-service-text">
+            <p class="hero-card-service-title">Residential &amp; Commercial</p>
+            <p class="hero-card-service-sub">Athens to Huntsville &mdash; homes and storefronts alike.</p>
+          </div>
+          <a href="#services" class="circle-btn" aria-label="See our services"><span>&#8599;</span></a>
+        </div>
+
+        <div class="hero-meter" role="status" aria-live="polite">
+          <div class="hero-meterbar"><i id="clean-fill"></i></div>
+          <span id="clean-label">0% clean</span>
+          <button class="linkbtn" id="reset-grime" type="button">Reset</button>
+        </div>
       </div>
-      <ul class="trustrow">
-        <li><strong>100%</strong><span>recommended on Facebook</span></li>
-        <li><strong>8</strong><span>North Alabama communities served</span></li>
-        <li><strong>2023</strong><span>founded right here in Athens</span></li>
-      </ul>
-    </div>
-
-    <div class="hero-hint" id="hero-hint" aria-hidden="true">
-      <svg viewBox="0 0 44 24" fill="none" aria-hidden="true"><rect x="1.2" y="4" width="34" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M4 11v4.5h28V11" stroke="currentColor" stroke-width="1.6"/><path d="M35.5 7.5H42" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <span class="hint-long">Drag across the glass to clean it</span>
-      <span class="hint-short">Drag to clean</span>
-    </div>
-
-    <div class="hero-meter" role="status" aria-live="polite">
-      <div class="hero-meterbar"><i id="clean-fill"></i></div>
-      <span id="clean-label">0% clean</span>
-      <button class="linkbtn" id="reset-grime" type="button">Reset</button>
+      <p class="hero-area">Serving Athens &bull; Huntsville &bull; Decatur &bull; Madison &bull; Florence &bull; Hartselle &bull; Cullman County</p>
     </div>
   </section>
 
@@ -103,11 +116,51 @@
     </div>
   </div>
 
+  <!-- ABOUT / STATS -->
+  <section class="section about">
+    <div class="container about-grid">
+      <div class="about-stats">
+        <div class="stat-block">
+          <p class="stat-number">100%</p>
+          <p class="stat-label">Recommended on Facebook</p>
+        </div>
+        <div class="stat-block">
+          <p class="stat-number">8</p>
+          <p class="stat-label">North Alabama Communities Served</p>
+        </div>
+      </div>
+
+      <div class="about-copy">
+        <p class="pill-tag pill-tag-dark">About Us <span>&rsaquo;</span></p>
+        <h2 class="about-headline">Tucker started this business in Athens with <strong>one rule: clean it like it's your own house.</strong></h2>
+        <p class="section-lede">That's why Eggs Up Grill has him back before sunrise, why Blue Dolphin Pools trusts him with their storefront glass, and why homeowners like Stephanie keep him on speed dial. No shortcuts, no streaks, no excuses.</p>
+      </div>
+
+      <div class="about-media">
+        <img src="assets/images/action-squeegee.jpg" alt="Technician using a pole squeegee for a streak-free finish">
+        <div class="about-media-caption">
+          <p>Careful, Detailed Work</p>
+          <a href="#work" class="circle-btn circle-btn-sm" aria-label="See our work"><span>&#8599;</span></a>
+        </div>
+      </div>
+
+      <div class="about-card">
+        <p class="about-card-stat">2023</p>
+        <p class="about-card-label">Founded right here in Athens, AL</p>
+        <div class="about-card-progress">
+          <div class="about-card-progress-bar"><i></i></div>
+          <span>100% positive feedback</span>
+        </div>
+        <a href="#reviews" class="about-card-link">More Reviews <span class="circle-btn circle-btn-sm" aria-hidden="true"><span>&#8599;</span></span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- SERVICES -->
   <section class="section" id="services">
     <div class="container">
       <header class="sechead">
-        <p class="section-eyebrow">What We Do</p>
+        <p class="pill-tag">What We Do <span>&rsaquo;</span></p>
         <h2 class="section-title">Residential &amp; Commercial</h2>
       </header>
 
@@ -161,7 +214,7 @@
   <section class="section section-tint" id="quote">
     <div class="container">
       <header class="sechead">
-        <p class="section-eyebrow">No Sales Call Required</p>
+        <p class="pill-tag">No Sales Call Required <span>&rsaquo;</span></p>
         <h2 class="section-title">Instant Quote Calculator</h2>
         <p class="section-lede">Move the sliders &mdash; the estimate updates live, using typical industry rates for professional window cleaning.</p>
       </header>
@@ -249,31 +302,47 @@
     </div>
   </section>
 
-  <!-- TRUST BAR -->
+  <!-- TESTIMONIAL CAROUSEL -->
   <section class="section trust" id="reviews">
     <div class="container">
-      <header class="sechead">
-        <p class="section-eyebrow">What Customers Say</p>
-        <h2 class="section-title">Recommended on Facebook</h2>
-      </header>
-      <div class="trust-grid">
-        <figure class="trust-card">
-          <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>&ldquo;My windows have never been so clean! It's almost like they're not even there! I almost feel like I need to smear some fingerprints so my children don't try to run through them!&rdquo;</blockquote>
-          <figcaption>&mdash; Stephanie Bratcher, Homeowner</figcaption>
-        </figure>
-        <figure class="trust-card">
-          <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>&ldquo;Tucker's has cleaned our windows at Eggs Up Grill and he does a fantastic job. He also comes to do the job before 6:00am so our guests are not bothered by work going on around them. Wonderful to work with!&rdquo;</blockquote>
-          <figcaption>&mdash; Kris McCauley McLellan, Eggs Up Grill</figcaption>
-        </figure>
-        <figure class="trust-card">
-          <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>&ldquo;We have used Tucker's Window Cleaning for a few months now, and each visit has left us with sparkling clean windows! I highly recommend them to friends, family, and colleagues!&rdquo;</blockquote>
-          <figcaption>&mdash; Lisa Smith, Verified Customer</figcaption>
-        </figure>
+      <div class="trust-headrow">
+        <div>
+          <p class="pill-tag">Testimonial <span>&rsaquo;</span></p>
+          <h2 class="section-title">What Our Clients Say</h2>
+        </div>
+        <a href="https://www.facebook.com/people/Tuckers-Window-Cleaning/61576311082795/" target="_blank" rel="noopener" class="btn btn-outline-dark btn-pill">View More Reviews <span>&rarr;</span></a>
       </div>
-      <p class="trust-footnote">Read more reviews on our <a href="https://www.facebook.com/people/Tuckers-Window-Cleaning/61576311082795/" target="_blank" rel="noopener">Facebook page</a>.</p>
+
+      <div class="testimonial" id="testimonial">
+        <div class="testimonial-photo">
+          <img src="assets/images/action-squeegee.jpg" alt="Tucker's Window Cleaning technician at work">
+        </div>
+        <div class="testimonial-card">
+          <p class="quote-mark" aria-hidden="true">&#8220;</p>
+          <blockquote id="testimonial-quote">My windows have never been so clean! It's almost like they're not even there! I almost feel like I need to smear some fingerprints so my children don't try to run through them!</blockquote>
+          <div class="testimonial-footer">
+            <div class="testimonial-avatar" id="testimonial-avatar">SB</div>
+            <div class="testimonial-who">
+              <p class="testimonial-name" id="testimonial-name">Stephanie Bratcher</p>
+              <p class="testimonial-role" id="testimonial-role">Homeowner</p>
+            </div>
+            <div class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          </div>
+          <div class="testimonial-nav">
+            <button class="circle-btn circle-btn-sm" id="testimonial-prev" aria-label="Previous review"><span>&#8592;</span></button>
+            <button class="circle-btn circle-btn-sm circle-btn-gold" id="testimonial-next" aria-label="Next review"><span>&#8594;</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="trusted-by">
+        <p>Trusted by local businesses</p>
+        <div class="trusted-by-names">
+          <span>Handel's Ice Cream</span>
+          <span>Blue Dolphin Pools &amp; Spas</span>
+          <span>Eggs Up Grill</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -281,7 +350,7 @@
   <section class="section gallery" id="work">
     <div class="container">
       <header class="sechead">
-        <p class="section-eyebrow">Recent Work</p>
+        <p class="pill-tag">Recent Work <span>&rsaquo;</span></p>
         <h2 class="section-title">Clarity You Can See</h2>
         <p class="section-lede">A look at real jobs &mdash; from front-yard brick colonials to the storefront glass local businesses trust us with.</p>
       </header>
@@ -331,7 +400,7 @@
   <section class="section" id="difference">
     <div class="container">
       <header class="sechead">
-        <p class="section-eyebrow">See The Difference</p>
+        <p class="pill-tag">See The Difference <span>&rsaquo;</span></p>
         <h2 class="section-title">Drag The Handle</h2>
         <p class="section-lede">An illustrative preview &mdash; same real Tucker's photo, styled to show the haze a professional clean removes.</p>
       </header>
@@ -349,47 +418,38 @@
     </div>
   </section>
 
-  <!-- WHY CHOOSE US -->
-  <section class="section why">
-    <div class="container why-narrative">
-      <p class="section-eyebrow">The Difference</p>
-      <h2 class="section-title">Why North Alabama Calls Tucker's</h2>
-      <p class="why-lede">Tucker started this business in Athens with one rule: clean it like it's your own house. That's why Eggs Up Grill has him back before sunrise, why Blue Dolphin Pools trusts him with their storefront glass, and why homeowners like Stephanie keep him on speed dial. No shortcuts, no streaks, no excuses.</p>
-    </div>
-  </section>
-
   <!-- FAQ -->
-  <section class="section" id="faq">
-    <div class="container faq">
+  <section class="section section-tint" id="faq">
+    <div class="container">
       <header class="sechead sechead-left">
-        <p class="section-eyebrow">Before You Ask</p>
-        <h2 class="section-title">Straight Answers</h2>
+        <p class="pill-tag">FAQ <span>&rsaquo;</span></p>
+        <h2 class="section-title">Got Questions? We've Got Answers</h2>
       </header>
-      <div class="acc">
-        <details class="acc-item" open>
-          <summary>What's your service area?</summary>
-          <p>Athens, Huntsville, Decatur, Madison, Florence, Hartselle, Hillsboro, and Cullman County. If you're nearby but not listed, reach out &mdash; we're happy to take a look.</p>
-        </details>
-        <details class="acc-item">
-          <summary>What's included in a standard cleaning?</summary>
-          <p>Interior and exterior glass, cleaned by hand, with frames, sills, and tracks included &mdash; not just the panes.</p>
-        </details>
-        <details class="acc-item">
-          <summary>Do you work early mornings for businesses?</summary>
-          <p>Yes. We regularly schedule commercial jobs before 6am so cleaning never disrupts your customers or staff.</p>
-        </details>
-        <details class="acc-item">
-          <summary>Do you offer discounts?</summary>
-          <p>Yes &mdash; ask about our first-time homeowner, veteran, and 60+ discounts when you call or text.</p>
-        </details>
-        <details class="acc-item">
-          <summary>Do you clean commercial properties too?</summary>
-          <p>Absolutely. We're trusted by local businesses including Handel's Ice Cream, Blue Dolphin Pools &amp; Spas, and Eggs Up Grill.</p>
-        </details>
-        <details class="acc-item">
-          <summary>How do I get a price?</summary>
-          <p>Use the Instant Quote calculator above for a ballpark range, then send it to us with one tap &mdash; or just call or text (256) 476-1402 directly.</p>
-        </details>
+      <div class="faq-grid" id="faq-grid">
+        <div class="faq-list">
+          <button class="faq-q is-active" data-answer="Athens, Huntsville, Decatur, Madison, Florence, Hartselle, Hillsboro, and Cullman County. If you're nearby but not listed, reach out — we're happy to take a look.">
+            What's your service area? <span class="faq-q-icon">+</span>
+          </button>
+          <button class="faq-q" data-answer="Interior and exterior glass, cleaned by hand, with frames, sills, and tracks included — not just the panes.">
+            What's included in a standard cleaning? <span class="faq-q-icon">+</span>
+          </button>
+          <button class="faq-q" data-answer="Yes. We regularly schedule commercial jobs before 6am so cleaning never disrupts your customers or staff.">
+            Do you work early mornings for businesses? <span class="faq-q-icon">+</span>
+          </button>
+          <button class="faq-q" data-answer="Yes — ask about our first-time homeowner, veteran, and 60+ discounts when you call or text.">
+            Do you offer discounts? <span class="faq-q-icon">+</span>
+          </button>
+          <button class="faq-q" data-answer="Absolutely. We're trusted by local businesses including Handel's Ice Cream, Blue Dolphin Pools & Spas, and Eggs Up Grill.">
+            Do you clean commercial properties too? <span class="faq-q-icon">+</span>
+          </button>
+          <button class="faq-q" data-answer="Use the Instant Quote calculator above for a ballpark range, then send it to us with one tap — or just call or text (256) 476-1402 directly.">
+            How do I get a price? <span class="faq-q-icon">+</span>
+          </button>
+        </div>
+        <div class="faq-answer">
+          <p class="faq-answer-q" id="faq-answer-q">What's your service area?</p>
+          <p class="faq-answer-text" id="faq-answer-text">Athens, Huntsville, Decatur, Madison, Florence, Hartselle, Hillsboro, and Cullman County. If you're nearby but not listed, reach out &mdash; we're happy to take a look.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -398,7 +458,7 @@
   <section class="section contact" id="area">
     <div class="container contact-grid">
       <div class="contact-info">
-        <p class="section-eyebrow section-eyebrow-light">Service Area</p>
+        <p class="pill-tag pill-tag-light">Service Area <span>&rsaquo;</span></p>
         <h2 class="section-title section-title-light">North Alabama, Covered</h2>
         <ul class="area-list">
           <li>Athens, AL</li>

@@ -62,6 +62,74 @@ document.addEventListener('DOMContentLoaded', function () {
     tabCom.addEventListener('click', function () { activateTab('com'); });
   }
 
+  /* ---------- Testimonial carousel ---------- */
+  var testimonials = [
+    {
+      quote: "My windows have never been so clean! It's almost like they're not even there! I almost feel like I need to smear some fingerprints so my children don't try to run through them!",
+      name: 'Stephanie Bratcher',
+      role: 'Homeowner',
+      initials: 'SB'
+    },
+    {
+      quote: "Tucker's has cleaned our windows at Eggs Up Grill and he does a fantastic job. He also comes to do the job before 6:00am so our guests are not bothered by work going on around them. Wonderful to work with!",
+      name: 'Kris McCauley McLellan',
+      role: 'Eggs Up Grill',
+      initials: 'KM'
+    },
+    {
+      quote: 'We have used Tucker’s Window Cleaning for a few months now, and each visit has left us with sparkling clean windows! I highly recommend them to friends, family, and colleagues!',
+      name: 'Lisa Smith',
+      role: 'Verified Customer',
+      initials: 'LS'
+    },
+    {
+      quote: 'Tuckers Window cleaning is the best in the business. My windows at Handel’s Ice cream are so clean I thought they were removed to clean them. Thanks Tuckers Window for the professionalism and attention to detail on every inch of our windows.',
+      name: 'Brian F. Vaughn',
+      role: "Handel's Ice Cream",
+      initials: 'BV'
+    }
+  ];
+
+  var testimonialEl = document.getElementById('testimonial');
+  if (testimonialEl) {
+    var tQuote = document.getElementById('testimonial-quote');
+    var tName = document.getElementById('testimonial-name');
+    var tRole = document.getElementById('testimonial-role');
+    var tAvatar = document.getElementById('testimonial-avatar');
+    var tPrev = document.getElementById('testimonial-prev');
+    var tNext = document.getElementById('testimonial-next');
+    var tIndex = 0;
+
+    function showTestimonial(i) {
+      tIndex = (i + testimonials.length) % testimonials.length;
+      var t = testimonials[tIndex];
+      tQuote.textContent = t.quote;
+      tName.textContent = t.name;
+      tRole.textContent = t.role;
+      tAvatar.textContent = t.initials;
+    }
+    if (tPrev) tPrev.addEventListener('click', function () { showTestimonial(tIndex - 1); });
+    if (tNext) tNext.addEventListener('click', function () { showTestimonial(tIndex + 1); });
+  }
+
+  /* ---------- FAQ two-column ---------- */
+  var faqGrid = document.getElementById('faq-grid');
+  if (faqGrid) {
+    var faqQuestions = faqGrid.querySelectorAll('.faq-q');
+    var faqAnswerQ = document.getElementById('faq-answer-q');
+    var faqAnswerText = document.getElementById('faq-answer-text');
+
+    faqQuestions.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        faqQuestions.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        var label = btn.childNodes[0].textContent.trim();
+        faqAnswerQ.textContent = label;
+        faqAnswerText.textContent = btn.getAttribute('data-answer');
+      });
+    });
+  }
+
   /* ---------- Photo lightbox (full job gallery) ---------- */
   var photos = [
     { src: 'assets/images/hero-action.jpg', caption: 'Extension-ladder cleaning — second-story window' },
