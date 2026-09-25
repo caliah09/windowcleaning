@@ -580,7 +580,9 @@ input[type="range"]::-moz-range-track { height: 4px; border-radius: 4px; backgro
   .zig-reverse .zig-media, .zig-reverse .zig-copy { order: initial; }
   .steps-grid { grid-template-columns: 1fr; gap: 36px; }
   .reviews-grid { grid-template-columns: 1fr; }
-  .cta-band-grid { grid-template-columns: 1fr; text-align: center; }
+  .cta-band-grid { grid-template-columns: 1fr; }
+  .cta-band-copy { text-align: center; }
+  .cta-band-copy p { margin-left: auto; margin-right: auto; }
   .quick-quote-form { justify-content: center; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
