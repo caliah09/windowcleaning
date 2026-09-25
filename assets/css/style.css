@@ -552,7 +552,6 @@ input[type="range"]::-moz-range-track { height: 4px; border-radius: 4px; backgro
 .footer-col h4 { color: #fff; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 16px; }
 .footer-col a, .footer-col p { display: block; color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 10px; }
 .footer-col a:hover { color: var(--yellow); }
-.footer-placeholder { color: #6b6b6b; font-style: italic; }
 .footer-bottom { padding: 24px 0; text-align: center; }
 .footer-bottom p { color: rgba(255,255,255,0.45); font-size: 0.8rem; margin: 0; }
 
