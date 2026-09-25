@@ -418,17 +418,13 @@ img[src*="detail-frame.jpg"] { object-position: center 68%; }
 .area-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; background: var(--yellow-dark); border-radius: 50%; }
 .area-note { font-size: 0.92rem; }
 .area-note a { color: var(--yellow-dark); font-weight: 700; }
-.map-placeholder {
+.map-embed {
   aspect-ratio: 4/3.4;
   border-radius: var(--radius);
-  border: 2px dashed #ccc;
-  background: repeating-linear-gradient(45deg, #fafafa, #fafafa 12px, #f2f2f2 12px, #f2f2f2 24px);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 30px;
-  gap: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
 }
-.map-placeholder p { font-weight: 800; color: #aaa; font-size: 1.1rem; margin: 0; font-family: var(--font-head); }
-.map-placeholder span { font-size: 0.82rem; color: #999; max-width: 280px; }
+.map-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
 
 /* ---------- CTA band ---------- */
 .cta-band { background: var(--dark); padding: 60px 0; }
