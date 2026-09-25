@@ -331,19 +331,56 @@
     </div>
   </section>
 
-  <!-- SECONDARY CTA BAND -->
+  <!-- INSTANT ESTIMATE / SECONDARY CTA -->
   <section class="cta-band" id="cta-band">
     <div class="container cta-band-grid">
       <div class="cta-band-copy">
         <h2>Ready For Streak-Free Windows?</h2>
-        <p>Get a free quote in minutes &mdash; no obligation.</p>
+        <p>Move the sliders for an instant ballpark, then send it to us in one tap &mdash; no obligation.</p>
       </div>
-      <form class="quick-quote-form" id="quick-quote-form" novalidate>
-        <input type="text" name="city" id="qq-city" placeholder="City" required>
-        <input type="text" name="name" id="qq-name" placeholder="Name" required>
-        <input type="tel" name="phone" id="qq-phone" placeholder="Phone" required>
-        <button type="submit" class="btn-yellow">Free Quote <span>&rarr;</span></button>
-      </form>
+
+      <div class="estimate-card">
+        <div class="estimate-field">
+          <span class="estimate-label">Property Type</span>
+          <div class="segmented" id="seg-type">
+            <button type="button" class="seg is-active" data-type="Residential">Residential</button>
+            <button type="button" class="seg" data-type="Commercial">Commercial</button>
+          </div>
+        </div>
+
+        <div class="estimate-field">
+          <label class="estimate-label" for="est-windows">Number of Window Panes <output id="windows-out">12</output></label>
+          <input type="range" id="est-windows" min="4" max="60" step="1" value="12">
+        </div>
+
+        <div class="estimate-field">
+          <label class="estimate-label" for="est-stories">Stories <output id="stories-out">1 story</output></label>
+          <input type="range" id="est-stories" min="1" max="4" step="1" value="1">
+        </div>
+
+        <div class="estimate-field">
+          <span class="estimate-label">Discount</span>
+          <div class="segmented segmented-wrap" id="seg-discount">
+            <button type="button" class="seg is-active" data-discount="">No discount</button>
+            <button type="button" class="seg" data-discount="First-Time Homeowner Discount">First-time homeowner</button>
+            <button type="button" class="seg" data-discount="Veterans Discount">Veteran</button>
+            <button type="button" class="seg" data-discount="60+ Discount">60+</button>
+          </div>
+        </div>
+
+        <div class="estimate-result">
+          <p class="estimate-result-label">Estimated Price Range</p>
+          <p class="estimate-result-price"><span id="price-low">$0</span> &ndash; <span id="price-high">$0</span></p>
+          <p class="estimate-result-fine">Ballpark figure based on typical industry rates &mdash; not an official price. Your exact quote is confirmed by Tucker's before any work begins.</p>
+        </div>
+
+        <form class="quick-quote-form" id="quick-quote-form" novalidate>
+          <input type="text" name="name" id="qq-name" placeholder="Name" required>
+          <input type="tel" name="phone" id="qq-phone" placeholder="Phone" required>
+          <button type="submit" class="btn-yellow">Text My Quote <span>&rarr;</span></button>
+        </form>
+        <p class="estimate-note">Opens your texting app with the estimate pre-filled &mdash; nothing is sent automatically.</p>
+      </div>
     </div>
   </section>
 

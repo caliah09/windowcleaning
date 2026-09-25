@@ -86,19 +86,106 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---------- Quick quote form (CTA band) ---------- */
+  /* ---------- Instant Estimate calculator (CTA band) ---------- */
+  var segType = document.getElementById('seg-type');
+  var segDiscount = document.getElementById('seg-discount');
+  var estWindows = document.getElementById('est-windows');
+  var estStories = document.getElementById('est-stories');
+  var windowsOut = document.getElementById('windows-out');
+  var storiesOut = document.getElementById('stories-out');
+  var priceLowEl = document.getElementById('price-low');
+  var priceHighEl = document.getElementById('price-high');
   var quickForm = document.getElementById('quick-quote-form');
-  if (quickForm) {
+
+  if (segType && estWindows && estStories && quickForm) {
+    // Ballpark rates only -- Tucker's has not published pricing.
+    // Figures reflect typical published industry ranges for
+    // professional window cleaning (in/out, frames & tracks included).
+    var STORY_MULTIPLIER = { 1: 1, 2: 1.25, 3: 1.45, 4: 1.6 };
+    var RATE_PER_WINDOW = { Residential: 8, Commercial: 5 };
+    var MINIMUM_CHARGE = { Residential: 125, Commercial: 150 };
+    var DISCOUNT_FACTOR = 0.9;
+
+    var propertyType = 'Residential';
+    var discountValue = '';
+
+    segType.querySelectorAll('.seg').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        segType.querySelectorAll('.seg').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        propertyType = btn.getAttribute('data-type');
+        updateEstimate();
+      });
+    });
+    segDiscount.querySelectorAll('.seg').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        segDiscount.querySelectorAll('.seg').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        discountValue = btn.getAttribute('data-discount');
+        updateEstimate();
+      });
+    });
+
+    function roundTo5(n) { return Math.round(n / 5) * 5; }
+
+    function storiesLabel(n) {
+      if (n >= 4) return '4+ stories';
+      return n + (n === 1 ? ' story' : ' stories');
+    }
+
+    function calculateEstimate() {
+      var count = parseInt(estWindows.value, 10);
+      var stories = parseInt(estStories.value, 10);
+      var storyMult = STORY_MULTIPLIER[stories] || 1;
+      var rate = RATE_PER_WINDOW[propertyType];
+      var base = count * rate * storyMult;
+
+      var low = base * 0.85;
+      var high = base * 1.15;
+
+      if (discountValue) {
+        low *= DISCOUNT_FACTOR;
+        high *= DISCOUNT_FACTOR;
+      }
+
+      var minimum = MINIMUM_CHARGE[propertyType] * (discountValue ? DISCOUNT_FACTOR : 1);
+      low = Math.max(low, minimum);
+      high = Math.max(high, low + 30);
+
+      return { low: roundTo5(low), high: roundTo5(high) };
+    }
+
+    var lastEstimate = { low: 0, high: 0 };
+
+    function updateEstimate() {
+      windowsOut.textContent = estWindows.value;
+      storiesOut.textContent = storiesLabel(parseInt(estStories.value, 10));
+
+      lastEstimate = calculateEstimate();
+      priceLowEl.textContent = '$' + lastEstimate.low;
+      priceHighEl.textContent = '$' + lastEstimate.high;
+    }
+
+    estWindows.addEventListener('input', updateEstimate);
+    estStories.addEventListener('input', updateEstimate);
+    updateEstimate();
+
     quickForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var city = document.getElementById('qq-city').value.trim();
       var name = document.getElementById('qq-name').value.trim();
       var phone = document.getElementById('qq-phone').value.trim();
-
       if (!name || !phone) return;
 
-      var text = 'Quote request from ' + name + ' (' + phone + ') in ' + (city || '[city not given]');
-      window.location.href = 'sms:' + PHONE + '?body=' + encodeURIComponent(text);
+      var lines = [
+        'Quote request from ' + name + ' (' + phone + ')',
+        'Property: ' + propertyType,
+        'Stories: ' + storiesLabel(parseInt(estStories.value, 10)),
+        'Approx. panes: ' + estWindows.value,
+        'Ballpark estimate: $' + lastEstimate.low + '–$' + lastEstimate.high + ' (industry-standard estimate, to be confirmed)'
+      ];
+      if (discountValue) lines.push('Discount: ' + discountValue);
+
+      window.location.href = 'sms:' + PHONE + '?body=' + encodeURIComponent(lines.join('\n'));
     });
   }
 
