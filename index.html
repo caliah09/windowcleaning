@@ -15,9 +15,8 @@
     }
   })();
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/images/hero-action.jpg">
 <link rel="stylesheet" href="assets/css/style.css">
 <script type="application/ld+json">
@@ -83,7 +82,7 @@
     </nav>
 
     <div class="header-actions">
-      <a href="tel:+12564761402" class="phone-pill" data-magnetic>
+      <a href="tel:+12564761402" class="phone-pill" aria-label="Call or text (256) 476-1402" data-magnetic>
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 013 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
         <span>(256) 476-1402</span>
       </a>
@@ -112,75 +111,55 @@
 
   <!-- HERO -->
   <section class="hero" id="top">
-    <div class="hero-media">
-      <img src="assets/images/hero-action.jpg" alt="Tucker's Window Cleaning technician on an extension ladder cleaning a second-story window in Athens, AL" class="hero-img" fetchpriority="high">
-      <div class="hero-overlay"></div>
-      <div class="hero-frost" aria-hidden="true"></div>
-      <div class="hero-blade" aria-hidden="true"></div>
-    </div>
-
+    <div class="hero-glow" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-copy">
         <p class="eyebrow eyebrow-light hero-anim">Athens, AL &middot; North Alabama</p>
         <h1 class="hero-title" data-split>Streak-free windows, <span class="hl">done right.</span></h1>
-        <p class="hero-sub hero-anim">Residential and commercial window cleaning &mdash; frames, sills, and tracks included, every visit.</p>
-        <div class="hero-ctas hero-anim">
-          <a href="#quote" class="btn btn-yellow" data-magnetic>Get my free quote <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-          <a href="#estimate" class="btn btn-ghost" data-magnetic>Instant estimate</a>
+        <p class="hero-sub hero-anim">Residential and commercial window cleaning, inside and out, by hand. Frames, sills, and tracks included on every visit.</p>
+
+        <div class="quote-card hero-anim" id="quote">
+          <form class="quote-form" id="hero-quote-form" novalidate>
+            <p class="quote-form-title">Get your free quote</p>
+            <div class="quote-grid">
+              <div class="field">
+                <input type="text" name="name" id="hq-name" placeholder=" " autocomplete="name" required>
+                <label for="hq-name">Your name</label>
+              </div>
+              <div class="field">
+                <input type="tel" name="phone" id="hq-phone" placeholder=" " autocomplete="tel" required>
+                <label for="hq-phone">Phone</label>
+              </div>
+              <div class="field field-select">
+                <select name="service" id="hq-service">
+                  <option value="Residential">Residential</option>
+                  <option value="Commercial">Commercial</option>
+                </select>
+                <label for="hq-service">Service</label>
+              </div>
+              <button type="submit" class="btn btn-yellow" id="hq-submit">Text me a quote <span class="btn-arrow" aria-hidden="true">&rarr;</span></button>
+            </div>
+            <p class="quote-form-note" id="hq-note" role="status">Opens your texting app with this filled in. Nothing sends until you hit send.</p>
+          </form>
         </div>
-        <ul class="hero-trust hero-anim">
-          <li><span class="tick" aria-hidden="true">&#10003;</span> Recommended on Facebook</li>
-          <li><span class="tick" aria-hidden="true">&#10003;</span> Locally owned in Athens, AL</li>
-        </ul>
+
+        <div class="hero-proof hero-anim">
+          <span class="hero-proof-avatars" aria-hidden="true"><span>SB</span><span>KM</span><span>LS</span><span>BV</span></span>
+          <span class="hero-proof-text"><strong>4 of 4</strong> Facebook reviewers recommend us</span>
+          <a href="#estimate" class="hero-proof-link">Instant estimate &rarr;</a>
+        </div>
       </div>
 
-      <div class="quote-card" id="quote">
-        <div class="quote-card-head">
-          <h2>Get your free quote</h2>
-          <p>Takes about 30 seconds.</p>
+      <div class="hero-visual">
+        <div class="hero-photo">
+          <img src="assets/images/hero-action.jpg" alt="Tucker's Window Cleaning technician on a ladder cleaning a second-story window" class="hero-img" fetchpriority="high">
+          <div class="hero-frost" aria-hidden="true"></div>
+          <div class="hero-blade" aria-hidden="true"></div>
         </div>
-        <ul class="quote-trust">
-          <li><span aria-hidden="true">&#10003;</span> Locally owned &amp; operated in Athens, AL</li>
-          <li><span aria-hidden="true">&#10003;</span> Frames, sills &amp; tracks included every visit</li>
-          <li><span aria-hidden="true">&#10003;</span> Early-morning scheduling for businesses</li>
-        </ul>
-        <form class="quote-form" id="hero-quote-form" novalidate>
-          <div class="field-row">
-            <div class="field">
-              <input type="text" name="name" id="hq-name" placeholder=" " autocomplete="name" required>
-              <label for="hq-name">Name</label>
-            </div>
-            <div class="field">
-              <input type="tel" name="phone" id="hq-phone" placeholder=" " autocomplete="tel" required>
-              <label for="hq-phone">Phone</label>
-            </div>
-          </div>
-          <div class="field">
-            <input type="email" name="email" id="hq-email" placeholder=" " autocomplete="email">
-            <label for="hq-email">Email <span class="optional">(optional)</span></label>
-          </div>
-          <div class="field field-select">
-            <select name="service" id="hq-service">
-              <option value="Residential">Residential Window Cleaning</option>
-              <option value="Commercial">Commercial Window Cleaning</option>
-            </select>
-            <label for="hq-service">Service needed</label>
-          </div>
-          <div class="field">
-            <textarea name="message" id="hq-message" rows="3" placeholder=" "></textarea>
-            <label for="hq-message">Windows, stories, best time to reach you <span class="optional">(optional)</span></label>
-          </div>
-          <button type="submit" class="btn btn-yellow btn-block" id="hq-submit">Get my free quote <span class="btn-arrow" aria-hidden="true">&rarr;</span></button>
-          <label class="consent">
-            <input type="checkbox" id="hq-consent" checked>
-            <span>By submitting, you agree we may contact you by phone, text, or email about your quote. Msg &amp; data rates may apply.</span>
-          </label>
-          <p class="quote-form-note" id="hq-note" role="status">Opens your texting app with your request pre-filled &mdash; nothing is sent automatically.</p>
-        </form>
+        <p class="hero-chip"><span class="tick" aria-hidden="true">&#10003;</span> Frames, sills &amp; tracks included</p>
+        <p class="hero-tag">On the job</p>
       </div>
     </div>
-
-    <a href="#about" class="scroll-cue" aria-label="Scroll to learn more"><span class="scroll-cue-line"></span>Scroll</a>
   </section>
 
   <!-- MARQUEE -->
@@ -282,7 +261,7 @@
         <span class="service-num" aria-hidden="true">02</span>
         <h3 data-reveal>Commercial Window Cleaning</h3>
         <p class="service-sub" data-reveal>Storefronts &amp; facilities that open on time</p>
-        <p data-reveal>Trusted by Handel's Ice Cream, Blue Dolphin Pools &amp; Spas, and Eggs Up Grill &mdash; including early-morning scheduling so your storefront is spotless before your first customer walks in.</p>
+        <p data-reveal>Trusted by Handel's Ice Cream, Blue Dolphin Pools &amp; Spas, and Eggs Up Grill. Early-morning scheduling means your storefront is spotless before your first customer walks in.</p>
         <ul class="check-list" data-stagger>
           <li>Early-morning scheduling, before 6am</li>
           <li>One crew, one point of contact</li>
@@ -303,7 +282,7 @@
           <h2 data-split>Clarity you can <span class="hl">see.</span></h2>
         </div>
         <div class="work-head-side">
-          <p data-reveal>Real jobs, real photos &mdash; from front-yard brick homes to the storefront glass local businesses trust us with.</p>
+          <p data-reveal>Real jobs, real photos. From front-yard brick homes to the storefront glass local businesses trust us with.</p>
           <button class="btn btn-outline-light gallery-view-all" id="gallery-view-all" data-magnetic>View all photos (11)</button>
         </div>
       </header>
@@ -379,7 +358,7 @@
       <div class="step">
         <div class="step-icon"><span>2</span></div>
         <h3>We clean, by hand</h3>
-        <p>Interior and exterior glass, frames, sills, and tracks &mdash; done carefully, on the schedule that works for you.</p>
+        <p>Interior and exterior glass, frames, sills, and tracks, done carefully on the schedule that works for you.</p>
       </div>
       <div class="step">
         <div class="step-icon"><span>3</span></div>
@@ -423,7 +402,7 @@
         <figcaption><span class="review-avatar" aria-hidden="true">BV</span><span><strong>Brian F. Vaughn</strong>Handel's Ice Cream</span></figcaption>
       </figure>
     </div>
-    <p class="container reviews-footnote" data-reveal>4 reviews on Facebook &mdash; <a href="https://www.facebook.com/people/Tuckers-Window-Cleaning/61576311082795/" target="_blank" rel="noopener" class="link-underline">read them all &rarr;</a></p>
+    <p class="container reviews-footnote" data-reveal>4 reviews on Facebook. <a href="https://www.facebook.com/people/Tuckers-Window-Cleaning/61576311082795/" target="_blank" rel="noopener" class="link-underline">read them all &rarr;</a></p>
   </section>
 
   <!-- SERVICE AREA -->
@@ -442,7 +421,7 @@
           <li>Hillsboro</li>
           <li>Cullman County</li>
         </ul>
-        <p class="area-note" data-reveal>Don't see your city? Call or text <a href="tel:+12564761402" class="link-underline">(256) 476-1402</a> &mdash; we're happy to take a look.</p>
+        <p class="area-note" data-reveal>Don't see your city? Call or text <a href="tel:+12564761402" class="link-underline">(256) 476-1402</a> and we're happy to take a look.</p>
       </div>
       <div class="map-embed img-reveal" data-img-reveal>
         <iframe
@@ -463,7 +442,7 @@
       <div class="estimate-copy">
         <p class="eyebrow eyebrow-light" data-reveal>Instant estimate</p>
         <h2 data-split>Ready for streak-free <span class="hl">windows?</span></h2>
-        <p data-reveal>Move the sliders for an instant ballpark, then send it to us in one tap &mdash; no obligation.</p>
+        <p data-reveal>Move the sliders for an instant ballpark, then send it to us in one tap. No obligation.</p>
         <ul class="estimate-points" data-stagger>
           <li><span aria-hidden="true">&#10003;</span> Free, no-obligation quote</li>
           <li><span aria-hidden="true">&#10003;</span> Exact price confirmed before any work</li>
@@ -503,8 +482,8 @@
 
         <div class="estimate-result" id="estimate-result">
           <p class="estimate-result-label">Estimated price range</p>
-          <p class="estimate-result-price" aria-live="polite"><span id="price-low">$0</span> <span class="dash">&ndash;</span> <span id="price-high">$0</span></p>
-          <p class="estimate-result-fine">Ballpark figure based on typical industry rates &mdash; not an official price. Your exact quote is confirmed by Tucker's before any work begins.</p>
+          <p class="estimate-result-price" aria-live="polite"><span id="price-low">$0</span> <span class="dash">to</span> <span id="price-high">$0</span></p>
+          <p class="estimate-result-fine">Ballpark figure based on typical industry rates, not an official price. Your exact quote is confirmed by Tucker's before any work begins.</p>
         </div>
 
         <form class="quick-quote-form" id="quick-quote-form" novalidate>
@@ -512,7 +491,7 @@
           <input type="tel" name="phone" id="qq-phone" placeholder="Phone" aria-label="Phone" autocomplete="tel" required>
           <button type="submit" class="btn btn-yellow">Text my quote <span class="btn-arrow" aria-hidden="true">&rarr;</span></button>
         </form>
-        <p class="estimate-note">Opens your texting app with the estimate pre-filled &mdash; nothing is sent automatically.</p>
+        <p class="estimate-note">Opens your texting app with the estimate filled in, so nothing sends without you.</p>
       </div>
     </div>
   </section>

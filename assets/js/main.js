@@ -115,6 +115,14 @@
     else document.body.style.overflow = open ? 'hidden' : '';
   }
 
+  /* On phones the floating Call / Quote bar waits until the hero form scrolls away */
+  var heroQuote = $('#quote');
+  if (mobileCta && heroQuote && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      mobileCta.classList.toggle('is-parked', entries[0].isIntersecting);
+    }).observe(heroQuote);
+  }
+
   if (navToggle && mobileNav) {
     navToggle.addEventListener('click', function () { setMenu(!menuOpen); });
     $$('a', mobileNav).forEach(function (link) {
@@ -167,7 +175,7 @@
      Hero quote form
      No backend exists for this static site, so "submitting" compiles the
      entered info into a message and opens the visitor's texting app with
-     it pre-filled -- consistent with every other contact path on the site.
+     it pre-filled, consistent with every other contact path on the site.
      ========================================================= */
   var heroForm = $('#hero-quote-form');
   if (heroForm) {
@@ -187,9 +195,7 @@
       var phoneEl = $('#hq-phone');
       var name = nameEl.value.trim();
       var phone = phoneEl.value.trim();
-      var email = $('#hq-email').value.trim();
       var service = $('#hq-service').value;
-      var message = $('#hq-message').value.trim();
 
       nameEl.closest('.field').classList.toggle('is-invalid', !name);
       phoneEl.closest('.field').classList.toggle('is-invalid', !phone);
@@ -197,7 +203,7 @@
       if (!name || !phone) {
         hqNote.textContent = 'Please enter your name and phone number.';
         hqNote.classList.add('is-error');
-        shake($('#quote'));
+        shake($('#hero-quote-form'));
         (!name ? nameEl : phoneEl).focus();
         return;
       }
@@ -208,8 +214,6 @@
         'Quote request from ' + name + ' (' + phone + ')',
         'Service needed: ' + service + ' Window Cleaning'
       ];
-      if (email) lines.push('Email: ' + email);
-      if (message) lines.push('Notes: ' + message);
 
       window.location.href = 'sms:' + PHONE + '?body=' + encodeURIComponent(lines.join('\n'));
     });
@@ -230,7 +234,7 @@
   var quickForm = $('#quick-quote-form');
 
   if (segType && estWindows && estStories && quickForm) {
-    // Ballpark rates only -- Tucker's has not published pricing.
+    // Ballpark rates only; Tucker's has not published pricing.
     // Figures reflect typical published industry ranges for
     // professional window cleaning (in/out, frames & tracks included).
     var STORY_MULTIPLIER = { 1: 1, 2: 1.25, 3: 1.45, 4: 1.6 };
@@ -360,7 +364,7 @@
         'Property: ' + propertyType,
         'Stories: ' + storiesLabel(parseInt(estStories.value, 10)),
         'Approx. panes: ' + estWindows.value,
-        'Ballpark estimate: $' + lastEstimate.low + '–$' + lastEstimate.high + ' (industry-standard estimate, to be confirmed)'
+        'Ballpark estimate: $' + lastEstimate.low + ' to $' + lastEstimate.high + ' (industry-standard estimate, to be confirmed)'
       ];
       if (discountValue) lines.push('Discount: ' + discountValue);
 
@@ -372,9 +376,9 @@
      Photo lightbox (full job gallery)
      ========================================================= */
   var photos = [
-    { src: 'assets/images/hero-action.jpg', caption: 'Extension-ladder cleaning — second-story window' },
+    { src: 'assets/images/hero-action.jpg', caption: 'Extension-ladder cleaning, second-story window' },
     { src: 'assets/images/action-squeegee.jpg', caption: 'Pole squeegee, streak-free finish' },
-    { src: 'assets/images/detail-frame.jpg', caption: 'Every inch, by hand — frames and tracks included' },
+    { src: 'assets/images/detail-frame.jpg', caption: 'Every inch, by hand. Frames and tracks included' },
     { src: 'assets/images/residential-brick.jpg', caption: 'Residential · Athens, AL' },
     { src: 'assets/images/residential-stone-wide.jpg', caption: 'Residential · North Alabama' },
     { src: 'assets/images/residential-stone-close.jpg', caption: 'Residential · North Alabama' },
@@ -527,32 +531,32 @@
 
   var intro = gsap.timeline({ defaults: { ease: EASE } });
   intro
-    .fromTo('.hero-img', { scale: 1.28 }, { scale: 1.08, duration: 2.4 }, 0)
-    .set('.hero-blade', { opacity: 1 }, 0.1)
-    .fromTo('.hero-frost', { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 100%)', duration: 1.5, ease: 'power2.inOut' }, 0.1)
-    .fromTo('.hero-blade', { x: 0 }, { x: function () { return window.innerWidth; }, duration: 1.5, ease: 'power2.inOut' }, 0.1)
-    .to('.hero-blade', { opacity: 0, duration: 0.25, ease: 'none' }, 1.35)
-    .fromTo('.header-inner', { y: -30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.2, clearProps: 'transform,opacity,visibility' }, 0.3)
-    .fromTo(heroWords, { yPercent: 115, rotate: 3 }, { yPercent: 0, rotate: 0, duration: 1.3, stagger: 0.07, transformOrigin: '0% 100%' }, 0.45)
-    .add(function () { heroTitle.classList.add('is-in'); }, 0.9)
-    .fromTo('.hero-anim', { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.1, clearProps: 'transform' }, 0.75)
-    .fromTo('.quote-card', { autoAlpha: 0, y: 70, rotate: 1.5 }, { autoAlpha: 1, y: 0, rotate: 0, duration: 1.4, clearProps: 'transform' }, 0.7)
-    .fromTo('.scroll-cue', { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 }, 1.4)
+    .fromTo('.header-inner', { y: -24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, clearProps: 'transform,opacity,visibility' }, 0)
+    .fromTo(heroWords, { yPercent: 115, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 1.15, stagger: 0.06, transformOrigin: '0% 100%' }, 0.1)
+    .add(function () { heroTitle.classList.add('is-in'); }, 0.5)
+    .fromTo('.hero-anim', { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: 1, stagger: 0.08, clearProps: 'transform' }, 0.35)
+    .fromTo('.hero-photo', { clipPath: 'inset(12% 8% 12% 8% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.4, ease: 'expo.inOut' }, 0)
+    .fromTo('.hero-img', { scale: 1.3 }, { scale: 1.06, duration: 2.2 }, 0)
+    .set('.hero-blade', { opacity: 1 }, 0.55)
+    .fromTo('.hero-frost', { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 100%)', duration: 1.2, ease: 'power2.inOut' }, 0.55)
+    .fromTo('.hero-blade', { left: '0%' }, { left: '100%', duration: 1.2, ease: 'power2.inOut' }, 0.55)
+    .to('.hero-blade', { opacity: 0, duration: 0.2, ease: 'none' }, 1.6)
+    .fromTo('.hero-chip, .hero-tag', { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.1, clearProps: 'transform' }, 1.3)
     .add(function () {
       $$('.hero-frost, .hero-blade').forEach(function (el) { el.remove(); });
     });
 
-  /* Hero parallax as it scrolls away */
+  /* Photo drifts inside its frame as the hero scrolls away */
   gsap.to('.hero-img', {
-    yPercent: 14, ease: 'none',
+    yPercent: 8, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
   });
 
   var mm = gsap.matchMedia();
 
   mm.add('(min-width: 981px)', function () {
-    gsap.to('.hero-copy', {
-      y: -80, opacity: 0.25, ease: 'none',
+    gsap.to('.hero-visual', {
+      y: -60, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
     });
   });
