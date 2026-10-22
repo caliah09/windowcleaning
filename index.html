@@ -3,9 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tucker's Window Cleaning | Residential &amp; Commercial Window Cleaning in Athens, AL</title>
+<title>Window Cleaning in Athens, AL | Tucker's Window Cleaning</title>
 <meta name="description" content="Streak-free residential and commercial window cleaning in Athens, AL and North Alabama. Frames, sills, and tracks included. Call or text (256) 476-1402 for a free quote.">
 <meta name="theme-color" content="#0b0b0c">
+<link rel="canonical" href="https://tuckerswindowcleaning.com/">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tucker's Window Cleaning">
+<meta property="og:title" content="Tucker's Window Cleaning | Athens, AL">
+<meta property="og:description" content="Streak-free residential and commercial window cleaning across North Alabama. Frames, sills, and tracks included. Call or text (256) 476-1402.">
+<meta property="og:url" content="https://tuckerswindowcleaning.com/">
+<meta property="og:image" content="https://tuckerswindowcleaning.com/assets/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tucker's Window Cleaning technician on a ladder cleaning a second-story window">
+<meta name="twitter:card" content="summary_large_image">
 <script>
   (function () {
     var d = document.documentElement;
@@ -16,18 +30,20 @@
   })();
 </script>
 <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="assets/images/hero-action.jpg">
+<link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/video/hero-squeegee-poster.jpg">
 <link rel="stylesheet" href="assets/css/style.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Tucker's Window Cleaning",
-  "image": "assets/images/logo.jpg",
+  "image": "https://tuckerswindowcleaning.com/assets/images/logo.jpg",
+  "logo": "https://tuckerswindowcleaning.com/assets/images/logo.jpg",
   "telephone": "+12564761402",
   "email": "tuckerswindowcleaning@gmail.com",
-  "url": "https://www.facebook.com/people/Tuckers-Window-Cleaning/61576311082795/",
+  "url": "https://tuckerswindowcleaning.com/",
+  "foundingDate": "2023",
   "sameAs": ["https://www.facebook.com/people/Tuckers-Window-Cleaning/61576311082795/"],
   "description": "Residential and commercial window cleaning serving Athens, Huntsville, Decatur, Madison, Florence, Hartselle, Hillsboro, and Cullman County, Alabama.",
   "areaServed": [
@@ -68,7 +84,7 @@
 
     <nav class="site-nav" id="site-nav" aria-label="Primary">
       <div class="nav-dropdown">
-        <button class="nav-link nav-dropdown-btn" id="services-dropdown-btn" aria-expanded="false" aria-controls="services-dropdown-menu">Services <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="nav-link nav-dropdown-btn" id="services-dropdown-btn" aria-expanded="false" aria-controls="services-dropdown-menu">Services <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="nav-dropdown-menu" id="services-dropdown-menu">
           <a href="#service-residential"><span class="dd-num">01</span> Residential Window Cleaning</a>
           <a href="#service-commercial"><span class="dd-num">02</span> Commercial Window Cleaning</a>
@@ -86,7 +102,7 @@
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 013 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
         <span>(256) 476-1402</span>
       </a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span>
       </button>
     </div>
@@ -111,11 +127,20 @@
 
   <!-- HERO -->
   <section class="hero" id="top">
-    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-media">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/video/hero-squeegee-poster.jpg" aria-describedby="hero-video-desc">
+        <source src="assets/video/hero-squeegee.webm" type="video/webm">
+        <source src="assets/video/hero-squeegee.mp4" type="video/mp4">
+      </video>
+      <p class="sr-only" id="hero-video-desc">Video: a Tucker's technician squeegees soapy glass in smooth strokes, leaving it streak-free.</p>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-frost" aria-hidden="true"></div>
+      <div class="hero-blade" aria-hidden="true"></div>
+    </div>
     <div class="container hero-grid">
       <div class="hero-copy">
         <p class="eyebrow eyebrow-light hero-anim">Athens, AL &middot; North Alabama</p>
-        <h1 class="hero-title" data-split>Streak-free windows, <span class="hl">done right.</span></h1>
+        <h1 class="hero-title hero-anim">Streak-free windows, <span class="hl">done right.</span></h1>
         <p class="hero-sub hero-anim">Residential and commercial window cleaning, inside and out, by hand. Frames, sills, and tracks included on every visit.</p>
 
         <div class="quote-card hero-anim" id="quote">
@@ -149,17 +174,12 @@
           <a href="#estimate" class="hero-proof-link">Instant estimate &rarr;</a>
         </div>
       </div>
-
-      <div class="hero-visual">
-        <div class="hero-photo">
-          <img src="assets/images/hero-action.jpg" alt="Tucker's Window Cleaning technician on a ladder cleaning a second-story window" class="hero-img" fetchpriority="high">
-          <div class="hero-frost" aria-hidden="true"></div>
-          <div class="hero-blade" aria-hidden="true"></div>
-        </div>
-        <p class="hero-chip"><span class="tick" aria-hidden="true">&#10003;</span> Frames, sills &amp; tracks included</p>
-        <p class="hero-tag">On the job</p>
-      </div>
     </div>
+    <p class="hero-chip"><span class="tick" aria-hidden="true">&#10003;</span> Frames, sills &amp; tracks included</p>
+    <button type="button" class="video-toggle" id="video-toggle" aria-pressed="false" aria-label="Pause video">
+      <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+      <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+    </button>
   </section>
 
   <!-- MARQUEE -->
@@ -188,11 +208,11 @@
   <section class="section about" id="about">
     <div class="container">
       <p class="eyebrow" data-reveal>About Tucker's</p>
-      <p class="statement" data-scrub-text>Tucker started this business in Athens with one rule: clean it like it's your own house.</p>
+      <p class="statement" data-scrub-text>Tucker started this business in Athens with one rule: <em>clean it like it's your own house.</em></p>
 
       <div class="about-grid">
         <div class="about-media img-reveal" data-img-reveal>
-          <img src="assets/images/action-squeegee.jpg" alt="Tucker's Window Cleaning technician using a pole squeegee for a streak-free finish" loading="lazy" data-parallax>
+          <img src="assets/images/action-squeegee.jpg" srcset="assets/images/action-squeegee-800.jpg 800w, assets/images/action-squeegee.jpg 1600w" sizes="(max-width: 980px) 90vw, 46vw" alt="Tucker's Window Cleaning technician using a pole squeegee for a streak-free finish" loading="lazy" data-parallax>
         </div>
         <div class="about-copy">
           <p class="lede" data-reveal>That's why local restaurants call him back before sunrise, why area businesses trust him with their storefront glass, and why homeowners keep him on speed dial.</p>
@@ -234,7 +254,7 @@
 
     <article class="container service" id="service-residential">
       <div class="service-media img-reveal" data-img-reveal>
-        <img src="assets/images/residential-brick.jpg" alt="Two-story brick home with clean, streak-free windows in Athens, AL" loading="lazy" data-parallax>
+        <img src="assets/images/residential-brick.jpg" srcset="assets/images/residential-brick-800.jpg 800w, assets/images/residential-brick.jpg 1600w" sizes="(max-width: 980px) 90vw, 46vw" alt="Two-story brick home with clean, streak-free windows in Athens, AL" loading="lazy" data-parallax>
         <span class="service-tag">Residential</span>
       </div>
       <div class="service-copy">
@@ -254,7 +274,7 @@
 
     <article class="container service service-reverse" id="service-commercial">
       <div class="service-media img-reveal" data-img-reveal>
-        <img src="assets/images/commercial-toyota.jpg" alt="Large commercial facility exterior with floor-to-ceiling clean windows" loading="lazy" data-parallax>
+        <img src="assets/images/commercial-toyota.jpg" srcset="assets/images/commercial-toyota-800.jpg 800w, assets/images/commercial-toyota.jpg 1600w" sizes="(max-width: 980px) 90vw, 46vw" alt="Large commercial facility exterior with floor-to-ceiling clean windows" loading="lazy" data-parallax>
         <span class="service-tag">Commercial</span>
       </div>
       <div class="service-copy">
@@ -283,44 +303,71 @@
         </div>
         <div class="work-head-side">
           <p data-reveal>Real jobs, real photos. From front-yard brick homes to the storefront glass local businesses trust us with.</p>
-          <button class="btn btn-outline-light gallery-view-all" id="gallery-view-all" data-magnetic>View all photos (11)</button>
+          <button type="button" class="btn btn-outline-light gallery-view-all" id="gallery-view-all" data-magnetic>View all photos (11)</button>
         </div>
       </header>
 
       <div class="work-viewport">
         <div class="work-track" id="gallery-grid">
-          <figure class="work-card work-card-tall" data-index="2" tabindex="0" role="button" aria-label="View photo: every inch, by hand" data-cursor="View">
-            <div class="work-card-img"><img src="assets/images/detail-frame.jpg" alt="Close attention to detail cleaning a window frame and track by hand" loading="lazy"></div>
-            <figcaption><span>01</span>Every inch, by hand</figcaption>
+          <figure class="work-card work-card-tall" data-index="0" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 1 of 11: Second-story glass, by ladder"></button>
+            <div class="work-card-img"><img src="assets/images/hero-action.jpg" srcset="assets/images/hero-action-800.jpg 800w, assets/images/hero-action.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Technician on a ladder cleaning a second-story window on a brick home" loading="lazy"></div>
+            <figcaption><span>01</span>Second-story glass, by ladder</figcaption>
           </figure>
-          <figure class="work-card work-card-wide" data-index="3" tabindex="0" role="button" aria-label="View photo: residential, Athens, AL" data-cursor="View">
-            <div class="work-card-img"><img src="assets/images/residential-brick.jpg" alt="Two-story brick home with clean, streak-free windows" loading="lazy"></div>
-            <figcaption><span>02</span>Residential &middot; Athens, AL</figcaption>
+          <figure class="work-card work-card-wide" data-index="3" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 2 of 11: Residential · brick home"></button>
+            <div class="work-card-img"><img src="assets/images/residential-brick.jpg" srcset="assets/images/residential-brick-800.jpg 800w, assets/images/residential-brick.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Two-story brick home with clean, streak-free windows" loading="lazy"></div>
+            <figcaption><span>02</span>Residential &middot; brick home</figcaption>
           </figure>
-          <figure class="work-card work-card-tall" data-index="7" tabindex="0" role="button" aria-label="View photo: Handel's Ice Cream" data-cursor="View">
-            <div class="work-card-img"><img src="assets/images/commercial-handels-close.jpg" alt="Handel's Homemade Ice Cream storefront glass, close up" loading="lazy"></div>
+          <figure class="work-card work-card-tall" data-index="7" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 3 of 11: Commercial · Handel's Ice Cream"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-handels-close.jpg" srcset="assets/images/commercial-handels-close-800.jpg 800w, assets/images/commercial-handels-close.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Handel's Homemade Ice Cream storefront with clean windows" loading="lazy"></div>
             <figcaption><span>03</span>Commercial &middot; Handel's Ice Cream</figcaption>
           </figure>
-          <figure class="work-card work-card-wide" data-index="4" tabindex="0" role="button" aria-label="View photo: residential, North Alabama" data-cursor="View">
-            <div class="work-card-img"><img src="assets/images/residential-stone-wide.jpg" alt="Large stone and brick home exterior with sparkling windows" loading="lazy"></div>
-            <figcaption><span>04</span>Residential &middot; North Alabama</figcaption>
+          <figure class="work-card work-card-tall" data-index="2" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 4 of 11: Every inch, by hand"></button>
+            <div class="work-card-img"><img src="assets/images/detail-frame.jpg" srcset="assets/images/detail-frame-800.jpg 800w, assets/images/detail-frame.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Close attention to detail cleaning a window frame and track by hand" loading="lazy"></div>
+            <figcaption><span>04</span>Every inch, by hand</figcaption>
           </figure>
-          <figure class="work-card work-card-wide" data-index="8" tabindex="0" role="button" aria-label="View photo: Blue Dolphin Pools and Spas" data-cursor="View">
-            <div class="work-card-img"><img src="assets/images/commercial-bluedolphin.jpg" alt="Blue Dolphin Pools and Spas storefront with clean glass" loading="lazy"></div>
+          <figure class="work-card work-card-wide" data-index="8" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 5 of 11: Commercial · Blue Dolphin Pools & Spas"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-bluedolphin.jpg" srcset="assets/images/commercial-bluedolphin-800.jpg 800w, assets/images/commercial-bluedolphin.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Blue Dolphin Pools and Spas storefront with clean glass" loading="lazy"></div>
             <figcaption><span>05</span>Commercial &middot; Blue Dolphin Pools &amp; Spas</figcaption>
           </figure>
-          <figure class="work-card work-card-tall" data-index="10" tabindex="0" role="button" aria-label="View photo: commercial facility interior glass" data-cursor="View">
-            <div class="work-card-img"><img src="assets/images/commercial-toyota-interior.jpg" alt="Commercial facility interior with clean floor-to-ceiling glass" loading="lazy"></div>
-            <figcaption><span>06</span>Commercial facility &middot; interior glass</figcaption>
+          <figure class="work-card work-card-tall" data-index="1" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 6 of 11: Pole squeegee, streak-free finish"></button>
+            <div class="work-card-img"><img src="assets/images/action-squeegee.jpg" srcset="assets/images/action-squeegee-800.jpg 800w, assets/images/action-squeegee.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Technician using a pole squeegee on a brick home" loading="lazy"></div>
+            <figcaption><span>06</span>Pole squeegee, streak-free finish</figcaption>
           </figure>
-          <figure class="work-card work-card-tall" data-index="5" tabindex="0" role="button" aria-label="View photo: residential, North Alabama" data-cursor="View">
-            <div class="work-card-img"><img src="assets/images/residential-stone-close.jpg" alt="Stone home with clean windows, close up" loading="lazy"></div>
+          <figure class="work-card work-card-wide" data-index="4" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 7 of 11: Residential · North Alabama"></button>
+            <div class="work-card-img"><img src="assets/images/residential-stone-wide.jpg" srcset="assets/images/residential-stone-wide-800.jpg 800w, assets/images/residential-stone-wide.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Large stone and brick home exterior with sparkling windows" loading="lazy"></div>
             <figcaption><span>07</span>Residential &middot; North Alabama</figcaption>
           </figure>
-          <button type="button" class="work-card work-card-end" id="gallery-view-all-end" data-cursor="Open">
-            <span class="work-card-end-num">11</span>
-            <span class="work-card-end-text">See every photo <span aria-hidden="true">&rarr;</span></span>
-          </button>
+          <figure class="work-card work-card-tall" data-index="9" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 8 of 11: Commercial facility · exterior glass"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-toyota.jpg" srcset="assets/images/commercial-toyota-800.jpg 800w, assets/images/commercial-toyota.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Large commercial building with long bands of clean glass" loading="lazy"></div>
+            <figcaption><span>08</span>Commercial facility &middot; exterior glass</figcaption>
+          </figure>
+          <figure class="work-card work-card-wide" data-index="6" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 9 of 11: Handel's walk-up window"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-handels.jpg" srcset="assets/images/commercial-handels-800.jpg 800w, assets/images/commercial-handels.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Close-up of Handel's walk-up window glass" loading="lazy"></div>
+            <figcaption><span>09</span>Handel's walk-up window</figcaption>
+          </figure>
+          <figure class="work-card work-card-tall" data-index="5" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 10 of 11: Residential · arched windows"></button>
+            <div class="work-card-img"><img src="assets/images/residential-stone-close.jpg" srcset="assets/images/residential-stone-close-800.jpg 800w, assets/images/residential-stone-close.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Stone home with clean arched windows" loading="lazy"></div>
+            <figcaption><span>10</span>Residential &middot; arched windows</figcaption>
+          </figure>
+          <figure class="work-card work-card-tall" data-index="10" data-cursor="View">
+            <button type="button" class="work-card-open" aria-label="View photo 11 of 11: Commercial facility · interior glass"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-toyota-interior.jpg" srcset="assets/images/commercial-toyota-interior-800.jpg 800w, assets/images/commercial-toyota-interior.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Commercial interior with clean floor-to-ceiling windows" loading="lazy"></div>
+            <figcaption><span>11</span>Commercial facility &middot; interior glass</figcaption>
+          </figure>
+          <a href="#quote" class="work-card work-card-end" data-cursor="Quote">
+            <span class="work-card-end-num">Yours<br>next?</span>
+            <span class="work-card-end-text">Get a free quote <span aria-hidden="true">&rarr;</span></span>
+          </a>
         </div>
       </div>
 
@@ -329,16 +376,16 @@
   </section>
 
   <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Photo gallery" data-lenis-prevent>
-    <button class="lightbox-close" id="lightbox-close" aria-label="Close gallery">
+  <div class="lightbox" id="lightbox" inert role="dialog" aria-label="Photo gallery" data-lenis-prevent>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close gallery">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-    <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous photo">&#8249;</button>
+    <button type="button" class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous photo">&#8249;</button>
     <figure class="lightbox-figure">
-      <img id="lightbox-img" src="" alt="">
+      <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
       <figcaption id="lightbox-caption"></figcaption>
     </figure>
-    <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next photo">&#8250;</button>
+    <button type="button" class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next photo">&#8250;</button>
     <div class="lightbox-counter" id="lightbox-counter"></div>
   </div>
 
@@ -399,7 +446,7 @@
       <figure class="review-card review-card-feature">
         <span class="review-quote" aria-hidden="true">&ldquo;</span>
         <blockquote>Tuckers Window cleaning is the best in the business. My windows at Handel's Ice cream are so clean I thought they were removed to clean them. Thanks Tuckers for the professionalism and attention to detail on every inch of our windows.</blockquote>
-        <figcaption><span class="review-avatar" aria-hidden="true">BV</span><span><strong>Brian F. Vaughn</strong>Handel's Ice Cream</span></figcaption>
+        <figcaption><img class="review-avatar review-avatar-photo" src="assets/images/commercial-handels-close.jpg" srcset="assets/images/commercial-handels-close-800.jpg 800w, assets/images/commercial-handels-close.jpg 1600w" sizes="46px" alt="" loading="lazy"><span><strong>Brian F. Vaughn</strong>Handel's Ice Cream</span></figcaption>
       </figure>
     </div>
     <p class="container reviews-footnote" data-reveal>4 reviews on Facebook. <a href="https://www.facebook.com/people/Tuckers-Window-Cleaning/61576311082795/" target="_blank" rel="noopener" class="link-underline">read them all &rarr;</a></p>
@@ -411,26 +458,31 @@
       <div class="area-copy">
         <p class="eyebrow" data-reveal>Where we work</p>
         <h2 data-split>North Alabama, <span class="hl">covered.</span></h2>
-        <ul class="area-list" data-stagger>
-          <li>Athens</li>
-          <li>Huntsville</li>
-          <li>Decatur</li>
-          <li>Madison</li>
-          <li>Florence</li>
-          <li>Hartselle</li>
-          <li>Hillsboro</li>
-          <li>Cullman County</li>
+        <p class="sr-only" id="area-hint">Choose a city to show it on the map.</p>
+        <ul class="area-list" data-stagger aria-describedby="area-hint">
+          <li><button type="button" class="area-city is-active" data-place="Athens, AL" aria-pressed="true" aria-controls="area-map"><span class="area-name">Athens</span><span class="area-tag">Home base</span><span class="area-arrow" aria-hidden="true">&rarr;</span></button></li>
+          <li><button type="button" class="area-city" data-place="Huntsville, AL" aria-pressed="false" aria-controls="area-map"><span class="area-name">Huntsville</span><span class="area-arrow" aria-hidden="true">&rarr;</span></button></li>
+          <li><button type="button" class="area-city" data-place="Decatur, AL" aria-pressed="false" aria-controls="area-map"><span class="area-name">Decatur</span><span class="area-arrow" aria-hidden="true">&rarr;</span></button></li>
+          <li><button type="button" class="area-city" data-place="Madison, AL" aria-pressed="false" aria-controls="area-map"><span class="area-name">Madison</span><span class="area-arrow" aria-hidden="true">&rarr;</span></button></li>
+          <li><button type="button" class="area-city" data-place="Florence, AL" aria-pressed="false" aria-controls="area-map"><span class="area-name">Florence</span><span class="area-arrow" aria-hidden="true">&rarr;</span></button></li>
+          <li><button type="button" class="area-city" data-place="Hartselle, AL" aria-pressed="false" aria-controls="area-map"><span class="area-name">Hartselle</span><span class="area-arrow" aria-hidden="true">&rarr;</span></button></li>
+          <li><button type="button" class="area-city" data-place="Hillsboro, AL" aria-pressed="false" aria-controls="area-map"><span class="area-name">Hillsboro</span><span class="area-arrow" aria-hidden="true">&rarr;</span></button></li>
+          <li><button type="button" class="area-city" data-place="Cullman County, AL" aria-pressed="false" aria-controls="area-map"><span class="area-name">Cullman County</span><span class="area-arrow" aria-hidden="true">&rarr;</span></button></li>
         </ul>
         <p class="area-note" data-reveal>Don't see your city? Call or text <a href="tel:+12564761402" class="link-underline">(256) 476-1402</a> and we're happy to take a look.</p>
       </div>
-      <div class="map-embed img-reveal" data-img-reveal>
-        <iframe
-          src="https://www.google.com/maps?q=Athens,+AL&output=embed"
-          title="Map of Athens, AL and the surrounding North Alabama service area"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen>
-        </iframe>
+      <div class="area-map">
+        <div class="map-embed img-reveal" data-img-reveal>
+          <iframe
+            id="area-map"
+            src="https://www.google.com/maps?q=Athens%2C%20AL&z=11&output=embed"
+            title="Map showing Athens, AL"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <p class="map-caption"><span>Showing <strong id="map-place">Athens, AL</strong></span> <a id="map-open" href="https://www.google.com/maps/search/?api=1&amp;query=Athens%2C%20AL" target="_blank" rel="noopener">Open in Google Maps &nearr;</a></p>
       </div>
     </div>
   </section>
@@ -461,12 +513,12 @@
         </div>
 
         <div class="estimate-field">
-          <label class="estimate-label" for="est-windows">Number of window panes <output id="windows-out">12</output></label>
+          <div class="estimate-label"><label for="est-windows">Number of window panes</label> <output id="windows-out" for="est-windows">12</output></div>
           <input type="range" id="est-windows" min="4" max="60" step="1" value="12">
         </div>
 
         <div class="estimate-field">
-          <label class="estimate-label" for="est-stories">Stories <output id="stories-out">1 story</output></label>
+          <div class="estimate-label"><label for="est-stories">Stories</label> <output id="stories-out" for="est-stories">1 story</output></div>
           <input type="range" id="est-stories" min="1" max="4" step="1" value="1">
         </div>
 
@@ -517,21 +569,21 @@
     </div>
 
     <div class="footer-col">
-      <h4>Contact</h4>
+      <h3 class="footer-heading">Contact</h3>
       <a href="tel:+12564761402">(256) 476-1402</a>
       <a href="mailto:tuckerswindowcleaning@gmail.com">tuckerswindowcleaning@gmail.com</a>
       <a href="https://m.me/61576311082795" target="_blank" rel="noopener">Message on Facebook</a>
     </div>
 
     <div class="footer-col">
-      <h4>Services</h4>
+      <h3 class="footer-heading">Services</h3>
       <a href="#service-residential">Residential Window Cleaning</a>
       <a href="#service-commercial">Commercial Window Cleaning</a>
       <a href="#estimate">Instant Estimate</a>
     </div>
 
     <div class="footer-col">
-      <h4>Hours</h4>
+      <h3 class="footer-heading">Hours</h3>
       <p>Residential: flexible daytime scheduling</p>
       <p>Commercial: early-morning appointments before 6am</p>
     </div>

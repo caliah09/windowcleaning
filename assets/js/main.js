@@ -428,7 +428,7 @@
     lastFocus = document.activeElement;
     showPhoto(index);
     lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
+    lightbox.removeAttribute('inert');
     if (lenis) lenis.stop();
     document.body.style.overflow = 'hidden';
     lbClose.focus({ preventScroll: true });
@@ -436,7 +436,7 @@
 
   function closeLightbox() {
     lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
+    lightbox.setAttribute('inert', '');
     if (lenis) lenis.start();
     document.body.style.overflow = '';
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
@@ -445,12 +445,9 @@
   $$('[data-index]').forEach(function (item) {
     var open = function () { openLightbox(parseInt(item.getAttribute('data-index'), 10)); };
     item.addEventListener('click', open);
-    item.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
-    });
   });
 
-  ['#gallery-view-all', '#gallery-view-all-end'].forEach(function (sel) {
+  ['#gallery-view-all'].forEach(function (sel) {
     var btn = $(sel);
     if (btn) btn.addEventListener('click', function () { openLightbox(0); });
   });
@@ -478,6 +475,45 @@
       focusables[next].focus();
     }
   });
+
+  /* Service area: choosing a city moves the map there */
+  var mapFrame = $('#area-map');
+  var mapBox = mapFrame ? mapFrame.closest('.map-embed') : null;
+  var mapPlace = $('#map-place');
+  var mapOpen = $('#map-open');
+  var cityButtons = $$('.area-city');
+  if (mapFrame) mapFrame.addEventListener('load', function () { mapBox.classList.remove('is-loading'); });
+  cityButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.classList.contains('is-active')) return;
+      var place = btn.getAttribute('data-place');
+      var q = encodeURIComponent(place);
+      cityButtons.forEach(function (b) {
+        var on = b === btn;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on);
+      });
+      mapBox.classList.add('is-loading');
+      mapFrame.src = 'https://www.google.com/maps?q=' + q + '&z=' + (/County/.test(place) ? 9 : 12) + '&output=embed';
+      mapFrame.title = 'Map showing ' + place;
+      mapPlace.textContent = place;
+      mapOpen.href = 'https://www.google.com/maps/search/?api=1&query=' + q;
+    });
+  });
+
+  /* Hero video: pause control; visitors who prefer less motion get a still frame */
+  var heroVideo = $('.hero-video');
+  var videoToggle = $('#video-toggle');
+  if (heroVideo && videoToggle) {
+    var setVideoPaused = function (paused) {
+      if (paused) heroVideo.pause();
+      else { var p = heroVideo.play(); if (p && p.catch) p.catch(function () {}); }
+      videoToggle.setAttribute('aria-pressed', paused);
+      videoToggle.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+    };
+    if (reduceMotion) { heroVideo.removeAttribute('autoplay'); setVideoPaused(true); }
+    videoToggle.addEventListener('click', function () { setVideoPaused(videoToggle.getAttribute('aria-pressed') !== 'true'); });
+  }
 
   /* Spotlight that follows the pointer on review cards */
   $$('.review-card').forEach(function (card) {
@@ -526,40 +562,27 @@
 
   /* ---------- Hero intro: a squeegee pass clears the frosted glass ---------- */
   var heroTitle = $('.hero-title');
-  var heroWords = splitWords(heroTitle);
-  gsap.set(heroTitle, { autoAlpha: 1 });
 
   var intro = gsap.timeline({ defaults: { ease: EASE } });
   intro
-    .fromTo('.header-inner', { y: -24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, clearProps: 'transform,opacity,visibility' }, 0)
-    .fromTo(heroWords, { yPercent: 115, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 1.15, stagger: 0.06, transformOrigin: '0% 100%' }, 0.1)
     .add(function () { heroTitle.classList.add('is-in'); }, 0.5)
-    .fromTo('.hero-anim', { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: 1, stagger: 0.08, clearProps: 'transform' }, 0.35)
-    .fromTo('.hero-photo', { clipPath: 'inset(12% 8% 12% 8% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.4, ease: 'expo.inOut' }, 0)
-    .fromTo('.hero-img', { scale: 1.3 }, { scale: 1.06, duration: 2.2 }, 0)
-    .set('.hero-blade', { opacity: 1 }, 0.55)
-    .fromTo('.hero-frost', { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 100%)', duration: 1.2, ease: 'power2.inOut' }, 0.55)
-    .fromTo('.hero-blade', { left: '0%' }, { left: '100%', duration: 1.2, ease: 'power2.inOut' }, 0.55)
-    .to('.hero-blade', { opacity: 0, duration: 0.2, ease: 'none' }, 1.6)
-    .fromTo('.hero-chip, .hero-tag', { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.1, clearProps: 'transform' }, 1.3)
+    .fromTo('.hero-video', { scale: 1.25 }, { scale: 1.04, duration: 2.4 }, 0)
+    .set('.hero-blade', { opacity: 1 }, 0.4)
+    .fromTo('.hero-frost', { clipPath: 'inset(0% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 100%)', duration: 1.3, ease: 'power2.inOut' }, 0.4)
+    .fromTo('.hero-blade', { left: '0%' }, { left: '100%', duration: 1.3, ease: 'power2.inOut' }, 0.4)
+    .to('.hero-blade', { opacity: 0, duration: 0.2, ease: 'none' }, 1.55)
+    .fromTo('.hero-chip', { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.9, clearProps: 'transform' }, 1.3)
     .add(function () {
       $$('.hero-frost, .hero-blade').forEach(function (el) { el.remove(); });
     });
 
-  /* Photo drifts inside its frame as the hero scrolls away */
-  gsap.to('.hero-img', {
+  /* Video drifts as the hero scrolls away */
+  gsap.to('.hero-video', {
     yPercent: 8, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
   });
 
   var mm = gsap.matchMedia();
-
-  mm.add('(min-width: 981px)', function () {
-    gsap.to('.hero-visual', {
-      y: -60, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-    });
-  });
 
   /* ---------- Scroll progress ---------- */
   gsap.to('.scroll-progress span', {
