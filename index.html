@@ -32,7 +32,7 @@
 <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/video/hero-poster.jpg">
-<link rel="stylesheet" href="assets/css/style.css?v=20261023">
+<link rel="stylesheet" href="assets/css/style.css?v=20261023b">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -171,7 +171,7 @@
 
         <div class="hero-proof hero-anim">
           <span class="hero-proof-avatars" aria-hidden="true"><span>SB</span><span>KM</span><span>LS</span><span>BV</span></span>
-          <span class="hero-proof-text"><strong>4 of 4</strong> Facebook reviewers recommend us</span>
+          <span class="hero-proof-text"><strong>100%</strong> of Facebook reviewers recommend us</span>
           <a href="#estimate" class="hero-proof-link">Instant estimate &rarr;</a>
         </div>
       </div>
@@ -222,20 +222,20 @@
 
           <dl class="stats" data-stagger>
             <div class="stat">
-              <dt class="stat-num"><span data-count="8">8</span></dt>
-              <dd>North Alabama communities served</dd>
+              <dt class="stat-num"><span data-count="6">6</span><em>counties</em></dt>
+              <dd>Limestone, Madison, Morgan, Lauderdale, Lawrence &amp; Cullman</dd>
             </div>
             <div class="stat">
-              <dt class="stat-num"><span data-count="4">4</span><small>/4</small></dt>
-              <dd>Facebook reviewers recommend us</dd>
+              <dt class="stat-num"><span data-count="100">100</span><em class="unit-tight">%</em></dt>
+              <dd>of Facebook reviewers recommend us</dd>
             </div>
             <div class="stat">
-              <dt class="stat-num"><small>before&nbsp;</small><span data-count="6">6</span><small>am</small></dt>
+              <dt class="stat-num"><small>before</small><span data-count="6">6</span><em>am</em></dt>
               <dd>Commercial jobs, so you open on time</dd>
             </div>
             <div class="stat">
-              <dt class="stat-num"><span data-count="3">3</span></dt>
-              <dd>Discounts: first-time homeowner, veteran &amp; 60+</dd>
+              <dt class="stat-num"><span data-count="3">3</span><em>discounts</em></dt>
+              <dd>First-time homeowner, veteran &amp; 60+</dd>
             </div>
           </dl>
         </div>
@@ -253,45 +253,53 @@
       <p class="sechead-lede" data-reveal>Every job gets the same care, whether it's a family home or a busy storefront.</p>
     </header>
 
-    <article class="container service" id="service-residential">
-      <div class="service-media img-reveal" data-img-reveal>
-        <img src="assets/images/residential-brick.jpg" srcset="assets/images/residential-brick-800.jpg 800w, assets/images/residential-brick.jpg 1600w" sizes="(max-width: 980px) 90vw, 46vw" alt="Two-story brick home with clean, streak-free windows in Athens, AL" loading="lazy">
-        <span class="service-tag">Residential</span>
+    <div class="container svc" data-reveal>
+      <div class="svc-tabs segmented" role="tablist" aria-label="Choose a service" data-active="0">
+        <span class="seg-pill" aria-hidden="true"></span>
+        <button type="button" class="seg svc-tab is-active" role="tab" id="tab-residential" aria-controls="service-residential" aria-selected="true">Residential</button>
+        <button type="button" class="seg svc-tab" role="tab" id="tab-commercial" aria-controls="service-commercial" aria-selected="false" tabindex="-1">Commercial</button>
       </div>
-      <div class="service-copy">
-        <span class="service-num" aria-hidden="true">01</span>
-        <h3 data-reveal>Residential Window Cleaning</h3>
-        <p class="service-sub" data-reveal>Interior &amp; exterior, by hand</p>
-        <p data-reveal>The kind of clean where you catch yourself checking twice to see if the window's even there. We work homes across Athens, Huntsville, Decatur, Madison, Florence, Hartselle, Hillsboro, and Cullman County.</p>
-        <ul class="check-list" data-stagger>
-          <li>Interior and exterior glass, cleaned by hand</li>
-          <li>Frames, sills, and tracks included</li>
-          <li>Streak-free finish, every visit</li>
-          <li>First-time homeowner, veteran, and 60+ discounts</li>
-        </ul>
-        <a href="#quote" class="btn btn-dark" data-reveal>Get my free quote <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-      </div>
-    </article>
 
-    <article class="container service service-reverse" id="service-commercial">
-      <div class="service-media img-reveal" data-img-reveal>
-        <img src="assets/images/commercial-toyota.jpg" srcset="assets/images/commercial-toyota-800.jpg 800w, assets/images/commercial-toyota.jpg 1600w" sizes="(max-width: 980px) 90vw, 46vw" alt="Large commercial facility exterior with floor-to-ceiling clean windows" loading="lazy">
-        <span class="service-tag">Commercial</span>
-      </div>
-      <div class="service-copy">
-        <span class="service-num" aria-hidden="true">02</span>
-        <h3 data-reveal>Commercial Window Cleaning</h3>
-        <p class="service-sub" data-reveal>Storefronts &amp; facilities that open on time</p>
-        <p data-reveal>Trusted by Handel's Ice Cream, Blue Dolphin Pools &amp; Spas, and Eggs Up Grill. Early-morning scheduling means your storefront is spotless before your first customer walks in.</p>
-        <ul class="check-list" data-stagger>
-          <li>Early-morning scheduling, before 6am</li>
-          <li>One crew, one point of contact</li>
-          <li>Storefront and facility glass</li>
-          <li>Trusted by local restaurants and retailers</li>
-        </ul>
-        <a href="#quote" class="btn btn-dark" data-reveal>Get my free quote <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-      </div>
-    </article>
+      <article class="service" id="service-residential" role="tabpanel" aria-labelledby="tab-residential" tabindex="-1">
+        <div class="service-media">
+          <img src="assets/images/residential-brick.jpg" srcset="assets/images/residential-brick-800.jpg 800w, assets/images/residential-brick.jpg 1600w" sizes="(max-width: 980px) 90vw, 46vw" alt="Two-story brick home with clean, streak-free windows in Athens, AL" loading="lazy">
+          <span class="service-tag">Residential</span>
+        </div>
+        <div class="service-copy">
+          <span class="service-num" aria-hidden="true">01</span>
+          <h3>Residential Window Cleaning</h3>
+          <p class="service-sub">Interior &amp; exterior, by hand</p>
+          <p>The kind of clean where you catch yourself checking twice to see if the window's even there. We work homes across Athens, Huntsville, Decatur, Madison, Florence, Hartselle, Hillsboro, and Cullman County.</p>
+          <ul class="check-list">
+            <li>Interior and exterior glass, cleaned by hand</li>
+            <li>Frames, sills, and tracks included</li>
+            <li>Streak-free finish, every visit</li>
+            <li>First-time homeowner, veteran, and 60+ discounts</li>
+          </ul>
+          <a href="#quote" class="btn btn-dark">Get my free quote <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
+
+      <article class="service" id="service-commercial" role="tabpanel" aria-labelledby="tab-commercial" tabindex="-1" hidden>
+        <div class="service-media">
+          <img src="assets/images/commercial-toyota.jpg" srcset="assets/images/commercial-toyota-800.jpg 800w, assets/images/commercial-toyota.jpg 1600w" sizes="(max-width: 980px) 90vw, 46vw" alt="Large commercial facility exterior with floor-to-ceiling clean windows" loading="lazy">
+          <span class="service-tag">Commercial</span>
+        </div>
+        <div class="service-copy">
+          <span class="service-num" aria-hidden="true">02</span>
+          <h3>Commercial Window Cleaning</h3>
+          <p class="service-sub">Storefronts &amp; facilities that open on time</p>
+          <p>Trusted by Handel's Ice Cream, Blue Dolphin Pools &amp; Spas, and Eggs Up Grill. Early-morning scheduling means your storefront is spotless before your first customer walks in.</p>
+          <ul class="check-list">
+            <li>Early-morning scheduling, before 6am</li>
+            <li>One crew, one point of contact</li>
+            <li>Storefront and facility glass</li>
+            <li>Trusted by local restaurants and retailers</li>
+          </ul>
+          <a href="#quote" class="btn btn-dark">Get my free quote <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </article>
+    </div>
   </section>
 
   <!-- GALLERY (pinned horizontal scroll on desktop, swipe on mobile) -->
@@ -467,8 +475,8 @@
         <h2 data-split>Recommended on <span class="hl">Facebook.</span></h2>
       </div>
       <div class="reviews-score" data-reveal>
-        <span class="reviews-score-num">4<small>/4</small></span>
-        <span class="reviews-score-text">reviewers recommend<br>Tucker's Window Cleaning</span>
+        <span class="reviews-score-num">100<small>%</small></span>
+        <span class="reviews-score-text">of Facebook reviewers recommend<br>Tucker's Window Cleaning</span>
       </div>
     </header>
     <div class="container reviews-grid" data-stagger>
@@ -650,6 +658,6 @@
 
 <script src="assets/vendor/gsap.min.js" defer></script>
 <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script src="assets/js/main.js?v=20261023" defer></script>
+<script src="assets/js/main.js?v=20261023b" defer></script>
 </body>
 </html>

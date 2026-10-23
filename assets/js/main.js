@@ -39,6 +39,10 @@
     var target = hash === '#top' ? 'top' : document.getElementById(hash.slice(1));
     if (!target) return;
     e.preventDefault();
+    if (target.getAttribute && target.getAttribute('role') === 'tabpanel') {
+      showService(tabForPanel(target.id));
+      target = target.closest('.svc');
+    }
     scrollToTarget(target);
     if (history.replaceState) history.replaceState(null, '', hash);
   });
@@ -152,6 +156,56 @@
     el.classList.remove('shake');
     void el.offsetWidth;
     el.classList.add('shake');
+  }
+
+  /* =========================================================
+     Services: Residential / Commercial tabs
+     ========================================================= */
+  var svcTabs = $$('.svc-tab');
+  var svcTablist = $('.svc-tabs');
+
+  function showService(tab, focusTab) {
+    svcTabs.forEach(function (t, i) {
+      var on = t === tab;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (on && panel.hidden) {
+        panel.hidden = false;
+        panel.classList.remove('is-entering');
+        void panel.offsetWidth;
+        panel.classList.add('is-entering');
+      } else if (!on) {
+        panel.hidden = true;
+      }
+      if (on) svcTablist.setAttribute('data-active', i);
+    });
+    if (focusTab) tab.focus();
+  }
+
+  svcTabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { showService(tab); });
+    tab.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = svcTabs[(i + 1) % svcTabs.length];
+      if (e.key === 'ArrowLeft') next = svcTabs[(i - 1 + svcTabs.length) % svcTabs.length];
+      if (e.key === 'Home') next = svcTabs[0];
+      if (e.key === 'End') next = svcTabs[svcTabs.length - 1];
+      if (next) { e.preventDefault(); showService(next, true); }
+    });
+  });
+
+  // Links to #service-residential / #service-commercial open that tab.
+  function tabForPanel(id) {
+    return svcTabs.filter(function (t) { return t.getAttribute('aria-controls') === id; })[0];
+  }
+  if (svcTabs.length && location.hash) {
+    var hashTab = tabForPanel(location.hash.slice(1));
+    if (hashTab) {
+      showService(hashTab);
+      hashTab.closest('.svc').scrollIntoView();
+    }
   }
 
   /* =========================================================
