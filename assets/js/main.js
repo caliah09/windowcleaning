@@ -163,28 +163,43 @@
   var FALLBACK_HTML = 'Couldn&rsquo;t send. Please call or text <a href="tel:' + PHONE + '">(256) 476-1402</a>.';
 
   function sendLead(form, fields, ui) {
-    var honeypot = form.querySelector('[name="_gotcha"]');
-    if (honeypot && honeypot.value) return; // bot filled the hidden field
     var data = new FormData();
     Object.keys(fields).forEach(function (k) { data.append(k, fields[k]); });
+    // Hidden from people (and autofill); Formspree discards anything a bot puts here.
+    var honeypot = form.querySelector('[name="_gotcha"]');
+    if (honeypot) data.append('_gotcha', honeypot.value);
 
     ui.button.setAttribute('aria-busy', 'true');
     ui.note.classList.remove('is-error', 'is-success');
     ui.note.textContent = 'Sending…';
 
-    fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+    var controller = window.AbortController ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 15000) : null;
+
+    fetch(FORM_ENDPOINT, {
+      method: 'POST', body: data, headers: { Accept: 'application/json' },
+      signal: controller ? controller.signal : undefined
+    })
       .then(function (res) {
-        if (!res.ok) throw new Error('Formspree ' + res.status);
+        if (res.ok) return;
+        return res.json().catch(function () { return {}; }).then(function (body) {
+          throw new Error('Formspree ' + res.status + ': ' + JSON.stringify(body.errors || body));
+        });
+      })
+      .then(function () {
         form.reset();
         ui.note.textContent = ui.success;
         ui.note.classList.add('is-success');
-        if (ui.onReset) ui.onReset();
       })
-      .catch(function () {
+      .catch(function (err) {
+        if (window.console) console.warn('Quote form did not send:', err);
         ui.note.innerHTML = FALLBACK_HTML;
         ui.note.classList.add('is-error');
       })
-      .then(function () { ui.button.removeAttribute('aria-busy'); });
+      .then(function () {
+        clearTimeout(timer);
+        ui.button.removeAttribute('aria-busy');
+      });
   }
 
   /* =========================================================
@@ -402,19 +417,13 @@
   /* =========================================================
      Photo lightbox (full job gallery)
      ========================================================= */
-  var photos = [
-    { src: 'assets/images/hero-action.jpg', caption: 'Extension-ladder cleaning, second-story window' },
-    { src: 'assets/images/action-squeegee.jpg', caption: 'Pole squeegee, streak-free finish' },
-    { src: 'assets/images/detail-frame.jpg', caption: 'Every inch, by hand. Frames and tracks included' },
-    { src: 'assets/images/residential-brick.jpg', caption: 'Residential · Athens, AL' },
-    { src: 'assets/images/residential-stone-wide.jpg', caption: 'Residential · North Alabama' },
-    { src: 'assets/images/residential-stone-close.jpg', caption: 'Residential · North Alabama' },
-    { src: 'assets/images/commercial-handels.jpg', caption: 'Commercial · Handel’s Ice Cream' },
-    { src: 'assets/images/commercial-handels-close.jpg', caption: 'Commercial · Handel’s Ice Cream' },
-    { src: 'assets/images/commercial-bluedolphin.jpg', caption: 'Commercial · Blue Dolphin Pools & Spas' },
-    { src: 'assets/images/commercial-toyota.jpg', caption: 'Commercial facility · floor-to-ceiling glass' },
-    { src: 'assets/images/commercial-toyota-interior.jpg', caption: 'Commercial facility · interior glass' }
-  ];
+  // The lightbox steps through whichever set was opened: the before/after
+  // pair, or the gallery photos that match the active filter.
+  var photos = [];
+
+  function photoFrom(fig) {
+    return { src: $('img', fig).getAttribute('src'), caption: fig.getAttribute('data-caption') };
+  }
 
   var lightbox = $('#lightbox');
   var lbImg = $('#lightbox-img');
@@ -467,14 +476,78 @@
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
 
-  $$('[data-index]').forEach(function (item) {
-    var open = function () { openLightbox(parseInt(item.getAttribute('data-index'), 10)); };
-    item.addEventListener('click', open);
+  var galleryGrid = $('#gallery-grid');
+  var galleryCards = galleryGrid ? $$('.work-card[data-cat]', galleryGrid) : [];
+  var galleryEnd = galleryGrid ? $('.work-card-end', galleryGrid) : null;
+  var moreBtn = $('#work-more');
+  var activeFilter = 'all';
+  var galleryExpanded = false;
+  var MOBILE_LIMIT = 6;
+  var mobileGallery = window.matchMedia('(max-width: 980px)');
+
+  function filteredCards() {
+    return galleryCards.filter(function (c) {
+      return activeFilter === 'all' || c.getAttribute('data-cat') === activeFilter;
+    });
+  }
+
+  function layoutGallery() {
+    var matches = filteredCards();
+    var limit = mobileGallery.matches && !galleryExpanded ? MOBILE_LIMIT : Infinity;
+    galleryCards.forEach(function (c) { c.hidden = true; });
+    matches.forEach(function (c, i) { c.hidden = i >= limit; });
+    if (moreBtn) {
+      moreBtn.hidden = matches.length <= limit;
+      moreBtn.textContent = 'Show all ' + matches.length + ' photos';
+    }
+    // Stretch the quote card so the last row of the grid ends flush.
+    if (galleryEnd) {
+      var cols = getComputedStyle(galleryGrid).gridTemplateColumns.split(' ').length;
+      var used = 0;
+      galleryCards.forEach(function (c) {
+        if (!c.hidden) used += c.classList.contains('work-card-wide') ? Math.min(2, cols) : 1;
+      });
+      var span = cols - (used % cols);
+      galleryEnd.style.gridColumn = 'span ' + span;
+      galleryEnd.classList.toggle('is-banner', span >= 2);
+    }
+  }
+
+  $$('.work-filter').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      activeFilter = btn.getAttribute('data-filter');
+      $$('.work-filter').forEach(function (b) {
+        var on = b === btn;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on);
+      });
+      layoutGallery();
+    });
+  });
+  if (moreBtn) moreBtn.addEventListener('click', function () { galleryExpanded = true; layoutGallery(); });
+  if (mobileGallery.addEventListener) mobileGallery.addEventListener('change', layoutGallery);
+  if (galleryGrid) layoutGallery();
+
+  galleryCards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      var set = filteredCards();
+      photos = set.map(photoFrom);
+      openLightbox(set.indexOf(card));
+    });
   });
 
-  ['#gallery-view-all'].forEach(function (sel) {
-    var btn = $(sel);
-    if (btn) btn.addEventListener('click', function () { openLightbox(0); });
+  var baShots = $$('.ba-shot');
+  baShots.forEach(function (shot, i) {
+    shot.addEventListener('click', function () {
+      photos = baShots.map(photoFrom);
+      openLightbox(i);
+    });
+  });
+
+  var viewAll = $('#gallery-view-all');
+  if (viewAll) viewAll.addEventListener('click', function () {
+    photos = filteredCards().map(photoFrom);
+    openLightbox(0);
   });
 
   if (lbClose) lbClose.addEventListener('click', closeLightbox);

@@ -32,7 +32,7 @@
 <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/video/hero-poster.jpg">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=20261023">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -145,7 +145,7 @@
 
         <div class="quote-card hero-anim" id="quote">
           <form class="quote-form" id="hero-quote-form" action="https://formspree.io/f/xoeeagkk" method="POST" novalidate>
-            <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
             <p class="quote-form-title">Get your free quote</p>
             <div class="quote-grid">
               <div class="field">
@@ -296,81 +296,126 @@
 
   <!-- GALLERY (pinned horizontal scroll on desktop, swipe on mobile) -->
   <section class="work" id="work">
-    <div class="work-pin">
-      <header class="container work-head">
-        <div>
-          <p class="eyebrow eyebrow-light" data-reveal>Recent work</p>
-          <h2 data-split>Clarity you can <span class="hl">see.</span></h2>
-        </div>
-        <div class="work-head-side">
-          <p data-reveal>Real jobs, real photos. From front-yard brick homes to the storefront glass local businesses trust us with.</p>
-          <button type="button" class="btn btn-outline-light gallery-view-all" id="gallery-view-all">View all photos (11)</button>
-        </div>
-      </header>
+    <header class="container work-head">
+      <div>
+        <p class="eyebrow eyebrow-light" data-reveal>Recent work</p>
+        <h2 data-split>Clarity you can <span class="hl">see.</span></h2>
+      </div>
+      <div class="work-head-side">
+        <p data-reveal>Real jobs, real photos. From brick homes to the storefront glass local businesses trust us with.</p>
+      </div>
+    </header>
 
-      <div class="work-viewport">
-        <div class="work-track" id="gallery-grid">
-          <figure class="work-card work-card-tall" data-index="0">
-            <button type="button" class="work-card-open" aria-label="View photo 1 of 11: Second-story glass, by ladder"></button>
-            <div class="work-card-img"><img src="assets/images/hero-action.jpg" srcset="assets/images/hero-action-800.jpg 800w, assets/images/hero-action.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Technician on a ladder cleaning a second-story window on a brick home" loading="lazy"></div>
-            <figcaption><span>01</span>Second-story glass, by ladder</figcaption>
+    <div class="container">
+      <div class="ba" data-reveal>
+        <div class="ba-copy">
+          <p class="eyebrow eyebrow-light">Before &amp; after</p>
+          <h3>Same glass, <span class="hl">one visit later.</span></h3>
+          <p>A cloudy, spotted glass light fixture, cleaned by hand until you can see the yard straight through it.</p>
+        </div>
+        <div class="ba-pair">
+          <figure class="ba-shot" data-caption="Before · cloudy, spotted glass">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: before"></button>
+            <img src="assets/images/fixture-before.jpg" srcset="assets/images/fixture-before-800.jpg 800w, assets/images/fixture-before.jpg 1125w" sizes="(max-width: 980px) 50vw, 30vw" alt="Glass light fixture before cleaning, cloudy and spotted" loading="lazy" decoding="async">
+            <span class="ba-tag">Before</span>
           </figure>
-          <figure class="work-card work-card-wide" data-index="3">
-            <button type="button" class="work-card-open" aria-label="View photo 2 of 11: Residential · brick home"></button>
-            <div class="work-card-img"><img src="assets/images/residential-brick.jpg" srcset="assets/images/residential-brick-800.jpg 800w, assets/images/residential-brick.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Two-story brick home with clean, streak-free windows" loading="lazy"></div>
-            <figcaption><span>02</span>Residential &middot; brick home</figcaption>
+          <figure class="ba-shot" data-caption="After · cleaned by hand">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: after"></button>
+            <img src="assets/images/fixture-after.jpg" srcset="assets/images/fixture-after-800.jpg 800w, assets/images/fixture-after.jpg 885w" sizes="(max-width: 980px) 50vw, 30vw" alt="The same glass light fixture after cleaning, completely clear" loading="lazy" decoding="async">
+            <span class="ba-tag ba-tag-after">After</span>
           </figure>
-          <figure class="work-card work-card-tall" data-index="7">
-            <button type="button" class="work-card-open" aria-label="View photo 3 of 11: Commercial · Handel's Ice Cream"></button>
-            <div class="work-card-img"><img src="assets/images/commercial-handels-close.jpg" srcset="assets/images/commercial-handels-close-800.jpg 800w, assets/images/commercial-handels-close.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Handel's Homemade Ice Cream storefront with clean windows" loading="lazy"></div>
-            <figcaption><span>03</span>Commercial &middot; Handel's Ice Cream</figcaption>
-          </figure>
-          <figure class="work-card work-card-tall" data-index="2">
-            <button type="button" class="work-card-open" aria-label="View photo 4 of 11: Every inch, by hand"></button>
-            <div class="work-card-img"><img src="assets/images/detail-frame.jpg" srcset="assets/images/detail-frame-800.jpg 800w, assets/images/detail-frame.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Close attention to detail cleaning a window frame and track by hand" loading="lazy"></div>
-            <figcaption><span>04</span>Every inch, by hand</figcaption>
-          </figure>
-          <figure class="work-card work-card-wide" data-index="8">
-            <button type="button" class="work-card-open" aria-label="View photo 5 of 11: Commercial · Blue Dolphin Pools & Spas"></button>
-            <div class="work-card-img"><img src="assets/images/commercial-bluedolphin.jpg" srcset="assets/images/commercial-bluedolphin-800.jpg 800w, assets/images/commercial-bluedolphin.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Blue Dolphin Pools and Spas storefront with clean glass" loading="lazy"></div>
-            <figcaption><span>05</span>Commercial &middot; Blue Dolphin Pools &amp; Spas</figcaption>
-          </figure>
-          <figure class="work-card work-card-tall" data-index="1">
-            <button type="button" class="work-card-open" aria-label="View photo 6 of 11: Pole squeegee, streak-free finish"></button>
-            <div class="work-card-img"><img src="assets/images/action-squeegee.jpg" srcset="assets/images/action-squeegee-800.jpg 800w, assets/images/action-squeegee.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Technician using a pole squeegee on a brick home" loading="lazy"></div>
-            <figcaption><span>06</span>Pole squeegee, streak-free finish</figcaption>
-          </figure>
-          <figure class="work-card work-card-wide" data-index="4">
-            <button type="button" class="work-card-open" aria-label="View photo 7 of 11: Residential · North Alabama"></button>
-            <div class="work-card-img"><img src="assets/images/residential-stone-wide.jpg" srcset="assets/images/residential-stone-wide-800.jpg 800w, assets/images/residential-stone-wide.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Large stone and brick home exterior with sparkling windows" loading="lazy"></div>
-            <figcaption><span>07</span>Residential &middot; North Alabama</figcaption>
-          </figure>
-          <figure class="work-card work-card-tall" data-index="9">
-            <button type="button" class="work-card-open" aria-label="View photo 8 of 11: Commercial facility · exterior glass"></button>
-            <div class="work-card-img"><img src="assets/images/commercial-toyota.jpg" srcset="assets/images/commercial-toyota-800.jpg 800w, assets/images/commercial-toyota.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Large commercial building with long bands of clean glass" loading="lazy"></div>
-            <figcaption><span>08</span>Commercial facility &middot; exterior glass</figcaption>
-          </figure>
-          <figure class="work-card work-card-tall" data-index="5">
-            <button type="button" class="work-card-open" aria-label="View photo 9 of 11: Residential · arched windows"></button>
-            <div class="work-card-img"><img src="assets/images/residential-stone-close.jpg" srcset="assets/images/residential-stone-close-800.jpg 800w, assets/images/residential-stone-close.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Stone home with clean arched windows" loading="lazy"></div>
-            <figcaption><span>09</span>Residential &middot; arched windows</figcaption>
-          </figure>
-          <figure class="work-card work-card-wide" data-index="6">
-            <button type="button" class="work-card-open" aria-label="View photo 10 of 11: Handel's walk-up window"></button>
-            <div class="work-card-img"><img src="assets/images/commercial-handels.jpg" srcset="assets/images/commercial-handels-800.jpg 800w, assets/images/commercial-handels.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Close-up of Handel's walk-up window glass" loading="lazy"></div>
-            <figcaption><span>10</span>Handel's walk-up window</figcaption>
-          </figure>
-          <figure class="work-card work-card-tall" data-index="10">
-            <button type="button" class="work-card-open" aria-label="View photo 11 of 11: Commercial facility · interior glass"></button>
-            <div class="work-card-img"><img src="assets/images/commercial-toyota-interior.jpg" srcset="assets/images/commercial-toyota-interior-800.jpg 800w, assets/images/commercial-toyota-interior.jpg 1600w" sizes="(max-width: 980px) 82vw, 34vw" alt="Commercial interior with clean floor-to-ceiling windows" loading="lazy"></div>
-            <figcaption><span>11</span>Commercial facility &middot; interior glass</figcaption>
-          </figure>
-          <a href="#quote" class="work-card work-card-end">
-            <span class="work-card-end-num">Yours<br>next?</span>
-            <span class="work-card-end-text">Get a free quote <span aria-hidden="true">&rarr;</span></span>
-          </a>
         </div>
       </div>
+
+      <div class="work-bar">
+        <div class="work-filters" role="group" aria-label="Filter photos">
+          <button type="button" class="work-filter is-active" data-filter="all" aria-pressed="true">All <span>14</span></button>
+          <button type="button" class="work-filter" data-filter="home" aria-pressed="false">Homes <span>7</span></button>
+          <button type="button" class="work-filter" data-filter="business" aria-pressed="false">Businesses <span>7</span></button>
+        </div>
+        <button type="button" class="work-fullscreen" id="gallery-view-all">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          View full screen
+        </button>
+      </div>
+
+      <div class="work-grid" id="gallery-grid">
+          <figure class="work-card" data-cat="home" data-caption="Home · Second-story glass, by ladder">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Second-story glass, by ladder"></button>
+            <div class="work-card-img"><img src="assets/images/hero-action.jpg" srcset="assets/images/hero-action-800.jpg 800w, assets/images/hero-action.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Technician on a ladder cleaning a second-story window on a brick home" loading="lazy" decoding="async"></div>
+            <figcaption><span>Home</span>Second-story glass, by ladder</figcaption>
+          </figure>
+          <figure class="work-card work-card-wide" data-cat="business" data-caption="Business · Blue Dolphin Pools &amp; Spas">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Blue Dolphin Pools &amp; Spas"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-bluedolphin.jpg" srcset="assets/images/commercial-bluedolphin-800.jpg 800w, assets/images/commercial-bluedolphin.jpg 1600w" sizes="(max-width: 980px) 100vw, 50vw" alt="Blue Dolphin Pools and Spas storefront with clean glass" loading="lazy" decoding="async"></div>
+            <figcaption><span>Business</span>Blue Dolphin Pools &amp; Spas</figcaption>
+          </figure>
+          <figure class="work-card" data-cat="home" data-caption="Home · Extension pole, upper windows">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Extension pole, upper windows"></button>
+            <div class="work-card-img"><img src="assets/images/job-pole-brick.jpg" srcset="assets/images/job-pole-brick-800.jpg 800w, assets/images/job-pole-brick.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Technician in a Tucker&rsquo;s shirt using an extension pole on the upper windows of a brick home" loading="lazy" decoding="async"></div>
+            <figcaption><span>Home</span>Extension pole, upper windows</figcaption>
+          </figure>
+          <figure class="work-card" data-cat="business" data-caption="Business · Handel&rsquo;s Ice Cream">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Handel&rsquo;s Ice Cream"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-handels-close.jpg" srcset="assets/images/commercial-handels-close-800.jpg 800w, assets/images/commercial-handels-close.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Handel&rsquo;s Homemade Ice Cream storefront with clean windows" loading="lazy" decoding="async"></div>
+            <figcaption><span>Business</span>Handel&rsquo;s Ice Cream</figcaption>
+          </figure>
+          <figure class="work-card work-card-wide" data-cat="home" data-caption="Home · Brick home, every pane">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Brick home, every pane"></button>
+            <div class="work-card-img"><img src="assets/images/residential-brick.jpg" srcset="assets/images/residential-brick-800.jpg 800w, assets/images/residential-brick.jpg 1600w" sizes="(max-width: 980px) 100vw, 50vw" alt="Two-story brick home with clean, streak-free windows" loading="lazy" decoding="async"></div>
+            <figcaption><span>Home</span>Brick home, every pane</figcaption>
+          </figure>
+          <figure class="work-card" data-cat="business" data-caption="Business · Office entrance glass">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Office entrance glass"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-entrance.jpg" srcset="assets/images/commercial-entrance-800.jpg 800w, assets/images/commercial-entrance.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Brick office entrance with clean, reflective glass doors and windows" loading="lazy" decoding="async"></div>
+            <figcaption><span>Business</span>Office entrance glass</figcaption>
+          </figure>
+          <figure class="work-card" data-cat="home" data-caption="Home · Frames and tracks, by hand">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Frames and tracks, by hand"></button>
+            <div class="work-card-img"><img src="assets/images/detail-frame.jpg" srcset="assets/images/detail-frame-800.jpg 800w, assets/images/detail-frame.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Gloved hand cleaning a window frame and track" loading="lazy" decoding="async"></div>
+            <figcaption><span>Home</span>Frames and tracks, by hand</figcaption>
+          </figure>
+          <figure class="work-card" data-cat="business" data-caption="Business · Double-door entry">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Double-door entry"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-doors.jpg" srcset="assets/images/commercial-doors-800.jpg 800w, assets/images/commercial-doors.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Commercial double glass doors, spotless, reflecting the parking lot" loading="lazy" decoding="async"></div>
+            <figcaption><span>Business</span>Double-door entry</figcaption>
+          </figure>
+          <figure class="work-card work-card-wide" data-cat="home" data-caption="Home · Stone and brick, North Alabama">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Stone and brick, North Alabama"></button>
+            <div class="work-card-img"><img src="assets/images/residential-stone-wide.jpg" srcset="assets/images/residential-stone-wide-800.jpg 800w, assets/images/residential-stone-wide.jpg 1600w" sizes="(max-width: 980px) 100vw, 50vw" alt="Large stone and brick home exterior with sparkling windows" loading="lazy" decoding="async"></div>
+            <figcaption><span>Home</span>Stone and brick, North Alabama</figcaption>
+          </figure>
+          <figure class="work-card" data-cat="business" data-caption="Business · Facility exterior glass">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Facility exterior glass"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-toyota.jpg" srcset="assets/images/commercial-toyota-800.jpg 800w, assets/images/commercial-toyota.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Large commercial building with long bands of clean glass" loading="lazy" decoding="async"></div>
+            <figcaption><span>Business</span>Facility exterior glass</figcaption>
+          </figure>
+          <figure class="work-card" data-cat="home" data-caption="Home · Pole squeegee, streak-free">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Pole squeegee, streak-free"></button>
+            <div class="work-card-img"><img src="assets/images/action-squeegee.jpg" srcset="assets/images/action-squeegee-800.jpg 800w, assets/images/action-squeegee.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Technician using a pole squeegee on a brick home" loading="lazy" decoding="async"></div>
+            <figcaption><span>Home</span>Pole squeegee, streak-free</figcaption>
+          </figure>
+          <figure class="work-card work-card-wide" data-cat="business" data-caption="Business · Handel&rsquo;s walk-up window">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Handel&rsquo;s walk-up window"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-handels.jpg" srcset="assets/images/commercial-handels-800.jpg 800w, assets/images/commercial-handels.jpg 1600w" sizes="(max-width: 980px) 100vw, 50vw" alt="Close-up of Handel&rsquo;s walk-up window glass" loading="lazy" decoding="async"></div>
+            <figcaption><span>Business</span>Handel&rsquo;s walk-up window</figcaption>
+          </figure>
+          <figure class="work-card" data-cat="home" data-caption="Home · Arched windows">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Arched windows"></button>
+            <div class="work-card-img"><img src="assets/images/residential-stone-close.jpg" srcset="assets/images/residential-stone-close-800.jpg 800w, assets/images/residential-stone-close.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Stone home with clean arched windows" loading="lazy" decoding="async"></div>
+            <figcaption><span>Home</span>Arched windows</figcaption>
+          </figure>
+          <figure class="work-card" data-cat="business" data-caption="Business · Floor-to-ceiling interior glass">
+            <button type="button" class="work-card-open" aria-label="Enlarge photo: Floor-to-ceiling interior glass"></button>
+            <div class="work-card-img"><img src="assets/images/commercial-toyota-interior.jpg" srcset="assets/images/commercial-toyota-interior-800.jpg 800w, assets/images/commercial-toyota-interior.jpg 1600w" sizes="(max-width: 980px) 50vw, 25vw" alt="Commercial interior with clean floor-to-ceiling windows" loading="lazy" decoding="async"></div>
+            <figcaption><span>Business</span>Floor-to-ceiling interior glass</figcaption>
+          </figure>
+        <a href="#quote" class="work-card work-card-end">
+          <span class="work-card-end-num">Yours next?</span>
+          <span class="work-card-end-text">Get a free quote <span aria-hidden="true">&rarr;</span></span>
+        </a>
+      </div>
+      <button type="button" class="btn btn-outline-light work-more" id="work-more" hidden>Show all photos</button>
     </div>
   </section>
 
@@ -538,7 +583,7 @@
         </div>
 
         <form class="quick-quote-form" id="quick-quote-form" action="https://formspree.io/f/xoeeagkk" method="POST" novalidate>
-          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
           <input type="text" name="name" id="qq-name" placeholder="Name" aria-label="Name" autocomplete="name" required>
           <input type="tel" name="phone" id="qq-phone" placeholder="Phone" aria-label="Phone" autocomplete="tel" required>
           <button type="submit" class="btn btn-yellow" id="qq-submit">Send my estimate <span class="btn-arrow" aria-hidden="true">&rarr;</span></button>
@@ -605,6 +650,6 @@
 
 <script src="assets/vendor/gsap.min.js" defer></script>
 <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v=20261023" defer></script>
 </body>
 </html>
