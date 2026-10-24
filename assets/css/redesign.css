@@ -500,3 +500,62 @@ img[src*="sunroom-ladder"] { object-position: 50% 75%; }
   .reviews-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-9); align-items: end; }
   .review-big blockquote { font-size: var(--step-3); line-height: 1.25; }
 }
+
+/* ---------- Instant estimate ---------- */
+.estimate { background: var(--navy-900); color: var(--white); padding: var(--space-8) 0; }
+.estimate-grid { display: grid; gap: var(--space-6); }
+.estimate h2 { font-size: var(--step-4); max-width: 16ch; margin-bottom: var(--space-4); }
+.estimate-copy > p { color: #dbe7ef; max-width: var(--measure); }
+.checks-light li::before { border-color: var(--sky-300); }
+.checks-light { color: var(--white); margin-bottom: 0; }
+
+.calc { background: var(--white); color: var(--text); border-radius: var(--radius); padding: var(--space-5) var(--space-4); }
+.calc-field { margin: 0 0 var(--space-5); padding: 0; border: 0; min-width: 0; }
+.calc-field legend, .calc-label { display: flex; justify-content: space-between; align-items: baseline; width: 100%; padding: 0; margin-bottom: var(--space-2); font-weight: 700; }
+.calc-label output { font: 700 var(--step-1)/1 var(--font-display); color: var(--navy-800); }
+.calc-help { margin: var(--space-1) 0 0; font-size: var(--step--1); color: var(--text-muted); }
+
+.choice-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); }
+.choice {
+  position: relative; display: flex; align-items: center; justify-content: center; gap: var(--space-2);
+  min-height: var(--tap); padding: 0 var(--space-3);
+  border: 1.5px solid #8ea6b8; border-radius: var(--radius);
+  font-weight: 600; cursor: pointer; text-align: center;
+}
+.choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choice:has(input:checked) { background: var(--navy-800); border-color: var(--navy-800); color: var(--white); }
+.choice:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+input[type="range"] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: var(--tap); margin: 0;
+  background: transparent; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--navy-800) var(--fill, 0%), #c7d6e0 var(--fill, 0%)); }
+input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: #c7d6e0; }
+input[type="range"]::-moz-range-progress { height: 6px; border-radius: 3px; background: var(--navy-800); }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 28px; height: 28px; margin-top: -11px; border-radius: 50%;
+  background: var(--white); border: 3px solid var(--navy-800); box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--white); border: 3px solid var(--navy-800); }
+input[type="range"]:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.calc-result { margin: var(--space-2) 0 var(--space-5); padding: var(--space-4); border-radius: var(--radius); background: var(--sky-50); border: 1px solid var(--line); }
+.calc-result-label { margin: 0 0 var(--space-1); font-weight: 700; font-size: 0.95rem; }
+.calc-price { margin: 0 0 var(--space-2); font: 700 var(--step-4)/1.1 var(--font-display); color: var(--navy-900); font-variant-numeric: tabular-nums; }
+.calc-min { margin: 0 0 var(--space-2); font-weight: 600; color: var(--leaf-700); font-size: 0.95rem; }
+.calc-fine { margin: 0; font-size: var(--step--1); color: var(--text-muted); }
+
+.calc-form { display: grid; gap: var(--space-3); }
+.calc-form .button { width: 100%; }
+
+@media (min-width: 960px) {
+  .estimate { padding: var(--space-9) 0; }
+  .estimate-grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-9); align-items: start; }
+  .calc { padding: var(--space-6); }
+  .calc-form { grid-template-columns: 1fr 1fr; }
+  .calc-form .button { grid-column: 1 / -1; }
+}
+@media (min-width: 420px) {
+  .choice-wrap { grid-template-columns: repeat(4, auto); }
+}

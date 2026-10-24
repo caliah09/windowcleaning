@@ -355,6 +355,107 @@
       });
   }
 
+  /* ---------- Instant estimate ----------
+     Ballpark rates only; Tucker's has not published pricing. Figures
+     reflect typical industry ranges for in/out cleaning with frames and
+     tracks. The starting price is also written into the HTML, so the
+     result is correct before this script runs. */
+  var estWindows = $('#est-windows');
+  var estStories = $('#est-stories');
+  var quickForm = $('#quick-quote-form');
+  if (estWindows && estStories && quickForm) {
+    var STORY_MULTIPLIER = { 1: 1, 2: 1.25, 3: 1.45, 4: 1.6 };
+    var RATE_PER_WINDOW = { Residential: 8, Commercial: 5 };
+    var MINIMUM_CHARGE = { Residential: 125, Commercial: 150 };
+    var DISCOUNT_FACTOR = 0.9;
+
+    var estimate = { low: 0, high: 0, atMinimum: false };
+    var checkedValue = function (name) { return $('input[name="' + name + '"]:checked').value; };
+    var roundTo5 = function (n) { return Math.round(n / 5) * 5; };
+    var storiesLabel = function (n) { return n >= 4 ? '4+ stories' : n + (n === 1 ? ' story' : ' stories'); };
+    var setFill = function (input) {
+      var min = +input.min, max = +input.max;
+      input.style.setProperty('--fill', ((input.value - min) / (max - min)) * 100 + '%');
+    };
+
+    var calculate = function () {
+      var type = checkedValue('est-type');
+      var discounted = !!checkedValue('est-discount');
+      var base = +estWindows.value * RATE_PER_WINDOW[type] * (STORY_MULTIPLIER[+estStories.value] || 1);
+      var low = base * 0.85;
+      var high = base * 1.15;
+      if (discounted) { low *= DISCOUNT_FACTOR; high *= DISCOUNT_FACTOR; }
+      var minimum = MINIMUM_CHARGE[type] * (discounted ? DISCOUNT_FACTOR : 1);
+      var atMinimum = low < minimum;
+      low = Math.max(low, minimum);
+      high = Math.max(high, low + 30);
+      return { low: roundTo5(low), high: roundTo5(high), atMinimum: atMinimum };
+    };
+
+    var update = function () {
+      var stories = storiesLabel(+estStories.value);
+      $('#windows-out').textContent = estWindows.value;
+      $('#stories-out').textContent = stories;
+      estStories.setAttribute('aria-valuetext', stories);
+      setFill(estWindows); setFill(estStories);
+      estimate = calculate();
+      $('#price-low').textContent = '$' + estimate.low;
+      $('#price-high').textContent = '$' + estimate.high;
+      $('#price-min').hidden = !estimate.atMinimum;
+    };
+
+    [estWindows, estStories].forEach(function (el) { el.addEventListener('input', update); });
+    $$('input[name="est-type"], input[name="est-discount"]').forEach(function (el) { el.addEventListener('change', update); });
+    update();
+
+    var qqName = $('#qq-name');
+    var qqPhone = $('#qq-phone');
+    var qqNote = $('#qq-note');
+    var qqNoteDefault = qqNote.textContent;
+    [qqName, qqPhone].forEach(function (el) {
+      el.addEventListener('input', function () { el.removeAttribute('aria-invalid'); });
+    });
+
+    quickForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = qqName.value.trim();
+      var phone = qqPhone.value.trim();
+      [[qqName, name], [qqPhone, phone]].forEach(function (pair) {
+        if (pair[1]) pair[0].removeAttribute('aria-invalid');
+        else pair[0].setAttribute('aria-invalid', 'true');
+      });
+      if (!name || !phone) {
+        qqNote.textContent = 'Please enter your name and phone number.';
+        qqNote.classList.remove('is-success');
+        qqNote.classList.add('is-error');
+        (!name ? qqName : qqPhone).focus();
+        return;
+      }
+      qqNote.textContent = qqNoteDefault;
+      qqNote.classList.remove('is-error');
+
+      var type = checkedValue('est-type');
+      var fields = {
+        _subject: 'Estimate request: ' + name + ' (' + type + ')',
+        form: 'Instant estimate',
+        name: name,
+        phone: phone,
+        property: type,
+        stories: storiesLabel(+estStories.value),
+        panes: estWindows.value,
+        estimate: '$' + estimate.low + ' to $' + estimate.high + ' (industry-standard estimate, to be confirmed)'
+      };
+      var discount = checkedValue('est-discount');
+      if (discount) fields.discount = discount;
+
+      sendLead(quickForm, fields, {
+        button: $('#qq-submit'),
+        note: qqNote,
+        success: 'Thanks, ' + name + '! Your estimate is on its way. Expect a call or text to confirm.'
+      });
+    });
+  }
+
   /* ---------- Hero quote form ---------- */
   var heroForm = $('#hero-quote-form');
   if (heroForm) {

@@ -467,6 +467,74 @@
     </div>
   </section>
 
+  <!-- INSTANT ESTIMATE -->
+  <section class="estimate" id="estimate" aria-labelledby="estimate-title">
+    <div class="wrap estimate-grid">
+      <div class="estimate-copy">
+        <h2 id="estimate-title">Get a ballpark price in about a minute.</h2>
+        <p>Move the sliders for a rough price range, then send it to us. We confirm the exact price before any work starts, and there&rsquo;s no obligation.</p>
+        <ul class="checks checks-light">
+          <li>Free quote, no obligation</li>
+          <li>Insured</li>
+          <li>Exact price confirmed before any work</li>
+          <li>Discounts for first time homeowners, veterans and anyone 60 or older</li>
+        </ul>
+      </div>
+
+      <div class="calc">
+        <fieldset class="calc-field">
+          <legend>Property</legend>
+          <div class="choice-row">
+            <label class="choice"><input type="radio" name="est-type" value="Residential" checked> Home</label>
+            <label class="choice"><input type="radio" name="est-type" value="Commercial"> Business</label>
+          </div>
+        </fieldset>
+
+        <div class="calc-field">
+          <div class="calc-label"><label for="est-windows">Window panes</label> <output id="windows-out" for="est-windows">20</output></div>
+          <input type="range" id="est-windows" min="4" max="60" step="1" value="20" aria-describedby="windows-help">
+          <p class="calc-help" id="windows-help">Count each piece of glass. A typical house has 15 to 30.</p>
+        </div>
+
+        <div class="calc-field">
+          <div class="calc-label"><label for="est-stories">Stories</label> <output id="stories-out" for="est-stories">1 story</output></div>
+          <input type="range" id="est-stories" min="1" max="4" step="1" value="1" aria-valuetext="1 story">
+        </div>
+
+        <fieldset class="calc-field">
+          <legend>Discount</legend>
+          <div class="choice-row choice-wrap">
+            <label class="choice"><input type="radio" name="est-discount" value="" checked> None</label>
+            <label class="choice"><input type="radio" name="est-discount" value="First-Time Homeowner Discount"> First home</label>
+            <label class="choice"><input type="radio" name="est-discount" value="Veterans Discount"> Veteran</label>
+            <label class="choice"><input type="radio" name="est-discount" value="60+ Discount"> 60 or older</label>
+          </div>
+        </fieldset>
+
+        <div class="calc-result">
+          <p class="calc-result-label" id="price-label">Estimated price range</p>
+          <p class="calc-price" aria-live="polite" aria-atomic="true" aria-describedby="price-label"><span id="price-low">$135</span> to <span id="price-high">$185</span></p>
+          <p class="calc-min" id="price-min" hidden>Small jobs start at the minimum charge.</p>
+          <p class="calc-fine">Ballpark figure based on typical industry rates, not an official price. Your exact quote is confirmed by Tucker&rsquo;s before any work begins.</p>
+        </div>
+
+        <form class="calc-form" id="quick-quote-form" action="https://formspree.io/f/xoeeagkk" method="POST" novalidate>
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
+          <div class="field">
+            <label for="qq-name">Your name</label>
+            <input type="text" name="name" id="qq-name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="qq-phone">Phone</label>
+            <input type="tel" name="phone" id="qq-phone" autocomplete="tel" required>
+          </div>
+          <button type="submit" class="button button-primary" id="qq-submit">Send my estimate</button>
+        </form>
+        <p class="quote-note" id="qq-note" role="status">Sends your estimate straight to us, and we&rsquo;ll follow up to confirm.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Remaining sections are ported one at a time from legacy.html. -->
 
 </main>
