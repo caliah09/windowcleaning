@@ -62,7 +62,7 @@
 <header class="site-header" id="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="#top" aria-label="Tucker's Window Cleaning, back to top">
-      <img src="assets/images/logo-128.png" alt="" width="44" height="44">
+      <img src="assets/images/logo-96.png" alt="" width="44" height="44">
       <span class="brand-name">Tucker&rsquo;s <span>Window Cleaning</span></span>
     </a>
     <nav class="site-nav" aria-label="Primary">
@@ -135,7 +135,7 @@
         </div>
 
         <figure class="hero-photo">
-          <img src="assets/images/tucker-ladder.jpg" srcset="assets/images/tucker-ladder-600.jpg 600w, assets/images/tucker-ladder.jpg 912w" sizes="(min-width: 960px) 42vw, 100vw" width="912" height="1600" alt="Technician on a ladder cleaning a second-story window on a brick home" fetchpriority="high">
+          <img src="assets/images/tucker-ladder.jpg" srcset="assets/images/tucker-ladder-600.jpg 600w, assets/images/tucker-ladder.jpg 912w" sizes="(min-width: 960px) 42vw, 100vw" width="912" height="1600" alt="Technician on a ladder cleaning a second-story window on a brick home" decoding="async">
           <figcaption>Devante cleaning an upstairs window.</figcaption>
         </figure>
       </div>
@@ -212,7 +212,7 @@
         <button type="button" class="tab" role="tab" id="tab-commercial" aria-controls="service-commercial" aria-selected="false" tabindex="-1">Commercial</button>
       </div>
 
-      <article class="service" id="service-residential" role="tabpanel" aria-labelledby="tab-residential" tabindex="-1">
+      <div class="service" id="service-residential" role="tabpanel" aria-labelledby="tab-residential" tabindex="-1">
         <div class="service-copy">
           <h3>Residential window cleaning</h3>
           <p class="service-lead">Interior and exterior, by hand. The kind of clean where you catch yourself checking twice to see if the window&rsquo;s even there.</p>
@@ -229,9 +229,9 @@
         <figure class="service-photo">
           <img src="assets/images/residential-brick.jpg" srcset="assets/images/residential-brick-800.jpg 800w, assets/images/residential-brick.jpg 1600w" sizes="(min-width: 960px) 40vw, 100vw" width="1600" height="1200" alt="Two-story brick home with clean, streak-free windows in Athens, AL" loading="lazy" decoding="async">
         </figure>
-      </article>
+      </div>
 
-      <article class="service" id="service-commercial" role="tabpanel" aria-labelledby="tab-commercial" tabindex="-1" hidden>
+      <div class="service" id="service-commercial" role="tabpanel" aria-labelledby="tab-commercial" tabindex="-1" hidden>
         <div class="service-copy">
           <h3>Commercial window cleaning</h3>
           <p class="service-lead">Storefronts, offices and plants that open on time, with the glass already done.</p>
@@ -248,7 +248,7 @@
         <figure class="service-photo">
           <img src="assets/images/commercial-toyota.jpg" srcset="assets/images/commercial-toyota-800.jpg 800w, assets/images/commercial-toyota.jpg 1200w" sizes="(min-width: 960px) 40vw, 100vw" width="1200" height="1600" alt="Toyota manufacturing facility with long bands of clean glass" loading="lazy" decoding="async">
         </figure>
-      </article>
+      </div>
     </div>
   </section>
 
@@ -360,7 +360,7 @@
         </figure>
         <figure class="tile tile-wide" data-cat="business">
           <button type="button" class="tile-open" aria-label="View larger: Handel&rsquo;s order window">
-            <img src="assets/images/commercial-handels.jpg" srcset="assets/images/commercial-handels-800.jpg 800w, assets/images/commercial-handels.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="Close-up of Handel&rsquo;s order window glass" loading="lazy" decoding="async">
+            <img src="assets/images/commercial-handels.jpg" srcset="assets/images/commercial-handels-800.jpg 800w, assets/images/commercial-handels.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="Close-up of Handel&rsquo;s walk-up window glass" loading="lazy" decoding="async">
           </button>
           <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Handel&rsquo;s order window</span></figcaption>
         </figure>
@@ -535,9 +535,80 @@
     </div>
   </section>
 
-  <!-- Remaining sections are ported one at a time from legacy.html. -->
+  <!-- SERVICE AREA -->
+  <section class="area" id="area" aria-labelledby="area-title">
+    <div class="wrap area-grid">
+      <div class="area-copy">
+        <h2 id="area-title">We&rsquo;re based in Athens and work all over North Alabama.</h2>
+        <p id="area-hint">Pick a town to see it on the map.</p>
+        <ul class="cities" aria-describedby="area-hint">
+          <li><button type="button" class="city" data-place="Athens, AL" aria-pressed="true" aria-controls="area-map">Athens <span class="city-tag">home base</span></button></li>
+          <li><button type="button" class="city" data-place="Huntsville, AL" aria-pressed="false" aria-controls="area-map">Huntsville</button></li>
+          <li><button type="button" class="city" data-place="Decatur, AL" aria-pressed="false" aria-controls="area-map">Decatur</button></li>
+          <li><button type="button" class="city" data-place="Madison, AL" aria-pressed="false" aria-controls="area-map">Madison</button></li>
+          <li><button type="button" class="city" data-place="Florence, AL" aria-pressed="false" aria-controls="area-map">Florence</button></li>
+          <li><button type="button" class="city" data-place="Hartselle, AL" aria-pressed="false" aria-controls="area-map">Hartselle</button></li>
+          <li><button type="button" class="city" data-place="Hillsboro, AL" aria-pressed="false" aria-controls="area-map">Hillsboro</button></li>
+          <li><button type="button" class="city" data-place="Cullman County, AL" aria-pressed="false" aria-controls="area-map">Cullman County</button></li>
+        </ul>
+        <p class="area-note">Don&rsquo;t see your town? Call or text <a href="tel:+12564761402">(256) 476-1402</a> and we&rsquo;ll let you know.</p>
+      </div>
+      <div class="area-map">
+        <div class="map-frame">
+          <iframe id="area-map" src="https://www.google.com/maps?q=Athens%2C%20AL&amp;z=11&amp;output=embed" title="Map showing Athens, AL" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <p class="map-caption"><span>Showing <strong id="map-place">Athens, AL</strong></span> <a id="map-open" href="https://www.google.com/maps/search/?api=1&amp;query=Athens%2C%20AL" target="_blank" rel="noopener">Open in Google Maps<span class="sr-only"> (opens in a new tab)</span></a></p>
+      </div>
+    </div>
+  </section>
+
 
 </main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap footer-cta">
+    <p class="footer-promise">We started this business in Athens with one rule: clean it like it&rsquo;s your own house. No shortcuts, no streaks, no excuses.</p>
+    <h2>Ready for clear windows? Call or text us.</h2>
+    <div class="footer-cta-row">
+      <a class="footer-phone" href="tel:+12564761402">(256) 476-1402</a>
+      <a class="button button-light" href="#top">Get a free quote</a>
+    </div>
+  </div>
+
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="assets/images/logo-96.png" alt="Tucker's Window Cleaning logo" width="64" height="64" loading="lazy">
+      <p>Tucker&rsquo;s Window Cleaning LLC &middot; Insured<br>Residential and commercial window cleaning &middot; Athens, AL</p>
+    </div>
+    <div class="footer-col">
+      <h2>Contact</h2>
+      <ul>
+        <li><a href="tel:+12564761402">(256) 476-1402</a></li>
+        <li><a href="mailto:tuckerswindowcleaning@gmail.com">tuckerswindowcleaning@gmail.com</a></li>
+        <li><a href="https://m.me/61576311082795" target="_blank" rel="noopener">Message on Facebook<span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="https://www.facebook.com/people/Tuckers-Window-Cleaning/61576311082795/" target="_blank" rel="noopener">Facebook page<span class="sr-only"> (opens in a new tab)</span></a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h2>Services</h2>
+      <ul>
+        <li><a href="#service-residential">Residential window cleaning</a></li>
+        <li><a href="#service-commercial">Commercial window cleaning</a></li>
+        <li><a href="#estimate">Instant estimate</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h2>Hours</h2>
+      <p>Homes: flexible daytime scheduling</p>
+      <p>Businesses: early morning appointments before 6am</p>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <p>&copy; <span id="year">2026</span> Tucker&rsquo;s Window Cleaning LLC. Insured. Serving Athens, AL and North Alabama.</p>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
 
 <script src="assets/js/site.js?v=1" defer></script>
 </body>

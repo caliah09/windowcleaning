@@ -298,6 +298,25 @@
     });
   }
 
+  /* ---------- Service area: choosing a town moves the map there ---------- */
+  var mapFrame = $('#area-map');
+  var cityButtons = $$('.city');
+  cityButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.getAttribute('aria-pressed') === 'true') return;
+      var place = btn.getAttribute('data-place');
+      var q = encodeURIComponent(place);
+      cityButtons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn); });
+      mapFrame.src = 'https://www.google.com/maps?q=' + q + '&z=' + (/County/.test(place) ? 9 : 12) + '&output=embed';
+      mapFrame.title = 'Map showing ' + place;
+      $('#map-place').textContent = place;
+      $('#map-open').href = 'https://www.google.com/maps/search/?api=1&query=' + q;
+    });
+  });
+
+  var year = $('#year');
+  if (year) year.textContent = new Date().getFullYear();
+
   /* Links that ask for a business quote preselect "My business". */
   $$('[data-service]').forEach(function (link) {
     link.addEventListener('click', function () {
