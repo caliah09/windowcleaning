@@ -26,6 +26,86 @@
     });
   }
 
+  /* ---------- Early commercial video ----------
+     Nothing downloads until the band is near the screen. It plays only
+     while visible, never autoplays for reduced motion, and the button
+     always pauses or plays it. */
+  var video = $('.early-video');
+  var toggle = $('#video-toggle');
+  if (video && toggle) {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var loaded = false;
+    var visible = false;
+    var userPaused = reduceMotion;
+    var label = $('.video-toggle-label', toggle);
+
+    var setPressed = function (paused) {
+      toggle.setAttribute('aria-pressed', paused);
+      label.textContent = paused ? 'Play video' : 'Pause video';
+    };
+    var load = function () {
+      if (loaded) return;
+      loaded = true;
+      video.poster = video.getAttribute('data-poster');
+      JSON.parse(video.getAttribute('data-sources')).forEach(function (src) {
+        var el = document.createElement('source');
+        el.src = src.src; el.type = src.type;
+        if (src.media) el.media = src.media;
+        video.appendChild(el);
+      });
+      video.load();
+      toggle.hidden = false;
+      setPressed(userPaused);
+      if (visible && !userPaused) play();
+    };
+    var play = function () {
+      var p = video.play();
+      if (p && p.catch) p.catch(function () { setPressed(true); });
+    };
+
+    toggle.addEventListener('click', function () {
+      userPaused = !video.paused;
+      if (userPaused) video.pause(); else play();
+      setPressed(userPaused);
+    });
+
+    // Wait for the page itself to finish loading so the video never
+    // competes with the hero for bandwidth.
+    var whenPageLoaded = function (fn) {
+      if (document.readyState === 'complete') fn();
+      else window.addEventListener('load', fn, { once: true });
+    };
+
+    if ('IntersectionObserver' in window) {
+      whenPageLoaded(function () {
+        new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) load();
+        }, { rootMargin: '200px 0px' }).observe(video);
+      });
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (!loaded) return;
+        if (visible && !userPaused) play();
+        else video.pause();
+      }, { threshold: 0.25 }).observe(video);
+    } else {
+      load();
+      if (!userPaused) play();
+    }
+  }
+
+  /* Links that ask for a business quote preselect "My business". */
+  $$('[data-service]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var select = $('#hq-service');
+      if (select) select.value = link.getAttribute('data-service');
+      setTimeout(function () {
+        var name = $('#hq-name');
+        if (name) name.focus({ preventScroll: true });
+      }, 400);
+    });
+  });
+
   /* ---------- Lead delivery (Formspree) ----------
      Both forms post to Formspree, which emails each request to Tucker's.
      On failure the visitor gets a call/text link so no lead is lost. */
