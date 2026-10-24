@@ -554,16 +554,23 @@
       moreBtn.hidden = matches.length <= limit;
       moreBtn.textContent = 'Show all ' + matches.length + ' photos';
     }
-    // Stretch the quote card so the last row of the grid ends flush.
+    // Fill each row left to right: a wide photo that would overhang the row
+    // end takes the single cell left, so the grid never has holes. The quote
+    // card then stretches over whatever remains of the last row.
     if (galleryEnd) {
       var cols = getComputedStyle(galleryGrid).gridTemplateColumns.split(' ').length;
-      var used = 0;
+      var filled = 0;
       galleryCards.forEach(function (c) {
-        if (!c.hidden) used += c.classList.contains('work-card-wide') ? Math.min(2, cols) : 1;
+        if (c.hidden) { c.style.gridColumn = ''; return; }
+        var want = c.classList.contains('work-card-wide') ? Math.min(2, cols) : 1;
+        var span = Math.min(want, cols - filled);
+        c.style.gridColumn = span > 1 ? 'span ' + span : 'span 1';
+        filled = (filled + span) % cols;
       });
-      var span = cols - (used % cols);
+      var span = cols - filled;
       galleryEnd.style.gridColumn = 'span ' + span;
       galleryEnd.classList.toggle('is-banner', span >= 2);
+      galleryEnd.classList.toggle('is-full', span === cols);
     }
   }
 
