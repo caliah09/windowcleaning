@@ -1,0 +1,122 @@
+(function () {
+  'use strict';
+
+  var PHONE = '+12564761402';
+  var FORM_ENDPOINT = 'https://formspree.io/f/xoeeagkk';
+
+  var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
+  var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
+
+  /* ---------- Mobile menu ---------- */
+  var menuButton = $('#menu-button');
+  var mobileNav = $('#mobile-nav');
+  if (menuButton && mobileNav) {
+    var setMenu = function (open) {
+      menuButton.setAttribute('aria-expanded', open);
+      mobileNav.hidden = !open;
+    };
+    menuButton.addEventListener('click', function () {
+      setMenu(menuButton.getAttribute('aria-expanded') !== 'true');
+    });
+    mobileNav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !mobileNav.hidden) { setMenu(false); menuButton.focus(); }
+    });
+  }
+
+  /* ---------- Lead delivery (Formspree) ----------
+     Both forms post to Formspree, which emails each request to Tucker's.
+     On failure the visitor gets a call/text link so no lead is lost. */
+  var FALLBACK_HTML = 'Couldn&rsquo;t send. Please call or text <a href="tel:' + PHONE + '">(256) 476-1402</a>.';
+
+  function sendLead(form, fields, ui) {
+    var data = new FormData();
+    Object.keys(fields).forEach(function (k) { data.append(k, fields[k]); });
+    // Hidden from people (and autofill); Formspree discards anything a bot puts here.
+    var honeypot = form.querySelector('[name="_gotcha"]');
+    if (honeypot) data.append('_gotcha', honeypot.value);
+
+    ui.button.setAttribute('aria-busy', 'true');
+    ui.note.classList.remove('is-error', 'is-success');
+    ui.note.textContent = 'Sending…';
+
+    var controller = window.AbortController ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 15000) : null;
+
+    fetch(FORM_ENDPOINT, {
+      method: 'POST', body: data, headers: { Accept: 'application/json' },
+      signal: controller ? controller.signal : undefined
+    })
+      .then(function (res) {
+        if (res.ok) return;
+        return res.json().catch(function () { return {}; }).then(function (body) {
+          throw new Error('Formspree ' + res.status + ': ' + JSON.stringify(body.errors || body));
+        });
+      })
+      .then(function () {
+        form.reset();
+        ui.note.textContent = ui.success;
+        ui.note.classList.add('is-success');
+      })
+      .catch(function (err) {
+        if (window.console) console.warn('Quote form did not send:', err);
+        ui.note.innerHTML = FALLBACK_HTML;
+        ui.note.classList.add('is-error');
+      })
+      .then(function () {
+        clearTimeout(timer);
+        ui.button.removeAttribute('aria-busy');
+      });
+  }
+
+  /* ---------- Hero quote form ---------- */
+  var heroForm = $('#hero-quote-form');
+  if (heroForm) {
+    var hqNote = $('#hq-note');
+    var hqNoteDefault = hqNote.textContent;
+
+    $$('input', heroForm).forEach(function (input) {
+      input.addEventListener('input', function () {
+        input.removeAttribute('aria-invalid');
+      });
+    });
+
+    heroForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nameEl = $('#hq-name');
+      var phoneEl = $('#hq-phone');
+      var name = nameEl.value.trim();
+      var phone = phoneEl.value.trim();
+      var service = $('#hq-service').value;
+
+      [[nameEl, name], [phoneEl, phone]].forEach(function (pair) {
+        if (pair[1]) pair[0].removeAttribute('aria-invalid');
+        else pair[0].setAttribute('aria-invalid', 'true');
+      });
+
+      if (!name || !phone) {
+        hqNote.textContent = 'Please enter your name and phone number.';
+        hqNote.classList.remove('is-success');
+        hqNote.classList.add('is-error');
+        (!name ? nameEl : phoneEl).focus();
+        return;
+      }
+      hqNote.textContent = hqNoteDefault;
+      hqNote.classList.remove('is-error');
+
+      sendLead(heroForm, {
+        _subject: 'Quote request: ' + name + ' (' + service + ')',
+        form: 'Hero quote form',
+        name: name,
+        phone: phone,
+        service: service + ' Window Cleaning'
+      }, {
+        button: $('#hq-submit'),
+        note: hqNote,
+        success: 'Thanks, ' + name + '! We got your request and will reach out soon.'
+      });
+    });
+  }
+})();
