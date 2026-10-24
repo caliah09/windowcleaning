@@ -470,3 +470,33 @@ img[src*="sunroom-ladder"] { object-position: 50% 75%; }
 @media (hover: hover) {
   .tile:hover figcaption { opacity: 1; }
 }
+
+/* ---------- Reviews ---------- */
+.reviews { background: var(--sky-100); padding: var(--space-8) 0; }
+.reviews-grid { display: grid; gap: var(--space-7); }
+.reviews h2 { font-size: var(--step-4); max-width: 16ch; margin-bottom: var(--space-3); }
+.reviews-count { color: var(--text-muted); margin-bottom: var(--space-6); }
+.reviews-count a { display: inline-flex; align-items: center; min-height: var(--tap); font-weight: 700; color: var(--navy-800); text-underline-offset: 4px; }
+.review-big { margin: 0; }
+.review-big blockquote {
+  margin: 0 0 var(--space-4);
+  font: 600 var(--step-2)/1.3 var(--font-display); letter-spacing: -0.01em; color: var(--navy-900);
+  font-variation-settings: 'opsz' 48;
+}
+.review-big blockquote::before { content: '\201C'; }
+.review-big blockquote::after { content: '\201D'; }
+.review-big figcaption, .review-list figcaption { font-size: 0.95rem; color: var(--text-muted); }
+.review-big figcaption strong, .review-list figcaption strong { color: var(--text); }
+.review-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.review-list li { padding: var(--space-5) 0; border-top: 1px solid #b9d3dc; }
+.review-list li:last-child { border-bottom: 1px solid #b9d3dc; }
+.review-list figure { margin: 0; }
+.review-list blockquote { margin: 0 0 var(--space-3); font-size: var(--step-0); line-height: 1.6; }
+.review-list blockquote::before { content: '\201C'; }
+.review-list blockquote::after { content: '\201D'; }
+
+@media (min-width: 960px) {
+  .reviews { padding: var(--space-9) 0; }
+  .reviews-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-9); align-items: end; }
+  .review-big blockquote { font-size: var(--step-3); line-height: 1.25; }
+}
