@@ -172,6 +172,36 @@
     </div>
   </section>
 
+  <!-- BEFORE / AFTER WIPE -->
+  <section class="wipe-section" id="before-after" aria-labelledby="wipe-title">
+    <div class="wrap wipe-grid">
+      <div class="wipe-copy">
+        <h2 id="wipe-title">Drag the squeegee to see what one cleaning did for this light fixture.</h2>
+        <p>Real photos from a customer&rsquo;s home. The glass went from cloudy and spotted to clear enough to see the yard straight through it, all cleaned by hand.</p>
+        <p class="wipe-note">Same fixture, photographed in two different rooms.</p>
+      </div>
+
+      <figure class="wipe" style="--pos: 35%">
+        <div class="wipe-stage" id="wipe-stage">
+          <img class="wipe-img wipe-after" src="assets/images/wipe-after.jpg" srcset="assets/images/wipe-after-640.jpg 640w, assets/images/wipe-after.jpg 1000w" sizes="(min-width: 960px) 56vw, 100vw" width="1000" height="711" alt="The same glass light fixture after cleaning, completely clear" loading="lazy" decoding="async">
+          <div class="wipe-dirty">
+            <img class="wipe-img" src="assets/images/wipe-before.jpg" srcset="assets/images/wipe-before-640.jpg 640w, assets/images/wipe-before.jpg 1000w" sizes="(min-width: 960px) 56vw, 100vw" width="1000" height="711" alt="Glass light fixture before cleaning, cloudy and spotted" loading="lazy" decoding="async">
+          </div>
+          <span class="wipe-tag wipe-tag-after" aria-hidden="true">After</span>
+          <span class="wipe-tag wipe-tag-before" aria-hidden="true">Before</span>
+          <div class="wipe-track">
+            <div class="wipe-handle" id="wipe-handle" role="slider" tabindex="0"
+              aria-label="Squeegee. Move it to compare the fixture before and after cleaning"
+              aria-valuemin="0" aria-valuemax="100" aria-valuenow="35" aria-valuetext="35 percent cleaned">
+              <span class="squeegee" aria-hidden="true"><span class="blade"></span><span class="neck"></span><span class="grip"></span></span>
+            </div>
+          </div>
+        </div>
+        <figcaption class="wipe-help">Drag the squeegee, or select it and use the arrow keys.</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <!-- Remaining sections are ported one at a time from legacy.html. -->
 
 </main>

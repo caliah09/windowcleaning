@@ -94,6 +94,64 @@
     }
   }
 
+  /* ---------- Before / after squeegee ----------
+     Pointer drag anywhere on the photo (touch scrolls vertically still),
+     arrow keys on the handle, and a one-time nudge to show it moves. */
+  var stage = $('#wipe-stage');
+  var handle = $('#wipe-handle');
+  if (stage && handle) {
+    var figure = stage.parentNode;
+    var pos = 35;
+    var dragging = false;
+
+    var setPos = function (value) {
+      pos = Math.max(0, Math.min(100, value));
+      figure.style.setProperty('--pos', pos + '%');
+      var rounded = Math.round(pos);
+      handle.setAttribute('aria-valuenow', rounded);
+      handle.setAttribute('aria-valuetext', rounded + ' percent cleaned');
+    };
+    var fromPointer = function (e) {
+      var rect = stage.getBoundingClientRect();
+      setPos(((e.clientX - rect.left) / rect.width) * 100);
+    };
+
+    stage.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      dragging = true;
+      stage.setPointerCapture(e.pointerId);
+      fromPointer(e);
+    });
+    stage.addEventListener('pointermove', function (e) { if (dragging) fromPointer(e); });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (type) {
+      stage.addEventListener(type, function () { dragging = false; });
+    });
+
+    handle.addEventListener('keydown', function (e) {
+      var step = { ArrowLeft: -5, ArrowDown: -5, ArrowRight: 5, ArrowUp: 5, PageDown: -20, PageUp: 20 }[e.key];
+      if (e.key === 'Home') { setPos(0); e.preventDefault(); }
+      else if (e.key === 'End') { setPos(100); e.preventDefault(); }
+      else if (step) { setPos(pos + step); e.preventDefault(); }
+    });
+
+    var motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (motionOK && 'IntersectionObserver' in window) {
+      var hinted = false;
+      new IntersectionObserver(function (entries, obs) {
+        if (!entries[0].isIntersecting || hinted) return;
+        hinted = true; obs.disconnect();
+        var start = performance.now();
+        var tick = function (now) {
+          if (dragging) return;
+          var t = Math.min(1, (now - start) / 1400);
+          setPos(35 + Math.sin(t * Math.PI) * 20);
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }, { threshold: 0.6 }).observe(stage);
+    }
+  }
+
   /* Links that ask for a business quote preselect "My business". */
   $$('[data-service]').forEach(function (link) {
     link.addEventListener('click', function () {
