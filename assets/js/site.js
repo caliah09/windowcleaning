@@ -264,7 +264,7 @@
       viewerImg.alt = img.alt;
       viewerImg.width = img.getAttribute('width');
       viewerImg.height = img.getAttribute('height');
-      viewerCaption.textContent = $('figcaption', tile).textContent.trim();
+      viewerCaption.textContent = $('.tile-kind', tile).textContent + ': ' + $('.tile-detail', tile).textContent.trim();
       viewerCount.textContent = (index + 1) + ' of ' + set.length;
     };
     var openViewer = function (tile, from) {

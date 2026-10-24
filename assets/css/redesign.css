@@ -462,3 +462,11 @@ img[src*="sunroom-ladder"] { object-position: 50% 75%; }
   .filter { padding: 0 var(--space-3); }
   .gallery-full { display: none; }
 }
+
+/* Captions are see-through until a photo is hovered, focused or opened;
+   the full description is always in the button label for screen readers. */
+.tile figcaption { opacity: 0.4; transition: opacity 0.2s ease; }
+.tile:focus-within figcaption { opacity: 1; }
+@media (hover: hover) {
+  .tile:hover figcaption { opacity: 1; }
+}
