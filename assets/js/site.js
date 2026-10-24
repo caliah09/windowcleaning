@@ -190,6 +190,114 @@
     if (hashTab) { selectTab(hashTab); $('.tabs').scrollIntoView({ block: 'start' }); }
   }
 
+  /* ---------- Gallery ----------
+     Filters, a short list on phones with "Show all", and rows that always
+     fill: a wide photo that would overhang a row becomes a single tile, and
+     the last photo stretches over any space left in the final row. */
+  var mosaic = $('#mosaic');
+  if (mosaic) {
+    var tiles = $$('.tile', mosaic);
+    var filterButtons = $$('.filter');
+    var moreButton = $('#gallery-more');
+    var phone = window.matchMedia('(max-width: 639px)');
+    var PHONE_LIMIT = 6;
+    var activeFilter = 'all';
+    var expanded = false;
+
+    var matching = function () {
+      return tiles.filter(function (t) { return activeFilter === 'all' || t.getAttribute('data-cat') === activeFilter; });
+    };
+    var layout = function () {
+      var list = matching();
+      var limit = phone.matches && !expanded ? PHONE_LIMIT : Infinity;
+      tiles.forEach(function (t) { t.hidden = true; t.style.gridColumn = ''; });
+      var shown = list.slice(0, limit);
+      shown.forEach(function (t) { t.hidden = false; });
+      moreButton.hidden = list.length <= limit;
+      moreButton.textContent = 'Show all ' + list.length + ' photos';
+
+      var cols = getComputedStyle(mosaic).gridTemplateColumns.split(' ').length;
+      var filled = 0;
+      shown.forEach(function (t) {
+        var want = t.classList.contains('tile-wide') ? Math.min(2, cols) : 1;
+        var span = Math.min(want, cols - filled);
+        t.style.gridColumn = 'span ' + span;
+        filled = (filled + span) % cols;
+      });
+      var last = shown[shown.length - 1];
+      if (last && filled) {
+        var current = parseInt(last.style.gridColumn.replace('span ', ''), 10);
+        last.style.gridColumn = 'span ' + (current + cols - filled);
+      }
+    };
+
+    filterButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        activeFilter = btn.getAttribute('data-filter');
+        filterButtons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn); });
+        layout();
+      });
+    });
+    moreButton.addEventListener('click', function () {
+      var firstNew = matching()[PHONE_LIMIT];
+      expanded = true; layout();
+      if (firstNew) $('.tile-open', firstNew).focus();
+    });
+    if (phone.addEventListener) phone.addEventListener('change', layout);
+    window.addEventListener('resize', layout);
+    layout();
+
+    /* Photo viewer: a native dialog, so focus stays inside and Esc closes it. */
+    var viewer = $('#viewer');
+    var viewerImg = $('#viewer-img');
+    var viewerCaption = $('#viewer-caption');
+    var viewerCount = $('#viewer-count');
+    var set = [];
+    var index = 0;
+    var opener = null;
+
+    var show = function (i) {
+      index = (i + set.length) % set.length;
+      var tile = set[index];
+      var img = $('img', tile);
+      viewerImg.src = img.getAttribute('src');
+      viewerImg.alt = img.alt;
+      viewerImg.width = img.getAttribute('width');
+      viewerImg.height = img.getAttribute('height');
+      viewerCaption.textContent = $('figcaption', tile).textContent.trim();
+      viewerCount.textContent = (index + 1) + ' of ' + set.length;
+    };
+    var openViewer = function (tile, from) {
+      set = matching();
+      opener = from;
+      show(Math.max(0, set.indexOf(tile)));
+      if (viewer.showModal) viewer.showModal(); else viewer.setAttribute('open', '');
+      $('#viewer-close').focus();
+    };
+    tiles.forEach(function (tile) {
+      var btn = $('.tile-open', tile);
+      btn.addEventListener('click', function () { openViewer(tile, btn); });
+    });
+    $('#gallery-full').addEventListener('click', function (e) { openViewer(matching()[0], e.currentTarget); });
+    $('#viewer-close').addEventListener('click', function () { viewer.close(); });
+    $('#viewer-prev').addEventListener('click', function () { show(index - 1); });
+    $('#viewer-next').addEventListener('click', function () { show(index + 1); });
+    viewer.addEventListener('close', function () { if (opener) opener.focus(); });
+    viewer.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') show(index - 1);
+      if (e.key === 'ArrowRight') show(index + 1);
+    });
+    viewer.addEventListener('click', function (e) { if (e.target === viewer) viewer.close(); });
+    // Swipe left or right on the photo to move through the set.
+    var startX = null;
+    viewerImg.addEventListener('pointerdown', function (e) { startX = e.clientX; });
+    viewerImg.addEventListener('pointerup', function (e) {
+      if (startX === null) return;
+      var dx = e.clientX - startX; startX = null;
+      if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1));
+    });
+  }
+
   /* Links that ask for a business quote preselect "My business". */
   $$('[data-service]').forEach(function (link) {
     link.addEventListener('click', function () {

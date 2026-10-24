@@ -383,3 +383,82 @@ a { color: inherit; }
   .service-photo { margin: 0; }
   .service-photo img { aspect-ratio: 4 / 5; border-radius: var(--radius); }
 }
+
+/* ---------- Gallery: full-width mosaic ---------- */
+.gallery { background: var(--white); padding: var(--space-8) 0 var(--space-7); }
+.gallery-head h2 { font-size: var(--step-4); max-width: 18ch; margin-bottom: var(--space-3); }
+.gallery-head > p { color: var(--text-muted); max-width: var(--measure); }
+.gallery-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3); margin: var(--space-5) 0; }
+.filters { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.filter, .gallery-full, .button-outline {
+  min-height: var(--tap); padding: 0 var(--space-4);
+  border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--white);
+  font: 600 0.95rem/1 var(--font-body); color: var(--text); cursor: pointer;
+}
+.filter span { margin-left: var(--space-1); font-weight: 500; color: var(--text-muted); }
+.filter:hover, .gallery-full:hover, .button-outline:hover { border-color: var(--navy-800); }
+.filter[aria-pressed="true"] { background: var(--navy-800); border-color: var(--navy-800); color: var(--white); }
+.filter[aria-pressed="true"] span { color: var(--sky-100); }
+
+.mosaic {
+  /* Row height comes from the grid, so a tile's span never changes its height. */
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: calc(50vw - 2px);
+  gap: 3px; background: var(--white);
+}
+.tile { position: relative; margin: 0; overflow: hidden; background: var(--sky-100); }
+.tile[hidden] { display: none; }
+.tile-wide { grid-column: span 2; }
+.tile-open { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.tile-open img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.tile-open:hover img { transform: scale(1.03); }
+.tile-open:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.tile figcaption {
+  position: absolute; left: 0; bottom: 0; max-width: 100%;
+  padding: var(--space-1) var(--space-3);
+  background: rgba(18, 43, 71, 0.88); color: var(--white);
+  font-size: 0.8rem; font-weight: 600; line-height: 1.35; pointer-events: none;
+}
+.tile-kind { color: var(--sky-300); }
+.gallery-more { display: flex; margin: var(--space-5) auto 0; }
+.gallery-more[hidden] { display: none; }
+
+@media (min-width: 640px) {
+  .mosaic { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: calc(33.333vw - 2px); }
+}
+@media (min-width: 960px) {
+  .gallery { padding: var(--space-9) 0 0; }
+  .gallery-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--space-7); align-items: end; }
+  .gallery-head h2, .gallery-head > p { grid-column: 1; }
+  .gallery-bar { grid-column: 1 / -1; }
+  .mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: clamp(220px, 22vw, 340px); }
+  .tile figcaption { font-size: 0.875rem; }
+}
+
+/* ---------- Photo viewer (native dialog) ---------- */
+.viewer {
+  width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; padding: 0;
+  border: 0; background: rgba(10, 22, 36, 0.96); color: var(--white);
+}
+.viewer::backdrop { background: rgba(10, 22, 36, 0.8); }
+.viewer-inner { display: grid; grid-template-rows: auto 1fr auto; height: 100%; padding: var(--space-3) var(--gutter) var(--space-4); }
+.viewer-close { justify-self: end; }
+.viewer-close, .viewer-prev, .viewer-next {
+  min-height: var(--tap); padding: 0 var(--space-5);
+  border: 1.5px solid rgba(255,255,255,0.4); border-radius: var(--radius);
+  background: transparent; color: var(--white); font: 600 0.95rem/1 var(--font-body); cursor: pointer;
+}
+.viewer-close:hover, .viewer-prev:hover, .viewer-next:hover { border-color: var(--white); }
+.viewer button:focus-visible { outline-color: var(--sky-300); }
+.viewer-figure { margin: 0; display: grid; grid-template-rows: 1fr auto; min-height: 0; gap: var(--space-3); touch-action: pan-y; }
+.viewer-figure img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.viewer-figure figcaption { text-align: center; font-weight: 600; }
+.viewer-count { margin-left: var(--space-2); font-weight: 400; color: #c9d9e4; }
+.viewer-nav { display: flex; justify-content: center; gap: var(--space-3); padding-top: var(--space-3); }
+html:has(.viewer[open]) { overflow: hidden; }
+img[src*="sunroom-ladder"] { object-position: 50% 75%; }
+@media (max-width: 639px) {
+  .filters { gap: var(--space-1); }
+  .filter { padding: 0 var(--space-3); }
+  .gallery-full { display: none; }
+}
