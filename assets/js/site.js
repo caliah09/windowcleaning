@@ -152,6 +152,44 @@
     }
   }
 
+  /* ---------- Services: Residential / Commercial tabs ---------- */
+  var tabs = $$('.tab');
+  function panelFor(tab) { return document.getElementById(tab.getAttribute('aria-controls')); }
+  function selectTab(tab, moveFocus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      panelFor(t).hidden = !on;
+    });
+    if (moveFocus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { selectTab(tab); });
+    tab.addEventListener('keydown', function (e) {
+      var next = { ArrowRight: tabs[(i + 1) % tabs.length], ArrowLeft: tabs[(i - 1 + tabs.length) % tabs.length], Home: tabs[0], End: tabs[tabs.length - 1] }[e.key];
+      if (next) { e.preventDefault(); selectTab(next, true); }
+    });
+  });
+  function tabForPanelId(id) {
+    return tabs.filter(function (t) { return t.getAttribute('aria-controls') === id; })[0];
+  }
+  // Links straight to a service open its tab and scroll to the tabs.
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href^="#service-"]');
+    if (!link) return;
+    var tab = tabForPanelId(link.getAttribute('href').slice(1));
+    if (!tab) return;
+    e.preventDefault();
+    selectTab(tab);
+    $('.tabs').scrollIntoView({ block: 'start' });
+    if (history.replaceState) history.replaceState(null, '', link.getAttribute('href'));
+  });
+  if (location.hash.indexOf('#service-') === 0) {
+    var hashTab = tabForPanelId(location.hash.slice(1));
+    if (hashTab) { selectTab(hashTab); $('.tabs').scrollIntoView({ block: 'start' }); }
+  }
+
   /* Links that ask for a business quote preselect "My business". */
   $$('[data-service]').forEach(function (link) {
     link.addEventListener('click', function () {

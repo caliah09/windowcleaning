@@ -72,7 +72,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + var(--space-4)); }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + var(--space-4)); scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -345,4 +345,41 @@ a { color: inherit; }
   .wipe-copy { grid-column: 2; grid-row: 1; }
   .wipe-stage { border-radius: var(--radius); }
   .wipe-help { padding-left: 0; }
+}
+
+/* ---------- Services ---------- */
+.services { background: var(--sky-50); padding: var(--space-8) 0; }
+.services h2 { font-size: var(--step-4); max-width: 20ch; margin-bottom: var(--space-6); }
+
+.tabs { display: flex; gap: var(--space-5); border-bottom: 1px solid var(--line); margin-bottom: var(--space-6); }
+.tab {
+  min-height: 48px; padding: 0 var(--space-1); margin-bottom: -1px;
+  border: 0; border-bottom: 3px solid transparent; background: none;
+  font: 700 var(--step-1)/1 var(--font-display); color: var(--text-muted); cursor: pointer;
+}
+.tab:hover { color: var(--navy-800); }
+.tab[aria-selected="true"] { color: var(--navy-900); border-bottom-color: var(--navy-800); }
+
+.service { display: grid; gap: var(--space-6); }
+.service[hidden] { display: none; }
+.service:focus { outline: none; }
+.service h3 { font-size: var(--step-3); margin-bottom: var(--space-3); }
+.service-lead { font-size: var(--step-1); line-height: 1.45; max-width: 36ch; }
+.service-copy > p:not(.service-lead) { max-width: var(--measure); color: var(--text-muted); }
+.checks { list-style: none; margin: var(--space-5) 0 var(--space-6); padding: 0; display: grid; gap: var(--space-3); }
+.checks li { position: relative; padding-left: var(--space-6); }
+.checks li::before {
+  content: ''; position: absolute; left: 0; top: 0.3em; width: 18px; height: 10px;
+  border-left: 3px solid var(--leaf-700); border-bottom: 3px solid var(--leaf-700);
+  transform: rotate(-45deg) scale(0.8); transform-origin: left top;
+}
+.service-photo { margin: 0 calc(var(--gutter) * -1); }
+.service-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+#service-commercial .service-photo img { object-position: 50% 20%; }
+
+@media (min-width: 960px) {
+  .services { padding: var(--space-9) 0; }
+  .service { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--space-8); align-items: start; }
+  .service-photo { margin: 0; }
+  .service-photo img { aspect-ratio: 4 / 5; border-radius: var(--radius); }
 }
