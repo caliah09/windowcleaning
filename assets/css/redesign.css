@@ -5,14 +5,33 @@
    ========================================================= */
 
 @font-face {
-  font-family: 'Bricolage Grotesque';
-  src: url('../fonts/bricolage-grotesque-var.woff2') format('woff2');
-  font-weight: 200 800;
+  font-family: 'Barlow';
+  src: url('../fonts/barlow-latin-600-normal.woff2') format('woff2');
+  font-weight: 600;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Public Sans';
-  src: url('../fonts/public-sans-var.woff2') format('woff2');
+  font-family: 'Barlow';
+  src: url('../fonts/barlow-latin-700-normal.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow';
+  src: url('../fonts/barlow-latin-800-normal.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Barlow';
+  src: url('../fonts/barlow-latin-700-italic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('../fonts/noto-sans-var.woff2') format('woff2');
   font-weight: 100 900;
   font-display: swap;
 }
@@ -35,8 +54,8 @@
   --focus: #1f6fd1;
 
   /* Type */
-  --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
-  --font-body: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Barlow', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Noto Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Type scale: 1.25 ratio from a 17px body, larger steps grow with the viewport */
   --step--1: 0.875rem;
@@ -87,9 +106,8 @@ h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: var(--leading-tight);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.005em;
   margin: 0;
-  font-variation-settings: 'opsz' 96;
 }
 p { margin: 0 0 var(--space-4); }
 a { color: inherit; }
