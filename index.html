@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/barlow-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/noto-sans-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/redesign.css?v=2">
+<link rel="stylesheet" href="assets/css/redesign.css?v=3">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -256,219 +256,171 @@
   <section class="gallery" id="work" aria-labelledby="work-title">
     <div class="wrap gallery-head">
       <h2 id="work-title">Recent jobs around North Alabama.</h2>
-      <p>Every photo here is our own work. Tap any photo to see it bigger.</p>
+      <p>Every photo here is our own work. Tap a job to see its photos.</p>
       <div class="gallery-bar">
         <div class="filters" role="group" aria-label="Filter photos">
-          <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span>33</span></button>
-          <button type="button" class="filter" data-filter="home" aria-pressed="false">Homes <span>12</span></button>
-          <button type="button" class="filter" data-filter="business" aria-pressed="false">Businesses <span>21</span></button>
+          <button type="button" class="filter" data-filter="all" aria-pressed="true">All jobs <span>9</span></button>
+          <button type="button" class="filter" data-filter="home" aria-pressed="false">Homes <span>3</span></button>
+          <button type="button" class="filter" data-filter="business" aria-pressed="false">Businesses <span>6</span></button>
         </div>
-        <button type="button" class="gallery-full" id="gallery-full">View full screen</button>
+        <button type="button" class="gallery-full" id="gallery-full">See all 33 photos</button>
       </div>
     </div>
 
-    <div class="mosaic" id="mosaic">
-        <figure class="tile" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Upstairs glass, by ladder">
-            <img src="assets/images/tucker-ladder.jpg" srcset="assets/images/tucker-ladder-600.jpg 600w, assets/images/tucker-ladder.jpg 912w" sizes="(min-width: 960px) 25vw, 50vw" width="912" height="1600" alt="Technician on a ladder cleaning a second-story window on a brick home" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Upstairs glass, by ladder</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Retail store doors, squeegeed inside">
-            <img src="assets/images/storefront-squeegee.jpg" srcset="assets/images/storefront-squeegee-600.jpg 600w, assets/images/storefront-squeegee.jpg 900w" sizes="(min-width: 960px) 25vw, 50vw" width="900" height="1600" alt="Technician in a Tucker&rsquo;s shirt using a pole squeegee on the tall glass doors of a retail store" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Retail store doors, squeegeed inside</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Blue Dolphin Pools &amp; Spas">
-            <img src="assets/images/bluedolphin-storefront.jpg" srcset="assets/images/bluedolphin-storefront-800.jpg 800w, assets/images/bluedolphin-storefront.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="Blue Dolphin Pools and Spas storefront with a full wall of clean glass" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Blue Dolphin Pools &amp; Spas</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Extension pole, upper windows">
-            <img src="assets/images/job-pole-brick.jpg" srcset="assets/images/job-pole-brick-800.jpg 800w, assets/images/job-pole-brick.jpg 960w" sizes="(min-width: 960px) 25vw, 50vw" width="960" height="1280" alt="Technician in a Tucker&rsquo;s shirt using an extension pole on the upper windows of a brick home" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Extension pole, upper windows</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Ladder up to an upstairs sunroom">
-            <img src="assets/images/sunroom-ladder.jpg" srcset="assets/images/sunroom-ladder-800.jpg 800w, assets/images/sunroom-ladder.jpg 1170w" sizes="(min-width: 960px) 50vw, 100vw" width="1170" height="655" alt="Technician in a Tucker&rsquo;s shirt climbing a ladder to clean second-story sunroom windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Ladder up to an upstairs sunroom</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Handel&rsquo;s Ice Cream">
-            <img src="assets/images/commercial-handels-close.jpg" srcset="assets/images/commercial-handels-close-800.jpg 600w, assets/images/commercial-handels-close.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Handel&rsquo;s Homemade Ice Cream storefront with clean windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Handel&rsquo;s Ice Cream</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Retail storefront, ladder work up top">
-            <img src="assets/images/storefront-ladder.jpg" srcset="assets/images/storefront-ladder-600.jpg 600w, assets/images/storefront-ladder.jpg 900w" sizes="(min-width: 960px) 25vw, 50vw" width="900" height="1600" alt="Technician on a tall ladder cleaning the upper glass of a retail storefront under a black awning" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Retail storefront, ladder work up top</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Sunroom glass, squeegeed inside">
-            <img src="assets/images/sunroom-squeegee.jpg" srcset="assets/images/sunroom-squeegee-800.jpg 800w, assets/images/sunroom-squeegee.jpg 1170w" sizes="(min-width: 960px) 50vw, 100vw" width="1170" height="649" alt="Technician on a stepladder squeegeeing the upper sunroom windows from inside" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Sunroom glass, squeegeed inside</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Brick home, every pane">
-            <img src="assets/images/residential-brick.jpg" srcset="assets/images/residential-brick-800.jpg 800w, assets/images/residential-brick.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="Two-story brick home with clean, streak-free windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Brick home, every pane</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Office entrance glass">
-            <img src="assets/images/commercial-entrance.jpg" srcset="assets/images/commercial-entrance-800.jpg 800w, assets/images/commercial-entrance.jpg 960w" sizes="(min-width: 960px) 25vw, 50vw" width="960" height="1280" alt="Brick office entrance with clean, reflective glass doors and windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Office entrance glass</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Retail store, looking out">
-            <img src="assets/images/storefront-inside.jpg" srcset="assets/images/storefront-inside-800.jpg 800w, assets/images/storefront-inside.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1510" alt="Inside a retail store looking out through clean glass doors and a tall window" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Retail store, looking out</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Frames and tracks, by hand">
-            <img src="assets/images/detail-frame.jpg" srcset="assets/images/detail-frame-800.jpg 600w, assets/images/detail-frame.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Gloved hand cleaning a window frame and track" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Frames and tracks, by hand</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Tracks, wiped clean">
-            <img src="assets/images/detail-track.jpg" srcset="assets/images/detail-track-800.jpg 800w, assets/images/detail-track.jpg 1500w" sizes="(min-width: 960px) 25vw, 50vw" width="1500" height="2000" alt="Close-up of a window track and frame wiped clean, ladder outside" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Tracks, wiped clean</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Double door entry">
-            <img src="assets/images/commercial-doors.jpg" srcset="assets/images/commercial-doors-800.jpg 800w, assets/images/commercial-doors.jpg 830w" sizes="(min-width: 960px) 25vw, 50vw" width="830" height="830" alt="Commercial double glass doors, spotless, reflecting the parking lot" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Double door entry</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Retail entrance, every pane">
-            <img src="assets/images/storefront-entrance.jpg" srcset="assets/images/storefront-entrance-600.jpg 600w, assets/images/storefront-entrance.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Arched retail entrance with clean glass doors and side windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Retail entrance, every pane</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Sunroom, golf course view">
-            <img src="assets/images/sunroom-golf.jpg" srcset="assets/images/sunroom-golf-800.jpg 800w, assets/images/sunroom-golf.jpg 1500w" sizes="(min-width: 960px) 25vw, 50vw" width="1500" height="1440" alt="Clean sunroom windows looking out over a golf course and ponds" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Sunroom, golf course view</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Stone and brick, North Alabama">
-            <img src="assets/images/residential-stone-wide.jpg" srcset="assets/images/residential-stone-wide-800.jpg 800w, assets/images/residential-stone-wide.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="Large stone and brick home exterior with sparkling windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Stone and brick, North Alabama</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Toyota manufacturing facility">
-            <img src="assets/images/commercial-toyota.jpg" srcset="assets/images/commercial-toyota-800.jpg 600w, assets/images/commercial-toyota.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Toyota manufacturing facility with long bands of clean glass" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Toyota manufacturing facility</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Clear view out, Huntsville">
-            <img src="assets/images/storefront-view.jpg" srcset="assets/images/storefront-view-600.jpg 600w, assets/images/storefront-view.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="View through a freshly cleaned storefront window to the plaza outside" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Clear view out, Huntsville</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Pole squeegee, no streaks">
-            <img src="assets/images/action-squeegee.jpg" srcset="assets/images/action-squeegee-800.jpg 600w, assets/images/action-squeegee.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Technician using a pole squeegee on a brick home" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Pole squeegee, no streaks</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Handel&rsquo;s order window">
-            <img src="assets/images/commercial-handels.jpg" srcset="assets/images/commercial-handels-800.jpg 800w, assets/images/commercial-handels.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="Close-up of Handel&rsquo;s walk-up window glass" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Handel&rsquo;s order window</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Corner display window">
-            <img src="assets/images/storefront-corner.jpg" srcset="assets/images/storefront-corner-600.jpg 600w, assets/images/storefront-corner.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Tall corner display window of a retail store, clean and reflecting the sky" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Corner display window</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Arched windows">
-            <img src="assets/images/residential-stone-close.jpg" srcset="assets/images/residential-stone-close-800.jpg 600w, assets/images/residential-stone-close.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Stone home with clean arched windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Arched windows</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="home">
-          <button type="button" class="tile-open" aria-label="View larger: Sunroom corner, lake view">
-            <img src="assets/images/sunroom-lake.jpg" srcset="assets/images/sunroom-lake-800.jpg 800w, assets/images/sunroom-lake.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="848" alt="Corner of a sunroom with clean floor-to-ceiling windows looking out on a lake" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Home</span><span class="tile-detail"> Sunroom corner, lake view</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Blue Dolphin, from the inside">
-            <img src="assets/images/bluedolphin-inside.jpg" srcset="assets/images/bluedolphin-inside-800.jpg 800w, assets/images/bluedolphin-inside.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="View from inside Blue Dolphin through clean storefront windows to the parking lot" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Blue Dolphin, from the inside</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Blue Dolphin display windows">
-            <img src="assets/images/bluedolphin-display.jpg" srcset="assets/images/bluedolphin-display-800.jpg 800w, assets/images/bluedolphin-display.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="Blue Dolphin display windows, clean glass with painted palm trees and a dolphin" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Blue Dolphin display windows</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Display window, mannequins inside">
-            <img src="assets/images/storefront-display.jpg" srcset="assets/images/storefront-display-600.jpg 600w, assets/images/storefront-display.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Retail display window with mannequins behind clean glass" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Display window, mannequins inside</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Medical office door, Madison">
-            <img src="assets/images/office-door.jpg" srcset="assets/images/office-door-800.jpg 800w, assets/images/office-door.jpg 1500w" sizes="(min-width: 960px) 25vw, 50vw" width="1500" height="2000" alt="Close-up of a medical office glass door with crisp lettering, cleaning gear reflected outside" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Medical office door, Madison</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Office lobby, looking out">
-            <img src="assets/images/office-inside.jpg" srcset="assets/images/office-inside-800.jpg 800w, assets/images/office-inside.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="Inside a Madison medical office looking out through clean glass doors and windows to the parking lot" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Office lobby, looking out</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Office entrance, Madison">
-            <img src="assets/images/office-entrance.jpg" srcset="assets/images/office-entrance-800.jpg 800w, assets/images/office-entrance.jpg 1500w" sizes="(min-width: 960px) 25vw, 50vw" width="1500" height="2000" alt="Brick medical office entrance with clean glass doors and side windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Office entrance, Madison</span></figcaption>
-        </figure>
-        <figure class="tile tile-wide" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Office exterior windows">
-            <img src="assets/images/office-exterior.jpg" srcset="assets/images/office-exterior-800.jpg 800w, assets/images/office-exterior.jpg 1600w" sizes="(min-width: 960px) 50vw, 100vw" width="1600" height="1200" alt="Brick office building with a row of clean exterior windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Office exterior windows</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Toyota, interior glass">
-            <img src="assets/images/commercial-toyota-interior.jpg" srcset="assets/images/commercial-toyota-interior-800.jpg 600w, assets/images/commercial-toyota-interior.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Inside the Toyota facility, clean floor-to-ceiling windows" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Toyota, interior glass</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="business">
-          <button type="button" class="tile-open" aria-label="View larger: Tall storefront glass">
-            <img src="assets/images/storefront-side-window.jpg" srcset="assets/images/storefront-side-window-600.jpg 600w, assets/images/storefront-side-window.jpg 1200w" sizes="(min-width: 960px) 25vw, 50vw" width="1200" height="1600" alt="Tall storefront window with patterned film behind clean glass" loading="lazy" decoding="async">
-          </button>
-          <figcaption><span class="tile-kind">Business</span><span class="tile-detail"> Tall storefront glass</span></figcaption>
-        </figure>
+    <div class="jobs" id="jobs">
+      <article class="job" data-cat="business">
+        <button type="button" class="job-open" aria-label="See 8 photos: Retail storefront">
+          <img src="assets/images/storefront-squeegee.jpg" srcset="assets/images/storefront-squeegee-600.jpg 600w, assets/images/storefront-squeegee.jpg 900w" sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw" width="900" height="1600" alt="Technician in a Tucker&rsquo;s shirt using a pole squeegee on the tall glass doors of a retail store" loading="lazy" decoding="async">
+          <span class="job-count">8 photos</span>
+        </button>
+        <div class="job-text">
+          <span class="job-kind">Business</span>
+          <h3>Retail storefront</h3>
+          <p>Bridge Street, Huntsville</p>
+        </div>
+        <ul class="job-photos" hidden>
+          <li data-src="assets/images/storefront-squeegee.jpg" data-width="900" data-height="1600" data-alt="Technician in a Tucker&rsquo;s shirt using a pole squeegee on the tall glass doors of a retail store" data-caption="Retail store doors, squeegeed inside"></li>
+          <li data-src="assets/images/storefront-ladder.jpg" data-width="900" data-height="1600" data-alt="Technician on a tall ladder cleaning the upper glass of a retail storefront under a black awning" data-caption="Retail storefront, ladder work up top"></li>
+          <li data-src="assets/images/storefront-inside.jpg" data-width="1600" data-height="1510" data-alt="Inside a retail store looking out through clean glass doors and a tall window" data-caption="Retail store, looking out"></li>
+          <li data-src="assets/images/storefront-entrance.jpg" data-width="1200" data-height="1600" data-alt="Arched retail entrance with clean glass doors and side windows" data-caption="Retail entrance, every pane"></li>
+          <li data-src="assets/images/storefront-view.jpg" data-width="1200" data-height="1600" data-alt="View through a freshly cleaned storefront window to the plaza outside" data-caption="Clear view out, Huntsville"></li>
+          <li data-src="assets/images/storefront-corner.jpg" data-width="1200" data-height="1600" data-alt="Tall corner display window of a retail store, clean and reflecting the sky" data-caption="Corner display window"></li>
+          <li data-src="assets/images/storefront-display.jpg" data-width="1200" data-height="1600" data-alt="Retail display window with mannequins behind clean glass" data-caption="Display window, mannequins inside"></li>
+          <li data-src="assets/images/storefront-side-window.jpg" data-width="1200" data-height="1600" data-alt="Tall storefront window with patterned film behind clean glass" data-caption="Tall storefront glass"></li>
+        </ul>
+      </article>
+      <article class="job" data-cat="home">
+        <button type="button" class="job-open" aria-label="See 6 photos: Brick and stone homes">
+          <img src="assets/images/residential-brick.jpg" srcset="assets/images/residential-brick-800.jpg 800w, assets/images/residential-brick.jpg 1600w" sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw" width="1600" height="1200" alt="Two-story brick home with clean, streak-free windows" loading="lazy" decoding="async">
+          <span class="job-count">6 photos</span>
+        </button>
+        <div class="job-text">
+          <span class="job-kind">Home</span>
+          <h3>Brick and stone homes</h3>
+          <p>Upstairs glass by ladder and pole</p>
+        </div>
+        <ul class="job-photos" hidden>
+          <li data-src="assets/images/residential-brick.jpg" data-width="1600" data-height="1200" data-alt="Two-story brick home with clean, streak-free windows" data-caption="Brick home, every pane"></li>
+          <li data-src="assets/images/tucker-ladder.jpg" data-width="912" data-height="1600" data-alt="Technician on a ladder cleaning a second-story window on a brick home" data-caption="Upstairs glass, by ladder"></li>
+          <li data-src="assets/images/job-pole-brick.jpg" data-width="960" data-height="1280" data-alt="Technician in a Tucker&rsquo;s shirt using an extension pole on the upper windows of a brick home" data-caption="Extension pole, upper windows"></li>
+          <li data-src="assets/images/action-squeegee.jpg" data-width="1200" data-height="1600" data-alt="Technician using a pole squeegee on a brick home" data-caption="Pole squeegee, no streaks"></li>
+          <li data-src="assets/images/residential-stone-wide.jpg" data-width="1600" data-height="1200" data-alt="Large stone and brick home exterior with sparkling windows" data-caption="Stone and brick, North Alabama"></li>
+          <li data-src="assets/images/residential-stone-close.jpg" data-width="1200" data-height="1600" data-alt="Stone home with clean arched windows" data-caption="Arched windows"></li>
+        </ul>
+      </article>
+      <article class="job" data-cat="home">
+        <button type="button" class="job-open" aria-label="See 4 photos: Sunrooms">
+          <img src="assets/images/sunroom-golf.jpg" srcset="assets/images/sunroom-golf-800.jpg 800w, assets/images/sunroom-golf.jpg 1500w" sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw" width="1500" height="1440" alt="Clean sunroom windows looking out over a golf course and ponds" loading="lazy" decoding="async">
+          <span class="job-count">4 photos</span>
+        </button>
+        <div class="job-text">
+          <span class="job-kind">Home</span>
+          <h3>Sunrooms</h3>
+          <p>Floor to ceiling glass, inside and out</p>
+        </div>
+        <ul class="job-photos" hidden>
+          <li data-src="assets/images/sunroom-golf.jpg" data-width="1500" data-height="1440" data-alt="Clean sunroom windows looking out over a golf course and ponds" data-caption="Sunroom, golf course view"></li>
+          <li data-src="assets/images/sunroom-ladder.jpg" data-width="1170" data-height="655" data-alt="Technician in a Tucker&rsquo;s shirt climbing a ladder to clean second-story sunroom windows" data-caption="Ladder up to an upstairs sunroom"></li>
+          <li data-src="assets/images/sunroom-squeegee.jpg" data-width="1170" data-height="649" data-alt="Technician on a stepladder squeegeeing the upper sunroom windows from inside" data-caption="Sunroom glass, squeegeed inside"></li>
+          <li data-src="assets/images/sunroom-lake.jpg" data-width="1600" data-height="848" data-alt="Corner of a sunroom with clean floor-to-ceiling windows looking out on a lake" data-caption="Sunroom corner, lake view"></li>
+        </ul>
+      </article>
+      <article class="job" data-cat="business">
+        <button type="button" class="job-open" aria-label="See 4 photos: Medical office">
+          <img src="assets/images/office-exterior.jpg" srcset="assets/images/office-exterior-800.jpg 800w, assets/images/office-exterior.jpg 1600w" sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw" width="1600" height="1200" alt="Brick office building with a row of clean exterior windows" loading="lazy" decoding="async">
+          <span class="job-count">4 photos</span>
+        </button>
+        <div class="job-text">
+          <span class="job-kind">Business</span>
+          <h3>Medical office</h3>
+          <p>Madison</p>
+        </div>
+        <ul class="job-photos" hidden>
+          <li data-src="assets/images/office-exterior.jpg" data-width="1600" data-height="1200" data-alt="Brick office building with a row of clean exterior windows" data-caption="Office exterior windows"></li>
+          <li data-src="assets/images/office-entrance.jpg" data-width="1500" data-height="2000" data-alt="Brick medical office entrance with clean glass doors and side windows" data-caption="Office entrance, Madison"></li>
+          <li data-src="assets/images/office-door.jpg" data-width="1500" data-height="2000" data-alt="Close-up of a medical office glass door with crisp lettering, cleaning gear reflected outside" data-caption="Medical office door, Madison"></li>
+          <li data-src="assets/images/office-inside.jpg" data-width="1600" data-height="1200" data-alt="Inside a Madison medical office looking out through clean glass doors and windows to the parking lot" data-caption="Office lobby, looking out"></li>
+        </ul>
+      </article>
+      <article class="job" data-cat="business">
+        <button type="button" class="job-open" aria-label="See 3 photos: Blue Dolphin Pools &amp; Spas">
+          <img src="assets/images/bluedolphin-storefront.jpg" srcset="assets/images/bluedolphin-storefront-800.jpg 800w, assets/images/bluedolphin-storefront.jpg 1600w" sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw" width="1600" height="1200" alt="Blue Dolphin Pools and Spas storefront with a full wall of clean glass" loading="lazy" decoding="async">
+          <span class="job-count">3 photos</span>
+        </button>
+        <div class="job-text">
+          <span class="job-kind">Business</span>
+          <h3>Blue Dolphin Pools &amp; Spas</h3>
+          <p>Storefront and display windows</p>
+        </div>
+        <ul class="job-photos" hidden>
+          <li data-src="assets/images/bluedolphin-storefront.jpg" data-width="1600" data-height="1200" data-alt="Blue Dolphin Pools and Spas storefront with a full wall of clean glass" data-caption="Blue Dolphin Pools &amp; Spas"></li>
+          <li data-src="assets/images/bluedolphin-inside.jpg" data-width="1600" data-height="1200" data-alt="View from inside Blue Dolphin through clean storefront windows to the parking lot" data-caption="Blue Dolphin, from the inside"></li>
+          <li data-src="assets/images/bluedolphin-display.jpg" data-width="1600" data-height="1200" data-alt="Blue Dolphin display windows, clean glass with painted palm trees and a dolphin" data-caption="Blue Dolphin display windows"></li>
+        </ul>
+      </article>
+      <article class="job" data-cat="business">
+        <button type="button" class="job-open" aria-label="See 2 photos: Toyota manufacturing facility">
+          <img src="assets/images/commercial-toyota.jpg" srcset="assets/images/commercial-toyota-800.jpg 600w, assets/images/commercial-toyota.jpg 1200w" sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw" width="1200" height="1600" alt="Toyota manufacturing facility with long bands of clean glass" loading="lazy" decoding="async">
+          <span class="job-count">2 photos</span>
+        </button>
+        <div class="job-text">
+          <span class="job-kind">Business</span>
+          <h3>Toyota manufacturing facility</h3>
+          <p>Exterior and interior glass</p>
+        </div>
+        <ul class="job-photos" hidden>
+          <li data-src="assets/images/commercial-toyota.jpg" data-width="1200" data-height="1600" data-alt="Toyota manufacturing facility with long bands of clean glass" data-caption="Toyota manufacturing facility"></li>
+          <li data-src="assets/images/commercial-toyota-interior.jpg" data-width="1200" data-height="1600" data-alt="Inside the Toyota facility, clean floor-to-ceiling windows" data-caption="Toyota, interior glass"></li>
+        </ul>
+      </article>
+      <article class="job" data-cat="business">
+        <button type="button" class="job-open" aria-label="See 2 photos: Handel&rsquo;s Ice Cream">
+          <img src="assets/images/commercial-handels.jpg" srcset="assets/images/commercial-handels-800.jpg 800w, assets/images/commercial-handels.jpg 1600w" sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw" width="1600" height="1200" alt="Close-up of Handel&rsquo;s walk-up window glass" loading="lazy" decoding="async">
+          <span class="job-count">2 photos</span>
+        </button>
+        <div class="job-text">
+          <span class="job-kind">Business</span>
+          <h3>Handel&rsquo;s Ice Cream</h3>
+          <p>Storefront and order window</p>
+        </div>
+        <ul class="job-photos" hidden>
+          <li data-src="assets/images/commercial-handels.jpg" data-width="1600" data-height="1200" data-alt="Close-up of Handel&rsquo;s walk-up window glass" data-caption="Handel&rsquo;s order window"></li>
+          <li data-src="assets/images/commercial-handels-close.jpg" data-width="1200" data-height="1600" data-alt="Handel&rsquo;s Homemade Ice Cream storefront with clean windows" data-caption="Handel&rsquo;s Ice Cream"></li>
+        </ul>
+      </article>
+      <article class="job" data-cat="home">
+        <button type="button" class="job-open" aria-label="See 2 photos: Frames and tracks">
+          <img src="assets/images/detail-frame.jpg" srcset="assets/images/detail-frame-800.jpg 600w, assets/images/detail-frame.jpg 1200w" sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw" width="1200" height="1600" alt="Gloved hand cleaning a window frame and track" loading="lazy" decoding="async">
+          <span class="job-count">2 photos</span>
+        </button>
+        <div class="job-text">
+          <span class="job-kind">Home</span>
+          <h3>Frames and tracks</h3>
+          <p>Cleaned by hand on every visit</p>
+        </div>
+        <ul class="job-photos" hidden>
+          <li data-src="assets/images/detail-frame.jpg" data-width="1200" data-height="1600" data-alt="Gloved hand cleaning a window frame and track" data-caption="Frames and tracks, by hand"></li>
+          <li data-src="assets/images/detail-track.jpg" data-width="1500" data-height="2000" data-alt="Close-up of a window track and frame wiped clean, ladder outside" data-caption="Tracks, wiped clean"></li>
+        </ul>
+      </article>
+      <article class="job" data-cat="business">
+        <button type="button" class="job-open" aria-label="See 2 photos: Entrances and doors">
+          <img src="assets/images/commercial-entrance.jpg" srcset="assets/images/commercial-entrance-800.jpg 800w, assets/images/commercial-entrance.jpg 960w" sizes="(min-width: 960px) 33vw, (min-width: 640px) 50vw, 100vw" width="960" height="1280" alt="Brick office entrance with clean, reflective glass doors and windows" loading="lazy" decoding="async">
+          <span class="job-count">2 photos</span>
+        </button>
+        <div class="job-text">
+          <span class="job-kind">Business</span>
+          <h3>Entrances and doors</h3>
+          <p>Office and shop entry glass</p>
+        </div>
+        <ul class="job-photos" hidden>
+          <li data-src="assets/images/commercial-entrance.jpg" data-width="960" data-height="1280" data-alt="Brick office entrance with clean, reflective glass doors and windows" data-caption="Office entrance glass"></li>
+          <li data-src="assets/images/commercial-doors.jpg" data-width="830" data-height="830" data-alt="Commercial double glass doors, spotless, reflecting the parking lot" data-caption="Double door entry"></li>
+        </ul>
+      </article>
     </div>
     <div class="wrap">
-      <button type="button" class="button button-outline gallery-more" id="gallery-more" hidden>Show all photos</button>
+      <button type="button" class="button button-outline gallery-more" id="gallery-more" hidden>Show all jobs</button>
     </div>
   </section>
 
@@ -658,6 +610,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js?v=1" defer></script>
+<script src="assets/js/site.js?v=2" defer></script>
 </body>
 </html>

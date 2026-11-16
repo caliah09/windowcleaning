@@ -630,3 +630,20 @@ input[type="range"]:focus-visible { outline: 3px solid var(--focus); outline-off
   .site-footer { padding-top: var(--space-9); }
   .footer-grid { grid-template-columns: 1.2fr 1.5fr 1fr 1fr; gap: var(--space-6); }
 }
+
+/* ---------- Gallery: one card per job ---------- */
+.jobs { display: grid; gap: var(--space-5); width: 100%; max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter); }
+.job { display: flex; flex-direction: column; gap: var(--space-3); margin: 0; }
+.job[hidden] { display: none; }
+.job-open { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; padding: 0; border: 0; border-radius: var(--radius); overflow: hidden; background: var(--sky-100); cursor: zoom-in; }
+.job-open img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.job-open:hover img { transform: scale(1.03); }
+.job-open:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.job-count { position: absolute; right: var(--space-3); bottom: var(--space-3); padding: var(--space-1) var(--space-3); border-radius: 999px; background: rgba(18, 43, 71, 0.9); color: var(--white); font-size: 0.85rem; font-weight: 600; }
+.job-text { display: flex; flex-direction: column; gap: var(--space-1); }
+.job-kind { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--leaf-700); }
+.job-text h3 { font-family: var(--font-display); font-weight: 700; font-size: var(--step-2); line-height: var(--leading-snug); margin: 0; }
+.job-text p { margin: 0; color: var(--text-muted); font-size: var(--step--1); }
+@media (min-width: 640px) { .jobs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-5); } }
+@media (min-width: 960px) { .jobs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .job-open img { transition: none; } }
